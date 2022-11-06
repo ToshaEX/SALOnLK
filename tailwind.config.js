@@ -13,6 +13,7 @@ module.exports = {
     },
     colors: {
       white: "#fff",
+      black: "#000",
       blue: "#1fb6ff",
       purple: "#7e5bef",
       pink: "#ff49db",
@@ -22,6 +23,7 @@ module.exports = {
       "gray-dark": "#273444",
       gray: "#8492a6",
       "gray-light": "#d3dce6",
+      primary: "#273444",
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
@@ -55,5 +57,6 @@ module.exports = {
         },
       });
     }),
+    require("@tailwindcss/forms"),
   ],
 };

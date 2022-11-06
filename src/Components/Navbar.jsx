@@ -2,24 +2,15 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { Link as SectionLink } from "react-scroll";
+import { Redirect } from "react-router-dom";
 
-const sections = [
-  {
-    name: "Home",
-    to: "home",
-    current: false,
-  },
-  {
-    name: "About Us",
-    to: "about-us",
-    current: false,
-  },
-];
 const navigation = [
+  { name: "Home", to: "/home", current: false },
+  { name: "Register", to: "/register", current: false },
+  { name: "Sign In", to: "/sign-in", current: false },
   { name: "Services", to: "/services", current: false },
-  { name: "Calendar", to: "/", current: false },
 ];
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -57,40 +48,20 @@ const Navbar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block ">
                   <div className="flex space-x-4 ">
-                    {sections.map((item) => (
-                      <SectionLink
-                        key={item.name}
-                        activeClass="active"
-                        spy={true}
-                        smooth={true}
-                        to={item.to}
-                        duration={500}
+                    {navigation.map((item) => (
+                      <a
+                        href={item.to}
+                        key={`${item.name}-item`}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-blue"
                             : "text-gray-300 hover:bg-gray-700 hover:text-black hover:bg-blue hover:bg-opacity-10",
                           "px-3 py-2 rounded-md text-sm font-medium text-gray-light"
                         )}
+                        aria-current={item.current ? "page" : undefined}
                       >
-                        <div>{item.name}</div>
-                      </SectionLink>
-                    ))}
-
-                    {navigation.map((item) => (
-                      <Link to={item.to} key={item.name}>
-                        <div
-                          key={item.name}
-                          className={classNames(
-                            item.current
-                              ? "bg-gray-900 text-blue"
-                              : "text-gray-300 hover:bg-gray-700 hover:text-black hover:bg-blue hover:bg-opacity-10",
-                            "px-3 py-2 rounded-md text-sm font-medium text-gray-light"
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name}
-                        </div>
-                      </Link>
+                        {item.name}
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -155,14 +126,15 @@ const Navbar = () => {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign out
+                          <a href="/sign-in">
+                            <div
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Sign In
+                            </div>
                           </a>
                         )}
                       </Menu.Item>
@@ -179,7 +151,7 @@ const Navbar = () => {
                 <Disclosure.Button
                   key={item.name}
                   as="a"
-                  href={item.href}
+                  href={item.to}
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"

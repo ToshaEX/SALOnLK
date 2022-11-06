@@ -5,7 +5,7 @@ const AboutUS = () => {
     <section
       id="about-us"
       className="flex snap-center justify-center items-center h-screen"
-    >
+    > 
       <div className="item-center">AboutUS</div>
     </section>
   );
