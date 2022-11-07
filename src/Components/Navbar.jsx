@@ -2,20 +2,23 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-// import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { Link as SectionLink } from "react-scroll";
 import { Redirect } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", to: "/home", current: false },
-  { name: "Register", to: "/register", current: false },
-  { name: "Sign In", to: "/sign-in", current: false },
-  { name: "Services", to: "/services", current: false },
+  { name: "Home", to: "home", current: false },
+  { name: "Register", to: "register", current: false },
+  { name: "Sign In", to: "sign-in", current: false },
+  { name: "Services", to: "services", current: false },
 ];
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const Navbar = () => {
+  const email = useSelector((state) => state.user.email);
+
   return (
     <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-dark">
       {({ open }) => (
@@ -49,9 +52,13 @@ const Navbar = () => {
                 <div className="hidden sm:ml-6 sm:block ">
                   <div className="flex space-x-4 ">
                     {navigation.map((item) => (
-                      <a
-                        href={item.to}
+                      <Link
+                        to={(location) => ({ ...location, pathname: item.to })}
                         key={`${item.name}-item`}
+                        // onClick={(e) =>{
+                        //   e.preventDefault();
+
+                        // }}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-blue"
@@ -61,7 +68,7 @@ const Navbar = () => {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -107,7 +114,7 @@ const Navbar = () => {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Your Profile
+                            {email ? email : "your name"}
                           </a>
                         )}
                       </Menu.Item>

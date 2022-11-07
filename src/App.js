@@ -16,13 +16,12 @@ function App() {
   return (
     <div className="snap-y snap-mandatory snap-always">
       <Router>
+        <Navbar />
         <Switch>
-          
           <Route
             path="/home"
             component={() => (
               <>
-                <Navbar />
                 <LandingPage />
               </>
             )}
@@ -31,7 +30,6 @@ function App() {
             path="/sign-in"
             component={() => (
               <>
-                <Navbar />
                 <SignIn />
               </>
             )}
@@ -40,7 +38,6 @@ function App() {
             path="/register"
             component={() => (
               <>
-                <Navbar />
                 <Register />
               </>
             )}
@@ -51,7 +48,6 @@ function App() {
             path="/services"
             component={() => (
               <>
-                <Navbar />
                 <Services />
               </>
             )}
