@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../../features/user/user-slice";
 
 const SignIn = () => {
-  console.log("Sign in");
+
   const userName = useSelector((state) => state.user.userName);
   const dispatch = useDispatch();
 
@@ -20,13 +20,13 @@ const SignIn = () => {
   };
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-full items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
               className="mx-auto h-12 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
+              alt="salonlk"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
@@ -50,40 +50,36 @@ const SignIn = () => {
           >
             {/* <input type="hidden" name="remember" defaultValue="true" /> */}
             <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
+              <div className="mb-3">
+                  <input 
+                  type="email" 
                   id="email-address"
                   name="email"
-                  type="email"
                   autoComplete="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required
+                  placeholder="Email address"
                   onChange={(e) => {
                     handleChange(e, setEmail);
                   }}
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Email address"
+                  />
+              </div>
+              
+              <div className="mb-3">
+                <input 
+                type="password" 
+                id="password"
+                name="password"
+                autoComplete="current-password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                required
+                placeholder="Password"              
+                onChange={(e) => {
+                  handleChange(e, setPassword);
+                }}
                 />
               </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  onChange={(e) => {
-                    handleChange(e, setPassword);
-                  }}
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
+             
             </div>
 
             <div className="flex items-center justify-between">
@@ -102,14 +98,15 @@ const SignIn = () => {
                 </label>
               </div> */}
 
-              {/* <div className="text-sm">
+              <div className="text-sm">
                 <a
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Forgot your password?
                 </a>
-              </div> */}
+              </div>
+              
             </div>
 
             <div>

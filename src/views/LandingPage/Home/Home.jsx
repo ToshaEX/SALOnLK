@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="top-0 snap-center flex bg-[url('./assets/hero.jpg')] bg-black bg-opacity-10  bg-blend-multiply xl:bg-cover bg-no-repeat h-screen sm:bg-auto  items-center"
+      className="top-0 snap-center flex bg-[url('./assets/hero.jpg')] bg-black bg-opacity-10  bg-blend-multiply sm:bg-cover bg-no-repeat h-screen bg-auto items-center"
     >
       <motion.div
         animate={spring}
