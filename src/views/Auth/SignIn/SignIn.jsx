@@ -20,7 +20,7 @@ const SignIn = () => {
   };
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+      <div className="flex h-screen min-h-full items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
@@ -56,7 +56,7 @@ const SignIn = () => {
                   id="email-address"
                   name="email"
                   autoComplete="email"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   required
                   placeholder="Email address"
                   onChange={(e) => {
@@ -71,7 +71,7 @@ const SignIn = () => {
                 id="password"
                 name="password"
                 autoComplete="current-password"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 required
                 placeholder="Password"              
                 onChange={(e) => {

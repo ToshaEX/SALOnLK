@@ -28,13 +28,13 @@ const Register = () => {
       id="signUp"
       className="flex items-center justify-center"
     >
-      <div className="flex max-w-xl">
+      <div className="hidden max-w-xl md:flex">
           <img className="h-[300px] w-[160px] drop-shadow-xl animate-bounce-slow-up" src={require('../../../assets/1st.png')} alt="signup1-img"/>
           <img className="mx-5 h-[300px] w-[160px] drop-shadow-xl" src={require('../../../assets/2nd.png')} alt="signup2-img"/>
           <img className="h-[300px] w-[160px] drop-shadow-xl animate-bounce-slow-down" src={require('../../../assets/3rd.png')} alt="signup3-img"/>
       </div>
 
-      <div className="flex min-h-full items-center justify-center py-10 ml-[100px] sm:px-6 lg:px-8">  
+      <div className="flex min-h-full items-center justify-center py-10 md:ml-[100px] sm:px-6 md:px-8">  
         <div className="w-full max-w-md space-y-8 px-10">
           <div>
             <img className="mx-auto h-12 w-auto"
@@ -58,7 +58,7 @@ const Register = () => {
                 <input 
                 type="text" 
                 id="first_name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 required
                 placeholder="First Name"
                 onChange={(e) => {
@@ -71,7 +71,7 @@ const Register = () => {
                 <input 
                 type="text" 
                 id="second_name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 required
                 placeholder="Last Name"
                 onChange={(e) => {
@@ -85,7 +85,7 @@ const Register = () => {
                 <input 
                 type="tel" 
                 id="contact-number"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 required
                 placeholder="Contact Number"
                 onChange={(e) => {
@@ -98,7 +98,7 @@ const Register = () => {
                 <input 
                 type="email" 
                 id="email-address"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 required
                 placeholder="Email address"
                 onChange={(e) => {
@@ -110,7 +110,7 @@ const Register = () => {
               <div className="mb-3">
                 <select 
                 id="gender" 
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 onChange={(e) => {
                   handleChange(e, setGetGender);
                 }}
@@ -126,7 +126,7 @@ const Register = () => {
                 <input 
                 type="password" 
                 id="password"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 required
                 placeholder="Password"
                 onChange={(e) => {
@@ -139,7 +139,7 @@ const Register = () => {
                 <input 
                 type="password" 
                 id="confirm-password"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 required
                 placeholder="Confirm Password"
                 onChange={(e) => {
