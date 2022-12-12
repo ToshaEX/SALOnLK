@@ -37,12 +37,8 @@ const Register = () => {
       <div className="flex min-h-full items-center justify-center py-10 md:ml-[100px] sm:px-6 md:px-8">  
         <div className="w-full max-w-md space-y-8 px-10">
           <div>
-            <img className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" 
-            alt="salonlk"
-            />
-            <h2 className="mt-2 mb-8 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Create new account
+            <h2 className="mt-2 mb-8 text-start font-bold text-[40px] leading-none tracking-tight text-gray-900">
+              Create <br /> new account
             </h2>
           </div>
 
