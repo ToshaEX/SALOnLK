@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../../features/user/user-slice";
 
 const SignIn = () => {
-
   const userName = useSelector((state) => state.user.userName);
   const dispatch = useDispatch();
 
@@ -20,30 +19,49 @@ const SignIn = () => {
   };
   return (
     <>
-        <div className="flex min-h-full items-center justify-center px-20 py-20 gap-20">
-          
-          <div className="hidden items-start md:flex">
-            <div className="flex max-w-xl">
-              <div>
-                <img className="h-[222px] w-[123px] drop-shadow-xl mt-[150px] cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110" src={require('../../../assets/ab-1.png')} alt="ab1-img"/>
+      <div className="flex min-h-full items-center justify-center px-20 py-20 gap-20">
+        <div className="hidden items-start md:flex">
+          <div className="flex max-w-xl">
+            <div>
+              <img
+                className="h-[222px] w-[123px] drop-shadow-xl mt-[150px] cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                src={require("../../../assets/ab-1.png")}
+                alt="ab1-img"
+              />
+            </div>
+            <div>
+              <div className="flex">
+                <img
+                  className="mx-5 h-[213px] w-[152px] drop-shadow-xl ml-5 mr-0 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                  src={require("../../../assets/ab-2.png")}
+                  alt="ab2-img"
+                />
+                <img
+                  className="mx-5 h-[133px] w-[90px] drop-shadow-xl ml-5 mr-0 mt-[80px] cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                  src={require("../../../assets/ab-4.png")}
+                  alt="ab4-img"
+                />
               </div>
-              <div>
-                <div className="flex">
-                  <img className="mx-5 h-[213px] w-[152px] drop-shadow-xl ml-5 mr-0 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110" src={require('../../../assets/ab-2.png')} alt="ab2-img"/>
-                  <img className="mx-5 h-[133px] w-[90px] drop-shadow-xl ml-5 mr-0 mt-[80px] cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110" src={require('../../../assets/ab-4.png')} alt="ab4-img"/>
-                </div>
-                <div className="flex">
-                  <img className="h-[180px] w-[119px] drop-shadow-xl ml-5 mt-5 mr-5 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110" src={require('../../../assets/ab-3.png')} alt="ab3-img"/>
-                  <img className="h-[169px] w-[112px] drop-shadow-xl mt-5 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110" src={require('../../../assets/ab-5.png')} alt="ab5-img"/>
-                </div>
+              <div className="flex">
+                <img
+                  className="h-[180px] w-[119px] drop-shadow-xl ml-5 mt-5 mr-5 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                  src={require("../../../assets/ab-3.png")}
+                  alt="ab3-img"
+                />
+                <img
+                  className="h-[169px] w-[112px] drop-shadow-xl mt-5 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                  src={require("../../../assets/ab-5.png")}
+                  alt="ab5-img"
+                />
               </div>
             </div>
           </div>
-        
+        </div>
+
         <div className="w-full max-w-md space-y-8">
           <div>
             <h2 className="mt-3 text-start text-[40px] leading-none font-bold tracking-tight">
-              Sign in <br/> to your account
+              Sign in <br /> to your account
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600"></p>
           </div>
@@ -57,8 +75,8 @@ const SignIn = () => {
             {/* <input type="hidden" name="remember" defaultValue="true" /> */}
             <div className="-space-y-px rounded-md shadow-sm">
               <div className="mb-3">
-                  <input 
-                  type="email" 
+                <input
+                  type="email"
                   id="email-address"
                   name="email"
                   autoComplete="email"
@@ -68,24 +86,23 @@ const SignIn = () => {
                   onChange={(e) => {
                     handleChange(e, setEmail);
                   }}
-                  />
-              </div>
-              
-              <div className="mb-3">
-                <input 
-                type="password" 
-                id="password"
-                name="password"
-                autoComplete="current-password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                required
-                placeholder="Password"              
-                onChange={(e) => {
-                  handleChange(e, setPassword);
-                }}
                 />
               </div>
-             
+
+              <div className="mb-3">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  autoComplete="current-password"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required
+                  placeholder="Password"
+                  onChange={(e) => {
+                    handleChange(e, setPassword);
+                  }}
+                />
+              </div>
             </div>
 
             <div className="flex items-center justify-between">
@@ -112,7 +129,6 @@ const SignIn = () => {
                   Forgot your password?
                 </a>
               </div>
-              
             </div>
 
             <div>

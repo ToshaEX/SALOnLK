@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./Home/Home";
-import CTA from "./CTA/CTA";
+import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
 import ServicesMenu from "./Services/ServicesMenu";
 import OurStory from "./AboutUS/OurStory";

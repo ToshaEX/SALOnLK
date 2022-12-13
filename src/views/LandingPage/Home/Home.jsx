@@ -7,7 +7,7 @@ const Home = () => {
     opacity: 1,
     transition: { duration: 2, delay: 0 },
   };
-  
+
   return (
     <section
       id="home"
@@ -31,7 +31,9 @@ const Home = () => {
             </span>
           </div>
           <div className="flex pt-4 justify-center md:justify-start">
-            <button className="btn-primary hover:bg-gray-dark">Book an Appointment</button>
+            <button className="btn-primary hover:bg-gray-dark">
+              Book an Appointment
+            </button>
           </div>
         </div>
       </motion.div>
