@@ -32,7 +32,7 @@ const Services = () => {
 
           <div className="text-center pt-[2rem]">
             <span className="text-[17px] tracking-tight md:text-[18px]">
-              We enhance individial beauty with state-of-the-art technologies
+              We enhance individual beauty with state-of-the-art technologies
               and <br /> personalized service. Our professional team is ready to
               provide the <br /> greatest service you've ever had.
             </span>
