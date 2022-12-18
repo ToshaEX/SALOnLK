@@ -1,1 +1,17 @@
+#root {
+  font-family: "Roboto", sans-serif;
+}
 
+.serviceName ::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #273444;
+  margin: auto;
+  display: block;
+}
+
+.serviceName:hover ::after {
+  width: 100%;
+  transition: width 0.3s linear;
+}

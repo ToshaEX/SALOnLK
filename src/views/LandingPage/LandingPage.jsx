@@ -1,12 +1,22 @@
 import React from "react";
 import Home from "./Home/Home";
-import AboutUS from "./AboutUS/AboutUS";
+import CTA from "../../Components/CTA";
+import Footer from "../../Components/Footer";
+import ServicesMenu from "./Services/ServicesMenu";
+import OurStory from "./AboutUS/OurStory";
+import Products from "./Features/products";
+import Reviews from "./Reviews/Reviews";
 
 const LandingPage = () => {
   return (
     <>
       <Home />
-      <AboutUS />
+      <ServicesMenu />
+      <OurStory />
+      <CTA />
+      <Products />
+      <Reviews />
+      <Footer />
     </>
   );
 };
