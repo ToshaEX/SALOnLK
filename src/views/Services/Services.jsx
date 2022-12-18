@@ -22,6 +22,7 @@ const Services = () => {
 
   return (
     <div>
+      {/* Service Menu Section */}
       <div className="bg-[url('./assets/services-bg.png')]">
         <div className="p-[3rem] text-white">
           <div className="text-center">
@@ -46,10 +47,18 @@ const Services = () => {
         </div>
       </div>
 
+      {/* Service Selection Section */}
       <div className="">
         <div className="relative">
-          <div className="hidden text-center w-[50px] sticky top-0 px-[20px] pt-[4rem] md:p-[4rem] md:block">
-            <Link to="Hair" spy={true} smooth={true} offset={50} duration={500}>
+          <div className="hidden text-center w-[50px] sticky top-0 px-[20px] md:p-[4rem] md:block">
+            <div className="h-[20px]"></div>
+            <Link
+              to="Hair"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
+            >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-4 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
@@ -68,7 +77,7 @@ const Services = () => {
               to="Makeup"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
@@ -89,7 +98,7 @@ const Services = () => {
               to="Brows"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
@@ -110,7 +119,7 @@ const Services = () => {
               to="Nails"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
@@ -131,7 +140,7 @@ const Services = () => {
               to="Cosmetology"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
@@ -152,7 +161,7 @@ const Services = () => {
               to="Massage"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
@@ -170,6 +179,7 @@ const Services = () => {
             </Link>
           </div>
 
+          {/* Hair Details Section */}
           <section
             id="Hair"
             className="text-center px-[1rem] mt-[3rem] md:mt-[-38rem]"
@@ -380,6 +390,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* MakeUp Details Section */}
           <section id="Makeup" className="text-center bg-[#f7f9fc] px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -488,6 +499,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Brows Details Section */}
           <section id="Brows" className="text-center px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -592,6 +604,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Nails Details Section */}
           <section id="Nails" className="text-center bg-[#f7f9fc] px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -700,6 +713,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Cosmetology Details Section */}
           <section id="Cosmetology" className="text-center px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -808,6 +822,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Massage Details Section */}
           <section id="Massage" className="text-center bg-[#f7f9fc] px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -900,8 +915,10 @@ const Services = () => {
         </div>
       </div>
 
+      {/* import CTA Section */}
       <CTA />
 
+      {/* Frequently asked Section */}
       <div className="text-center bg-[#f7f9fc] pb-10">
         <div className="pt-[3rem]">
           <div className="mb-[18px]">
@@ -1029,6 +1046,7 @@ const Services = () => {
         </div>
       </div>
 
+      {/* import footer Section */}
       <Footer />
     </div>
   );

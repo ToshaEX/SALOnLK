@@ -35,17 +35,17 @@ const Register = () => {
     <section id="signUp" className="flex items-center justify-center">
       <div className="hidden max-w-xl md:flex">
         <img
-          className="h-[300px] w-[160px] drop-shadow-xl animate-bounce-slow-up"
+          className="h-[300px] w-[160px] drop-shadow-xl md:mb-10 transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
           src={require("../../../assets/1st.png")}
           alt="signup1-img"
         />
         <img
-          className="mx-5 h-[300px] w-[160px] drop-shadow-xl"
+          className="mx-5 h-[300px] w-[160px] drop-shadow-xl md:mt-10 transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
           src={require("../../../assets/2nd.png")}
           alt="signup2-img"
         />
         <img
-          className="h-[300px] w-[160px] drop-shadow-xl animate-bounce-slow-down"
+          className="h-[300px] w-[160px] drop-shadow-xl md:mt-20 transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
           src={require("../../../assets/3rd.png")}
           alt="signup3-img"
         />
