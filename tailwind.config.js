@@ -41,19 +41,21 @@ module.exports = {
         "4xl": "2rem",
       },
       animation: {
-        'bounce-slow-up': 'bounce 2.5s infinite',
-        'bounce-slow-down': 'bounce-down 2.5s infinite'
+        "bounce-slow-up": "bounce 2.5s infinite",
+        "bounce-slow-down": "bounce-down 2.5s infinite",
       },
       keyframes: {
-        'bounce-down': {
-        '0%, 100%': { transform: 'translateY(25%)',
-        animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
-       },
-        '50%': { transform: 'translateY(0)',
-        animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
-       },
-        }
-      }
+        "bounce-down": {
+          "0%, 100%": {
+            transform: "translateY(25%)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
+        },
+      },
     },
   },
   plugins: [

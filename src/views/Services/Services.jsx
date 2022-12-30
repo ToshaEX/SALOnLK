@@ -62,9 +62,8 @@ const Services = () => {
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-4 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/woman-hair.png")}
-                    alt=""
+                    alt="hair"
                   />
                 </div>
                 <div className="serviceName">
@@ -82,11 +81,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    className=""
-                    src={require("../../assets/makeup.png")}
-                    alt=""
-                  />
+                  <img src={require("../../assets/makeup.png")} alt="makeup" />
                 </div>
                 <div className="serviceName">
                   <span className="">MakeUp</span>
@@ -104,9 +99,8 @@ const Services = () => {
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/mascara.png")}
-                    alt=""
+                    alt="mascara"
                   />
                 </div>
                 <div className="serviceName">
@@ -125,9 +119,8 @@ const Services = () => {
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/nail-polish.png")}
-                    alt=""
+                    alt="nail"
                   />
                 </div>
                 <div className="serviceName">
@@ -145,11 +138,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    className=""
-                    src={require("../../assets/hair-comb.png")}
-                    alt=""
-                  />
+                  <img src={require("../../assets/hair-comb.png")} alt="comb" />
                 </div>
                 <div className="serviceName">
                   <span className="">Cosmetology</span>
@@ -167,9 +156,8 @@ const Services = () => {
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/massage.png")}
-                    alt=""
+                    alt="massage"
                   />
                 </div>
                 <div className="serviceName">
@@ -184,7 +172,7 @@ const Services = () => {
             id="Hair"
             className="text-center px-[1rem] mt-[3rem] md:mt-[-38rem]"
           >
-            <div className="">
+            <div>
               <div className="mb-[18px]">
                 <h2 className="font-bold text-[40px] leading-none tracking-tight">
                   Hair
@@ -757,7 +745,7 @@ const Services = () => {
                       <div className="flex">
                         <div className="text-start pt-[2rem] w-full">
                           <span className="text-[18px] tracking-tight">
-                            Hydrafacial
+                            Hydra facial
                           </span>
                         </div>
                         <div className="pt-[2rem] w-full text-end">
@@ -812,7 +800,7 @@ const Services = () => {
                       <div className="text-start pt-[10px]">
                         <span className="text-[16px] tracking-tight text-gray">
                           This anti-aging treatment stimulates collagen
-                          production for a firmer complextion. (60 min)
+                          production for a firmer complexion. (60 min)
                         </span>
                       </div>
                     </div>
@@ -952,7 +940,7 @@ const Services = () => {
               </div>
               <div className={ansClass1}>
                 A: Schedule your appointment here online with our booking
-                assistant, Phorest or by phone at your desired salon location.
+                assistant, by phone at your desired salon location.
                 <br />
                 Reservations for your appointment are held with a credit card.
                 Please review the Cancellation Policy.

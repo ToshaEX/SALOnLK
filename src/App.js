@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Services from "./views/Services/Services";
 import Register from "./views/Auth/Register/Register";
+import AboutUs from "./views/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -49,6 +50,16 @@ function App() {
             component={() => (
               <>
                 <Services />
+              </>
+            )}
+          />
+          <Route
+            exact
+            strict
+            path="/about-us"
+            component={() => (
+              <>
+                <AboutUs />
               </>
             )}
           />

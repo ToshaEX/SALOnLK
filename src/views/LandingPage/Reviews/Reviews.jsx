@@ -21,10 +21,10 @@ const Reviews = () => {
       >
         <SwiperSlide>
           <div className="pt-[20px] pb-[30px]">
-            <figure class="mx-auto max-w-screen-md text-center">
+            <figure className="mx-auto max-w-screen-md text-center">
               <svg
                 aria-hidden="true"
-                class="mx-auto mb-3 w-12 h-12 text-gray-400"
+                className="mx-auto mb-3 w-12 h-12 text-gray-400"
                 viewBox="0 0 24 27"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ const Reviews = () => {
                 />
               </svg>
               <blockquote>
-                <p class="text-[22px] italic font-medium text-gray tracking-tight">
+                <p className="text-[22px] italic font-medium text-gray tracking-tight">
                   "I recently visited this salon for a haircut and had a great
                   experience. The stylist was knowledgeable, and friendly and
                   did a fantastic job with my hair. She took the time to listen
@@ -44,14 +44,16 @@ const Reviews = () => {
                   looking for a great haircut."
                 </p>
               </blockquote>
-              <figcaption class="flex justify-center items-center mt-6 space-x-3">
+              <figcaption className="flex justify-center items-center mt-6 space-x-3">
                 <img
-                  class="w-6 h-6 rounded-full"
+                  className="w-6 h-6 rounded-full"
                   src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
-                  alt="profile picture"
+                  alt="profile 1"
                 />
-                <div class="flex items-center divide-x-2 divide-gray-500">
-                  <cite class="pr-3 font-medium text-black">Micheal Gough</cite>
+                <div className="flex items-center divide-x-2 divide-gray-500">
+                  <cite className="pr-3 font-medium text-black">
+                    Micheal Gough
+                  </cite>
                 </div>
               </figcaption>
             </figure>
@@ -60,10 +62,10 @@ const Reviews = () => {
 
         <SwiperSlide>
           <div className="pt-[20px] pb-[30px]">
-            <figure class="mx-auto max-w-screen-md text-center">
+            <figure className="mx-auto max-w-screen-md text-center">
               <svg
                 aria-hidden="true"
-                class="mx-auto mb-3 w-12 h-12 text-gray-400"
+                className="mx-auto mb-3 w-12 h-12 text-gray-400"
                 viewBox="0 0 24 27"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +76,7 @@ const Reviews = () => {
                 />
               </svg>
               <blockquote>
-                <p class="text-[22px] italic font-medium text-gray tracking-tight">
+                <p className="text-[22px] italic font-medium text-gray tracking-tight">
                   "I recently had the pleasure of experiencing the services of
                   Beauty Salon. The staff were incredibly friendly and
                   accommodating, and the atmosphere was relaxing and inviting.
@@ -85,14 +87,16 @@ const Reviews = () => {
                   salon experience."
                 </p>
               </blockquote>
-              <figcaption class="flex justify-center items-center mt-6 space-x-3">
+              <figcaption className="flex justify-center items-center mt-6 space-x-3">
                 <img
-                  class="w-6 h-6 rounded-full"
+                  className="w-6 h-6 rounded-full"
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
-                  alt="profile picture"
+                  alt="profile 2"
                 />
-                <div class="flex items-center divide-x-2 divide-gray-500">
-                  <cite class="pr-3 font-medium text-black">Nicola Thomas</cite>
+                <div className="flex items-center divide-x-2 divide-gray-500">
+                  <cite className="pr-3 font-medium text-black">
+                    Nicola Thomas
+                  </cite>
                 </div>
               </figcaption>
             </figure>
@@ -101,10 +105,10 @@ const Reviews = () => {
 
         <SwiperSlide>
           <div className="pt-[20px] pb-[30px]">
-            <figure class="mx-auto max-w-screen-md text-center">
+            <figure className="mx-auto max-w-screen-md text-center">
               <svg
                 aria-hidden="true"
-                class="mx-auto mb-3 w-12 h-12 text-gray-400"
+                className="mx-auto mb-3 w-12 h-12 text-gray-400"
                 viewBox="0 0 24 27"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +119,7 @@ const Reviews = () => {
                 />
               </svg>
               <blockquote>
-                <p class="text-[22px] italic font-medium text-gray tracking-tight">
+                <p className="text-[22px] italic font-medium text-gray tracking-tight">
                   "I recently visited the Barber Salon for a haircut and I was
                   so pleased with the outcome. The staff were friendly,
                   knowledgeable, and accommodating. I received a great cut and
@@ -126,14 +130,16 @@ const Reviews = () => {
                   haircut."
                 </p>
               </blockquote>
-              <figcaption class="flex justify-center items-center mt-6 space-x-3">
+              <figcaption className="flex justify-center items-center mt-6 space-x-3">
                 <img
-                  class="w-6 h-6 rounded-full"
+                  className="w-6 h-6 rounded-full"
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
-                  alt="profile picture"
+                  alt="profile 3"
                 />
-                <div class="flex items-center divide-x-2 divide-gray-500">
-                  <cite class="pr-3 font-medium text-black">Naomi Silva</cite>
+                <div className="flex items-center divide-x-2 divide-gray-500">
+                  <cite className="pr-3 font-medium text-black">
+                    Naomi Silva
+                  </cite>
                 </div>
               </figcaption>
             </figure>

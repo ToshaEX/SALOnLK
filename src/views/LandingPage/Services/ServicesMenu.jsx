@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ServicesMenu = () => {
   const [text, setText] = useState(
@@ -27,7 +28,7 @@ const ServicesMenu = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/nail-polish.png")}
-              alt=""
+              alt="nail"
             />
           </div>
           <div className="serviceName">
@@ -48,7 +49,7 @@ const ServicesMenu = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/mascara.png")}
-              alt=""
+              alt="mascara"
             />
           </div>
           <div className="serviceName">
@@ -69,7 +70,7 @@ const ServicesMenu = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/hair-comb.png")}
-              alt=""
+              alt="comb"
             />
           </div>
           <div className="serviceName">
@@ -90,7 +91,7 @@ const ServicesMenu = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/woman-hair.png")}
-              alt=""
+              alt="hair"
             />
           </div>
           <div className="serviceName">
@@ -111,7 +112,7 @@ const ServicesMenu = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/makeup.png")}
-              alt=""
+              alt="makeup"
             />
           </div>
           <div className="serviceName">
@@ -132,7 +133,7 @@ const ServicesMenu = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/massage.png")}
-              alt=""
+              alt="massage"
             />
           </div>
           <div className="serviceName">
@@ -153,9 +154,11 @@ const ServicesMenu = () => {
       </div>
 
       <div className="flex pt-8 justify-center">
-        <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
-          View Service Menu
-        </button>
+        <Link to="/services">
+          <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
+            View Service Menu
+          </button>
+        </Link>
       </div>
     </div>
   );

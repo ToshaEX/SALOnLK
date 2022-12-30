@@ -8,7 +8,7 @@ const CTA = () => {
           <img
             className="drop-shadow-xl"
             src={require("../assets/smartphone.png")}
-            alt=""
+            alt="phone"
           />
         </div>
         <span
@@ -38,7 +38,7 @@ const CTA = () => {
           <img
             className="drop-shadow-xl"
             src={require("../assets/time.png")}
-            alt=""
+            alt="time"
           />
         </div>
         <span
@@ -74,7 +74,7 @@ const CTA = () => {
           <img
             className="drop-shadow-xl"
             src={require("../assets/pin.png")}
-            alt=""
+            alt="pin"
           />
         </div>
         <span

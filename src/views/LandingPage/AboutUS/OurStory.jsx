@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const OurStory = () => {
   const spring = {
@@ -26,7 +27,7 @@ const OurStory = () => {
             <img
               className="w-[600px] drop-shadow-xl cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:pb-10"
               src={require("../../../assets/Group 1.png")}
-              alt=""
+              alt="team"
             />
           </div>
 
@@ -48,9 +49,11 @@ const OurStory = () => {
             </div>
 
             <div className="flex pt-8 justify-center md:justify-start">
-              <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
-                Meet Our Staff
-              </button>
+              <Link to="/about-us">
+                <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
+                  Meet Our Staff
+                </button>
+              </Link>
             </div>
           </motion.div>
         </div>
