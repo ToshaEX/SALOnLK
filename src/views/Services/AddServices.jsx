@@ -25,7 +25,6 @@ const AddServices = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -33,12 +32,10 @@ const AddServices = () => {
   const [selectSub, setSelectSub] = useState("Hair cut");
   const [show, setShow] = useState("display");
 
-  const formSubmit = (data) => {
+  const formSubmit = async (data) => {
     data.category = select;
     data.sub_category = select === "Hair" ? selectSub : "";
-    console.log(data);
-    newService(data);
-    reset();
+    return await newService(data);
   };
 
   async function newService(payload) {

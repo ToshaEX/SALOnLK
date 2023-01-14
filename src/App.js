@@ -1,8 +1,7 @@
-import "./App.css";
+import React from "react";
 import { Navbar } from "./Components/index";
 import LandingPage from "./views/LandingPage/LandingPage";
 import SignIn from "./views/Auth/SignIn/SignIn";
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +13,7 @@ import Register from "./views/Auth/Register/Register";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Booking from "./views/Booking/Booking";
 import AddServices from "./views/Services/AddServices";
+import "./App.css";
 
 function App() {
   return (
@@ -78,7 +78,7 @@ function App() {
           <Route
             exact
             strict
-            path="/services/add"
+            path="/services/create"
             component={() => (
               <>
                 <AddServices />

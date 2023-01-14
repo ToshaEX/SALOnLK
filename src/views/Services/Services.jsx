@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ const Services = () => {
   const [expand2, setExpand2] = useState(false);
   const [expand3, setExpand3] = useState(false);
   const [expand4, setExpand4] = useState(false);
+  const [service, setServices] = useState([]);
 
   const expandClass1 = expand1 ? "display" : "hidden";
   const ansClass1 = `${expandClass1} px-3 pb-3`;
@@ -19,6 +20,8 @@ const Services = () => {
   const ansClass3 = `${expandClass3} px-3 pb-3`;
   const expandClass4 = expand4 ? "display" : "hidden";
   const ansClass4 = `${expandClass4} px-3 pb-3`;
+
+  useEffect(() => {}, []);
 
   return (
     <div>
