@@ -24,6 +24,7 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -37,6 +38,7 @@ const SignIn = () => {
     console.log(getCondition);
     console.log(data);
     loginUser(data);
+    reset();
   };
 
   async function loginUser(payload) {

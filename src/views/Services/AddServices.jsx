@@ -25,6 +25,7 @@ const AddServices = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -35,9 +36,9 @@ const AddServices = () => {
   const formSubmit = (data) => {
     data.category = select;
     data.sub_category = select === "Hair" ? selectSub : "";
-    //console.log(data);
+    console.log(data);
     newService(data);
-    //resetForm({ data: "" });
+    reset();
   };
 
   async function newService(payload) {
@@ -65,13 +66,7 @@ const AddServices = () => {
               <h2 className="text-3xl mb-4">Add New Services</h2>
 
               <div>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    console.log(e.target.value);
-                    handleSubmit(formSubmit);
-                  }}
-                >
+                <form onSubmit={handleSubmit(formSubmit)}>
                   <div className="mb-3 mt-5">
                     <select
                       className="w-full rounded-lg text-sm"

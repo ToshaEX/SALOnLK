@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -42,6 +42,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -55,6 +56,7 @@ const Register = () => {
 
     console.log(newDetails);
     registerUser(newDetails);
+    reset();
   };
 
   async function registerUser(payload) {

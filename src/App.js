@@ -78,7 +78,7 @@ function App() {
           <Route
             exact
             strict
-            path="/add-services"
+            path="/services/add"
             component={() => (
               <>
                 <AddServices />
