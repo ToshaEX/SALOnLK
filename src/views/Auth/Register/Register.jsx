@@ -1,16 +1,17 @@
-import React from "react";
+import { React } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
 
 const Register = () => {
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const schema = yup.object().shape({
-    firstName: yup.string().required("First Name is required"),
-    lastName: yup.string().required("Last Name is required"),
-    contact: yup
+    first_name: yup.string().required("First Name is required"),
+    last_name: yup.string().required("Last Name is required"),
+    phone: yup
       .string()
       .required("Contact number is required")
       .matches(phoneRegExp, "Contact number is not valid")
@@ -44,7 +45,26 @@ const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const formSubmit = (data) => console.log(data);
+  const formSubmit = (data) => {
+    const newDetails = Object.keys(data).reduce((object, key) => {
+      if (key !== "agree" && key !== "confirmPassword") {
+        object[key] = data[key];
+      }
+      return object;
+    }, {});
+
+    console.log(newDetails);
+    registerUser(newDetails);
+  };
+
+  async function registerUser(payload) {
+    const { data } = await axios({
+      method: "post",
+      url: "http://localhost:3000/user/signup",
+      responseType: "json",
+      data: payload,
+    });
+  }
 
   return (
     <div className="min-h-screen bg-[#f7f9fc] pt-[4.5rem] pb-[3rem] md:pb-[4.5rem]">
@@ -77,23 +97,23 @@ const Register = () => {
                       id="first_name"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="First Name"
-                      {...register("firstName")}
+                      {...register("first_name")}
                     />
                     <p className="text-[#ff6347] text-[12px]">
-                      {errors.firstName?.message}
+                      {errors.first_name?.message}
                     </p>
                   </div>
 
                   <div>
                     <input
                       type="text"
-                      id="second_name"
+                      id="last_name"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Last Name"
-                      {...register("lastName")}
+                      {...register("last_name")}
                     />
                     <p className="text-[#ff6347] text-[12px]">
-                      {errors.lastName?.message}
+                      {errors.last_name?.message}
                     </p>
                   </div>
                 </div>
@@ -101,20 +121,20 @@ const Register = () => {
                 <div className="mb-3">
                   <input
                     type="tel"
-                    id="contact-number"
+                    id="phone"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Contact Number"
-                    {...register("contact")}
+                    {...register("phone")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
-                    {errors.contact?.message}
+                    {errors.phone?.message}
                   </p>
                 </div>
 
                 <div className="mb-3">
                   <input
                     type="email"
-                    id="email-address"
+                    id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Email address"
                     {...register("email")}
@@ -134,9 +154,9 @@ const Register = () => {
                     <option value="other" disabled>
                       Choose a Gender
                     </option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 

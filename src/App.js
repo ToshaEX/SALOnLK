@@ -12,6 +12,8 @@ import {
 import Services from "./views/Services/Services";
 import Register from "./views/Auth/Register/Register";
 import AboutUs from "./views/AboutUs/AboutUs";
+import Booking from "./views/Booking/Booking";
+import AddServices from "./views/Services/AddServices";
 
 function App() {
   return (
@@ -60,6 +62,26 @@ function App() {
             component={() => (
               <>
                 <AboutUs />
+              </>
+            )}
+          />
+          <Route
+            exact
+            strict
+            path="/booking"
+            component={() => (
+              <>
+                <Booking />
+              </>
+            )}
+          />
+          <Route
+            exact
+            strict
+            path="/add-services"
+            component={() => (
+              <>
+                <AddServices />
               </>
             )}
           />

@@ -4,6 +4,7 @@ import { signIn } from "../../../features/user/user-slice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
 
 const SignIn = () => {
   const userName = useSelector((state) => state.user.userName);
@@ -35,7 +36,18 @@ const SignIn = () => {
   const formSubmit = (data) => {
     console.log(getCondition);
     console.log(data);
+    loginUser(data);
   };
+
+  async function loginUser(payload) {
+    const { data } = await axios({
+      method: "post",
+      url: "http://localhost:3000/auth/login",
+      responseType: "json",
+      data: payload,
+    });
+    console.log(JSON.stringify(data));
+  }
 
   return (
     <>

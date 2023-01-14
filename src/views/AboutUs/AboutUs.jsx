@@ -37,7 +37,8 @@ const AboutUs = () => {
             Our Story
           </h2>
         </div>
-        <p className="px-[3rem] md:px-[15rem]">
+
+        <p className="text-[1.2rem] px-[3rem] md:px-[13.2rem]">
           We started our journey as a small beauty studio in Colombo, Sri Lanka
           with a dream to create the best beauty studio in the world. From the
           very beginning, we knew that there could be no compromises when it
