@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 
-const AddServices = () => {
+const ViewServices = () => {
   const schema = yup.object().shape({
     name: yup.string().required("Name is required"),
     description: yup.string().required("Description is required!"),
@@ -29,11 +29,7 @@ const AddServices = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const [select, setSelect] = useState("Hair");
-<<<<<<< HEAD
-  const [selectSub, setSelectSub] = useState("Hair cut");
-=======
   const [selectSub, setSelectSub] = useState("Hair Cut");
->>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
   const [show, setShow] = useState("display");
 
   const formSubmit = async (data) => {
@@ -101,7 +97,7 @@ const AddServices = () => {
                           setSelectSub(e.target.value);
                         }}
                       >
-                        <option value="Hair cut">Hair cut</option>
+                        <option value="Hair Cut">Hair cut</option>
                         <option value="Color">Color</option>
                       </select>
                     </div>
@@ -178,4 +174,4 @@ const AddServices = () => {
   );
 };
 
-export default AddServices;
+export default ViewServices;

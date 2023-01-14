@@ -3,13 +3,9 @@ import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-<<<<<<< HEAD
-import { Link } from "react-scroll";
-=======
 import axios from "axios";
 import { Link } from "react-scroll";
 import Hair from "./Hair";
->>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
 const Services = () => {
   const [expand1, setExpand1] = useState(false);
@@ -17,10 +13,8 @@ const Services = () => {
   const [expand3, setExpand3] = useState(false);
   const [expand4, setExpand4] = useState(false);
   const [service, setServices] = useState([]);
-<<<<<<< HEAD
-=======
+
   const [isLoading, setSIsLoading] = useState(true);
->>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
   const expandClass1 = expand1 ? "display" : "hidden";
   const ansClass1 = `${expandClass1} px-3 pb-3`;
@@ -31,9 +25,6 @@ const Services = () => {
   const expandClass4 = expand4 ? "display" : "hidden";
   const ansClass4 = `${expandClass4} px-3 pb-3`;
 
-<<<<<<< HEAD
-  useEffect(() => {}, []);
-=======
   useEffect(() => {
     axios({
       method: "GET",
@@ -49,7 +40,6 @@ const Services = () => {
         setSIsLoading(false);
       });
   }, []);
->>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
   return (
     <div>
@@ -199,219 +189,7 @@ const Services = () => {
           </div>
 
           {/* Hair Details Section */}
-<<<<<<< HEAD
-          <section
-            id="Hair"
-            className="text-center px-[1rem] mt-[3rem] md:mt-[-38rem]"
-          >
-            <div>
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Hair
-                </h2>
-              </div>
-
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  Stylish hair cuts, gorgeous styling, incredible color services
-                  and best hair <br /> treatments. Choose your dream service!
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="text-start mb-[18px] md:pl-[5rem]">
-                    <h2 className="font-bold text-[24px] leading-none tracking-tight">
-                      Haircut
-                    </h2>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Clipper Cut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut using clippers to achieve an ultra-short
-                          design. (30 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            HairCut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut, trim or shape on anyone over the age of 10.
-                          (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Signature Haircut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $49
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut, trim, shape on anyone over the age of 10
-                          with a customized conditioning treatment. (1 hr 15
-                          min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Barbered Cuts
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $19
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A short barbered cuts that do not require blow-dry
-                          styling. (15 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Kids Haircut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $29
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut on a child age 10 & under. (30 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Bang Trim
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $19
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A trim on the bang area. Shampoo, conditioner and
-                          scalp massage not included. (15 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="text-start mb-[18px] md:pl-[5rem]">
-                    <h2 className="font-bold text-[24px] leading-none tracking-tight">
-                      Color
-                    </h2>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            All-Over Color
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $30
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          An all-over application of a single hair color from
-                          roots to ends. (1 hr 45 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Full Root Touch-up
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $55
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          An application of hair color to the root area only. (1
-                          hr 45 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-=======
           <Hair service={service} />
->>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
           {/* MakeUp Details Section */}
           <section id="Makeup" className="text-center bg-[#f7f9fc] px-[1rem]">
