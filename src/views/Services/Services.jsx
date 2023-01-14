@@ -3,7 +3,13 @@ import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+<<<<<<< HEAD
 import { Link } from "react-scroll";
+=======
+import axios from "axios";
+import { Link } from "react-scroll";
+import Hair from "./Hair";
+>>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
 const Services = () => {
   const [expand1, setExpand1] = useState(false);
@@ -11,6 +17,10 @@ const Services = () => {
   const [expand3, setExpand3] = useState(false);
   const [expand4, setExpand4] = useState(false);
   const [service, setServices] = useState([]);
+<<<<<<< HEAD
+=======
+  const [isLoading, setSIsLoading] = useState(true);
+>>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
   const expandClass1 = expand1 ? "display" : "hidden";
   const ansClass1 = `${expandClass1} px-3 pb-3`;
@@ -21,7 +31,25 @@ const Services = () => {
   const expandClass4 = expand4 ? "display" : "hidden";
   const ansClass4 = `${expandClass4} px-3 pb-3`;
 
+<<<<<<< HEAD
   useEffect(() => {}, []);
+=======
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/service",
+      responseType: "json",
+    })
+      .then((res) => {
+        setServices(res.data);
+        setSIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Failed to laod Services", err);
+        setSIsLoading(false);
+      });
+  }, []);
+>>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
   return (
     <div>
@@ -171,6 +199,7 @@ const Services = () => {
           </div>
 
           {/* Hair Details Section */}
+<<<<<<< HEAD
           <section
             id="Hair"
             className="text-center px-[1rem] mt-[3rem] md:mt-[-38rem]"
@@ -380,6 +409,9 @@ const Services = () => {
               </div>
             </div>
           </section>
+=======
+          <Hair service={service} />
+>>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
 
           {/* MakeUp Details Section */}
           <section id="Makeup" className="text-center bg-[#f7f9fc] px-[1rem]">

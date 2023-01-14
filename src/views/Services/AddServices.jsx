@@ -29,7 +29,11 @@ const AddServices = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const [select, setSelect] = useState("Hair");
+<<<<<<< HEAD
   const [selectSub, setSelectSub] = useState("Hair cut");
+=======
+  const [selectSub, setSelectSub] = useState("Hair Cut");
+>>>>>>> 94ea6e35030f827ffaf69609ec2457096b78bf63
   const [show, setShow] = useState("display");
 
   const formSubmit = async (data) => {

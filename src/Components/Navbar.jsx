@@ -2,9 +2,8 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-import { Link as SectionLink } from "react-scroll";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Home", to: "home", current: false },
