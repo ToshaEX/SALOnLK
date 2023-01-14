@@ -1,153 +1,142 @@
 import React, { useState } from "react";
-import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../../features/user/user-slice";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import axios from "axios";
 
 const SignIn = () => {
   const userName = useSelector((state) => state.user.userName);
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email("E-mail is not valid!")
+      .required("E-mail is required"),
+    password: yup
+      .string()
+      .required("Password is required!")
+      .min(6, "Password has to be longer than 6 characters!"),
+  });
 
-  const handleChange = (e, set) => {
-    set(e.target.value);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const [getCondition, setGetCondition] = useState(false);
+
+  const handleCheckBoxChange = () => {
+    setGetCondition(!getCondition);
   };
-  const handleSubmit = () => {
-    console.log({ email, password });
-    dispatch(signIn(email));
+
+  const formSubmit = (data) => {
+    console.log(getCondition);
+    console.log(data);
+    loginUser(data);
   };
+
+  async function loginUser(payload) {
+    const { data } = await axios({
+      method: "post",
+      url: "http://localhost:3000/auth/login",
+      responseType: "json",
+      data: payload,
+    });
+    console.log(JSON.stringify(data));
+  }
+
   return (
     <>
-      <div className="flex min-h-full items-center justify-center px-20 py-20 gap-20">
-        <div className="hidden items-start md:flex">
-          <div className="flex max-w-xl">
-            <div>
-              <img
-                className="h-[222px] w-[123px] drop-shadow-xl mt-[150px] cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                src={require("../../../assets/ab-1.png")}
-                alt="ab1-img"
-              />
-            </div>
-            <div>
-              <div className="flex">
-                <img
-                  className="mx-5 h-[213px] w-[152px] drop-shadow-xl ml-5 mr-0 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../../assets/ab-2.png")}
-                  alt="ab2-img"
-                />
-                <img
-                  className="mx-5 h-[133px] w-[90px] drop-shadow-xl ml-5 mr-0 mt-[80px] cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../../assets/ab-4.png")}
-                  alt="ab4-img"
-                />
+      <div className="min-h-[90vh] bg-[#f7f9fc] py-[4.5rem] md:py-[6rem]">
+        <div className="container mx-auto">
+          <div className="bg-white w-10/12 rounded-xl mx-auto shadow-lg overflow-hidden flex flex-col md:flex-row">
+            <div className="w-full bg-[url('./assets/signin-img.png')] bg-cover text-white px-10 py-[3.3rem] md:py-20 md:w-1/2">
+              <h1 className="text-4xl font-extrabold text-gray-900 mb-5">
+                Welcome Back
+              </h1>
+              <div>
+                <p className="text-gray-500 mb-4">
+                  Welcome back to SalonLK! We're happy to see you again and are
+                  excited to help you feel your best. With your account, you'll
+                  be able to easily book appointments, manage your account
+                  preferences, and stay up-to-date on the latest promotions and
+                  offers. Thank you for choosing our salon and we can't wait to
+                  see you soon.
+                </p>
               </div>
-              <div className="flex">
-                <img
-                  className="h-[180px] w-[119px] drop-shadow-xl ml-5 mt-5 mr-5 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../../assets/ab-3.png")}
-                  alt="ab3-img"
-                />
-                <img
-                  className="h-[169px] w-[112px] drop-shadow-xl mt-5 cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../../assets/ab-5.png")}
-                  alt="ab5-img"
-                />
+            </div>
+
+            <div className="w-full py-20 px-9 md:px-12 md:w-1/2">
+              <h2 className="text-3xl mb-4">Sign In</h2>
+
+              <div>
+                <form onSubmit={handleSubmit(formSubmit)}>
+                  <div className="mb-3 mt-5">
+                    <input
+                      type="email"
+                      id="email-address"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="Email address"
+                      {...register("email")}
+                    />
+                    <p className="text-[#ff6347] text-[12px]">
+                      {errors.email?.message}
+                    </p>
+                  </div>
+
+                  <div className="mb-3">
+                    <input
+                      type="password"
+                      id="password"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="Password"
+                      {...register("password")}
+                    />
+                    <p className="text-[#ff6347] text-[12px]">
+                      {errors.password?.message}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between mt-5">
+                    <div className="flex items-center">
+                      <input
+                        id="remember-me"
+                        name="remember-me"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        onChange={handleCheckBoxChange}
+                      />
+                      <label className="ml-2 block text-sm text-gray-900">
+                        Remember me
+                      </label>
+                    </div>
+
+                    <div className="text-sm">
+                      <a
+                        href="#"
+                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                      >
+                        Forgot your password?
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="pt-[1rem]">
+                    <button
+                      type="submit"
+                      className="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="w-full max-w-md space-y-8">
-          <div>
-            <h2 className="mt-3 text-start text-[40px] leading-none font-bold tracking-tight">
-              Sign in <br /> to your account
-            </h2>
-            <p className="mt-2 text-center text-sm text-gray-600"></p>
-          </div>
-          <form
-            id="signIn"
-            className="mt-8 space-y-6"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            {/* <input type="hidden" name="remember" defaultValue="true" /> */}
-            <div className="-space-y-px rounded-md shadow-sm">
-              <div className="mb-3">
-                <input
-                  type="email"
-                  id="email-address"
-                  name="email"
-                  autoComplete="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                  placeholder="Email address"
-                  onChange={(e) => {
-                    handleChange(e, setEmail);
-                  }}
-                />
-              </div>
-
-              <div className="mb-3">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  autoComplete="current-password"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                  placeholder="Password"
-                  onChange={(e) => {
-                    handleChange(e, setPassword);
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              {/* <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div> */}
-
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                form="signIn"
-                onClick={() => handleSubmit()}
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    aria-hidden="true"
-                  />
-                </span>
-                Sign in
-              </button>
-            </div>
-          </form>
         </div>
       </div>
     </>

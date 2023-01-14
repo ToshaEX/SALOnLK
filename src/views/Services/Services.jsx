@@ -1,15 +1,19 @@
-import { React, useState } from "react";
+import React, { useState, useEffect } from "react";
 import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import { Link } from "react-scroll";
+import Hair from "./Hair";
 
 const Services = () => {
   const [expand1, setExpand1] = useState(false);
   const [expand2, setExpand2] = useState(false);
   const [expand3, setExpand3] = useState(false);
   const [expand4, setExpand4] = useState(false);
+  const [service, setServices] = useState([]);
+  const [isLoading, setSIsLoading] = useState(true);
 
   const expandClass1 = expand1 ? "display" : "hidden";
   const ansClass1 = `${expandClass1} px-3 pb-3`;
@@ -20,8 +24,25 @@ const Services = () => {
   const expandClass4 = expand4 ? "display" : "hidden";
   const ansClass4 = `${expandClass4} px-3 pb-3`;
 
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/service",
+      responseType: "json",
+    })
+      .then((res) => {
+        setServices(res.data);
+        setSIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Failed to laod Services", err);
+        setSIsLoading(false);
+      });
+  }, []);
+
   return (
     <div>
+      {/* Service Menu Section */}
       <div className="bg-[url('./assets/services-bg.png')]">
         <div className="p-[3rem] text-white">
           <div className="text-center">
@@ -46,16 +67,23 @@ const Services = () => {
         </div>
       </div>
 
+      {/* Service Selection Section */}
       <div className="">
         <div className="relative">
-          <div className="hidden text-center w-[50px] sticky top-0 px-[20px] pt-[4rem] md:p-[4rem] md:block">
-            <Link to="Hair" spy={true} smooth={true} offset={50} duration={500}>
+          <div className="hidden text-center w-[50px] sticky top-0 px-[20px] md:p-[4rem] md:block">
+            <div className="h-[20px]"></div>
+            <Link
+              to="Hair"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
+            >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-4 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/woman-hair.png")}
-                    alt=""
+                    alt="hair"
                   />
                 </div>
                 <div className="serviceName">
@@ -68,16 +96,12 @@ const Services = () => {
               to="Makeup"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    className=""
-                    src={require("../../assets/makeup.png")}
-                    alt=""
-                  />
+                  <img src={require("../../assets/makeup.png")} alt="makeup" />
                 </div>
                 <div className="serviceName">
                   <span className="">MakeUp</span>
@@ -89,15 +113,14 @@ const Services = () => {
               to="Brows"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/mascara.png")}
-                    alt=""
+                    alt="mascara"
                   />
                 </div>
                 <div className="serviceName">
@@ -110,15 +133,14 @@ const Services = () => {
               to="Nails"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/nail-polish.png")}
-                    alt=""
+                    alt="nail"
                   />
                 </div>
                 <div className="serviceName">
@@ -131,16 +153,12 @@ const Services = () => {
               to="Cosmetology"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    className=""
-                    src={require("../../assets/hair-comb.png")}
-                    alt=""
-                  />
+                  <img src={require("../../assets/hair-comb.png")} alt="comb" />
                 </div>
                 <div className="serviceName">
                   <span className="">Cosmetology</span>
@@ -152,15 +170,14 @@ const Services = () => {
               to="Massage"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-20}
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
-                    className=""
                     src={require("../../assets/massage.png")}
-                    alt=""
+                    alt="massage"
                   />
                 </div>
                 <div className="serviceName">
@@ -170,216 +187,10 @@ const Services = () => {
             </Link>
           </div>
 
-          <section
-            id="Hair"
-            className="text-center px-[1rem] mt-[3rem] md:mt-[-38rem]"
-          >
-            <div className="">
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Hair
-                </h2>
-              </div>
+          {/* Hair Details Section */}
+          <Hair service={service} />
 
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  Stylish hair cuts, gorgeous styling, incredible color services
-                  and best hair <br /> treatments. Choose your dream service!
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="text-start mb-[18px] md:pl-[5rem]">
-                    <h2 className="font-bold text-[24px] leading-none tracking-tight">
-                      Haircut
-                    </h2>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Clipper Cut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut using clippers to achieve an ultra-short
-                          design. (30 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            HairCut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut, trim or shape on anyone over the age of 10.
-                          (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Signature Haircut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $49
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut, trim, shape on anyone over the age of 10
-                          with a customized conditioning treatment. (1 hr 15
-                          min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Barbered Cuts
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $19
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A short barbered cuts that do not require blow-dry
-                          styling. (15 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Kids Haircut
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $29
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A haircut on a child age 10 & under. (30 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Bang Trim
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $19
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A trim on the bang area. Shampoo, conditioner and
-                          scalp massage not included. (15 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="text-start mb-[18px] md:pl-[5rem]">
-                    <h2 className="font-bold text-[24px] leading-none tracking-tight">
-                      Color
-                    </h2>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            All-Over Color
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $30
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          An all-over application of a single hair color from
-                          roots to ends. (1 hr 45 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Full Root Touch-up
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $55
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          An application of hair color to the root area only. (1
-                          hr 45 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
+          {/* MakeUp Details Section */}
           <section id="Makeup" className="text-center bg-[#f7f9fc] px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -488,6 +299,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Brows Details Section */}
           <section id="Brows" className="text-center px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -592,6 +404,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Nails Details Section */}
           <section id="Nails" className="text-center bg-[#f7f9fc] px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -700,6 +513,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Cosmetology Details Section */}
           <section id="Cosmetology" className="text-center px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -743,7 +557,7 @@ const Services = () => {
                       <div className="flex">
                         <div className="text-start pt-[2rem] w-full">
                           <span className="text-[18px] tracking-tight">
-                            Hydrafacial
+                            Hydra facial
                           </span>
                         </div>
                         <div className="pt-[2rem] w-full text-end">
@@ -798,7 +612,7 @@ const Services = () => {
                       <div className="text-start pt-[10px]">
                         <span className="text-[16px] tracking-tight text-gray">
                           This anti-aging treatment stimulates collagen
-                          production for a firmer complextion. (60 min)
+                          production for a firmer complexion. (60 min)
                         </span>
                       </div>
                     </div>
@@ -808,6 +622,7 @@ const Services = () => {
             </div>
           </section>
 
+          {/* Massage Details Section */}
           <section id="Massage" className="text-center bg-[#f7f9fc] px-[1rem]">
             <div className="pt-[5rem]">
               <div className="mb-[18px]">
@@ -900,8 +715,10 @@ const Services = () => {
         </div>
       </div>
 
+      {/* import CTA Section */}
       <CTA />
 
+      {/* Frequently asked Section */}
       <div className="text-center bg-[#f7f9fc] pb-10">
         <div className="pt-[3rem]">
           <div className="mb-[18px]">
@@ -935,7 +752,7 @@ const Services = () => {
               </div>
               <div className={ansClass1}>
                 A: Schedule your appointment here online with our booking
-                assistant, Phorest or by phone at your desired salon location.
+                assistant, by phone at your desired salon location.
                 <br />
                 Reservations for your appointment are held with a credit card.
                 Please review the Cancellation Policy.
@@ -1029,6 +846,7 @@ const Services = () => {
         </div>
       </div>
 
+      {/* import footer Section */}
       <Footer />
     </div>
   );

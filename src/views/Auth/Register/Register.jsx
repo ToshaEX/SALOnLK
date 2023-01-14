@@ -1,203 +1,230 @@
-import React, { useState } from "react";
+import { React } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import axios from "axios";
 
 const Register = () => {
-  const [getFirstName, setGetFirstName] = useState("");
-  const [getSecondName, setGetSecondName] = useState("");
-  const [getEmail, setGetEmail] = useState("");
-  const [getContact, setGetContact] = useState("");
-  const [getGender, setGetGender] = useState("other");
-  const [getPassword, setGetPassword] = useState("");
-  const [getConfirmPassword, setGetConfirmPassword] = useState("");
-  const [getCondition, setGetCondition] = useState(false);
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  const handleChange = (e, set) => {
-    set(e.target.value);
+  const schema = yup.object().shape({
+    first_name: yup.string().required("First Name is required"),
+    last_name: yup.string().required("Last Name is required"),
+    phone: yup
+      .string()
+      .required("Contact number is required")
+      .matches(phoneRegExp, "Contact number is not valid")
+      .min(10, "too short")
+      .max(10, "too long"),
+    email: yup
+      .string()
+      .email("E-mail is not valid!")
+      .required("E-mail is required"),
+    password: yup
+      .string()
+      .required("Password is required!")
+      .min(6, "Password has to be longer than 6 characters!"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords are not the same!")
+      .required("Password confirmation is required!"),
+    agree: yup
+      .bool()
+      .test(
+        "agree",
+        "You have to agree with our Terms and Conditions!",
+        (value) => value === true
+      )
+      .required("You have to agree with our Terms and Conditions!"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const formSubmit = (data) => {
+    const newDetails = Object.keys(data).reduce((object, key) => {
+      if (key !== "agree" && key !== "confirmPassword") {
+        object[key] = data[key];
+      }
+      return object;
+    }, {});
+
+    console.log(newDetails);
+    registerUser(newDetails);
   };
 
-  const handleCheckBoxChange = () => {
-    setGetCondition(!getCondition);
-  };
-
-  const handleSubmit = () => {
-    console.log({
-      getFirstName,
-      getSecondName,
-      getEmail,
-      getContact,
-      getGender,
-      getPassword,
-      getConfirmPassword,
-      getCondition,
+  async function registerUser(payload) {
+    const { data } = await axios({
+      method: "post",
+      url: "http://localhost:3000/user/signup",
+      responseType: "json",
+      data: payload,
     });
-  };
+  }
 
   return (
-    <section id="signUp" className="flex items-center justify-center">
-      <div className="hidden max-w-xl md:flex">
-        <img
-          className="h-[300px] w-[160px] drop-shadow-xl animate-bounce-slow-up"
-          src={require("../../../assets/1st.png")}
-          alt="signup1-img"
-        />
-        <img
-          className="mx-5 h-[300px] w-[160px] drop-shadow-xl"
-          src={require("../../../assets/2nd.png")}
-          alt="signup2-img"
-        />
-        <img
-          className="h-[300px] w-[160px] drop-shadow-xl animate-bounce-slow-down"
-          src={require("../../../assets/3rd.png")}
-          alt="signup3-img"
-        />
-      </div>
-
-      <div className="flex min-h-full items-center justify-center py-10 md:ml-[100px] sm:px-6 md:px-8">
-        <div className="w-full max-w-md space-y-8 px-10">
-          <div>
-            <h2 className="mt-2 mb-8 text-start font-bold text-[40px] leading-none tracking-tight text-gray-900">
-              Create <br /> new account
-            </h2>
+    <div className="min-h-screen bg-[#f7f9fc] pt-[4.5rem] pb-[3rem] md:pb-[4.5rem]">
+      <div className="container mx-auto">
+        <div className="bg-white w-10/12 rounded-xl mx-auto shadow-lg overflow-hidden flex flex-col md:flex-row">
+          <div className="w-full bg-[url('./assets/register-img.png')] bg-cover text-white px-10 py-[3.3rem] md:py-[5.5rem] md:w-1/2">
+            <h1 className="text-4xl font-extrabold text-gray-900 mb-5">
+              Welcome
+            </h1>
+            <div>
+              <p className="text-gray-500 mb-4">
+                Welcome to SalonLK! We're so glad you're interested in
+                registering with us. By creating an account, you'll be able to
+                easily book appointments, manage your account preferences, and
+                stay up-to-date on the latest promotions and offers. We can't
+                wait to pamper you and help you feel your best!
+              </p>
+            </div>
           </div>
 
-          <from
-            id="register"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <div className="grid gap-5 mb-3 md:grid-cols-2">
-              <div>
-                <input
-                  type="text"
-                  id="first_name"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                  required
-                  placeholder="First Name"
-                  onChange={(e) => {
-                    handleChange(e, setGetFirstName);
-                  }}
-                />
-              </div>
-
-              <div>
-                <input
-                  type="text"
-                  id="second_name"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                  required
-                  placeholder="Last Name"
-                  onChange={(e) => {
-                    handleChange(e, setGetSecondName);
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="mb-3">
-              <input
-                type="tel"
-                id="contact-number"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                required
-                placeholder="Contact Number"
-                onChange={(e) => {
-                  handleChange(e, setGetContact);
-                }}
-              />
-            </div>
-
-            <div className="mb-3">
-              <input
-                type="email"
-                id="email-address"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                required
-                placeholder="Email address"
-                onChange={(e) => {
-                  handleChange(e, setGetEmail);
-                }}
-              />
-            </div>
-
-            <div className="mb-3">
-              <select
-                id="gender"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                onChange={(e) => {
-                  handleChange(e, setGetGender);
-                }}
-              >
-                <option selected>Choose a Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div className="mb-3">
-              <input
-                type="password"
-                id="password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                required
-                placeholder="Password"
-                onChange={(e) => {
-                  handleChange(e, setGetPassword);
-                }}
-              />
-            </div>
-
-            <div className="mb-5">
-              <input
-                type="password"
-                id="confirm-password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                required
-                placeholder="Confirm Password"
-                onChange={(e) => {
-                  handleChange(e, setGetConfirmPassword);
-                }}
-              />
-            </div>
-
-            <div className="flex items-start mb-6">
-              <div className="flex items-center h-5">
-                <input
-                  id="remember"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300"
-                  required
-                  onChange={handleCheckBoxChange}
-                />
-              </div>
-              <label
-                for="remember"
-                className="ml-2 text-sm font-medium text-gray-900"
-              >
-                I agree with the
-                <a href="#" className="text-blue-600 hover:underline">
-                  {" "}
-                  terms and conditions
-                </a>
-                .
-              </label>
-            </div>
+          <div className="w-full py-10 px-9 md:px-12 md:w-1/2">
+            <h2 className="text-3xl mb-4">Register</h2>
 
             <div>
-              <button
-                type="submit"
-                form="signUp"
-                onClick={() => handleSubmit()}
-                className="flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Sign Up
-              </button>
+              <form onSubmit={handleSubmit(formSubmit)}>
+                <div className="grid gap-3 grid-cols-2 mb-3">
+                  <div>
+                    <input
+                      type="text"
+                      id="first_name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="First Name"
+                      {...register("first_name")}
+                    />
+                    <p className="text-[#ff6347] text-[12px]">
+                      {errors.first_name?.message}
+                    </p>
+                  </div>
+
+                  <div>
+                    <input
+                      type="text"
+                      id="last_name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="Last Name"
+                      {...register("last_name")}
+                    />
+                    <p className="text-[#ff6347] text-[12px]">
+                      {errors.last_name?.message}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mb-3">
+                  <input
+                    type="tel"
+                    id="phone"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Contact Number"
+                    {...register("phone")}
+                  />
+                  <p className="text-[#ff6347] text-[12px]">
+                    {errors.phone?.message}
+                  </p>
+                </div>
+
+                <div className="mb-3">
+                  <input
+                    type="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Email address"
+                    {...register("email")}
+                  />
+                  <p className="text-[#ff6347] text-[12px]">
+                    {errors.email?.message}
+                  </p>
+                </div>
+
+                <div className="mb-3">
+                  <select
+                    id="gender"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    defaultValue={"other"}
+                    {...register("gender")}
+                  >
+                    <option value="other" disabled>
+                      Choose a Gender
+                    </option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Password"
+                    {...register("password")}
+                  />
+                  <p className="text-[#ff6347] text-[12px]">
+                    {errors.password?.message}
+                  </p>
+                </div>
+
+                <div className="mb-5">
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword")}
+                  />
+                  <p className="text-[#ff6347] text-[12px]">
+                    {errors.confirmPassword?.message}
+                  </p>
+                </div>
+
+                <div className="mb-5">
+                  <div className="flex items-start">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="agree"
+                        type="checkbox"
+                        className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300"
+                        {...register("agree")}
+                      />
+                    </div>
+
+                    <label className="ml-2 text-sm font-medium text-gray-900">
+                      I agree with the
+                      <a href="#" className="text-blue-600 hover:underline">
+                        {" "}
+                        terms and conditions
+                      </a>
+                      .
+                    </label>
+                  </div>
+                  <p className="text-[#ff6347] text-[12px]">
+                    {errors.agree?.message}
+                  </p>
+                </div>
+
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Register Now
+                  </button>
+                </div>
+              </form>
             </div>
-          </from>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

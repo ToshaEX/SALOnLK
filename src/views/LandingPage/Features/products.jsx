@@ -13,7 +13,7 @@ const Products = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/Shop11.webp")}
-              alt=""
+              alt="pro1"
             />
           </div>
           <span id="productName" className="relative block text-[16px]">
@@ -29,7 +29,7 @@ const Products = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/Shop12.webp")}
-              alt=""
+              alt="pro2"
             />
           </div>
           <span id="productName" className="relative block text-[16px]">
@@ -45,7 +45,7 @@ const Products = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/Shop13.webp")}
-              alt=""
+              alt="pro3"
             />
           </div>
           <span id="productName" className="relative block text-[16px]">
@@ -61,7 +61,7 @@ const Products = () => {
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={require("../../../assets/Shop14.webp")}
-              alt=""
+              alt="pro4"
             />
           </div>
           <span
