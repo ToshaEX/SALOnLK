@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ServicesMenu = () => {
@@ -32,7 +32,7 @@ const ServicesMenu = () => {
             />
           </div>
           <div className="serviceName">
-            <span className="">Nails</span>
+            <span>Nails</span>
           </div>
         </div>
 
@@ -53,7 +53,7 @@ const ServicesMenu = () => {
             />
           </div>
           <div className="serviceName">
-            <span className="">Brow</span>
+            <span>Brow</span>
           </div>
         </div>
 
@@ -74,7 +74,7 @@ const ServicesMenu = () => {
             />
           </div>
           <div className="serviceName">
-            <span className="">Cosmetology</span>
+            <span>Cosmetology</span>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ const ServicesMenu = () => {
             />
           </div>
           <div className="serviceName">
-            <span className="">Hair</span>
+            <span>Hair</span>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ const ServicesMenu = () => {
             />
           </div>
           <div className="serviceName">
-            <span className="">MakeUp</span>
+            <span>MakeUp</span>
           </div>
         </div>
 
@@ -137,7 +137,7 @@ const ServicesMenu = () => {
             />
           </div>
           <div className="serviceName">
-            <span className="">Massage</span>
+            <span>Massage</span>
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@ const ServicesMenu = () => {
         <div className="text-center max-w-md">
           <span
             id="textParagraph"
-            className="font-reguler text-[18px] leading-none tracking-tight text-gray"
+            className="font-regular text-[18px] leading-none tracking-tight text-gray"
           >
             {text}
           </span>

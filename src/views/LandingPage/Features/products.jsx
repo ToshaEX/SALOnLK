@@ -1,3 +1,5 @@
+import React from "react";
+
 const Products = () => {
   return (
     <div className="bg-[#f7f9fc] py-[5rem]">

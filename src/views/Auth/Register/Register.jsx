@@ -1,4 +1,4 @@
-import { React } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -42,10 +42,19 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const [viewOne, setViewOne] = useState(true);
+  const [viewTwo, setViewTwo] = useState(false);
+  const vOne = viewOne ? "display" : "hidden";
+  const vTwo = viewTwo ? "display" : "hidden";
+
   const formSubmit = (data) => {
+    setViewOne(false);
+    setViewTwo(true);
+
     const newDetails = Object.keys(data).reduce((object, key) => {
       if (key !== "agree" && key !== "confirmPassword") {
         object[key] = data[key];
@@ -64,10 +73,15 @@ const Register = () => {
       responseType: "json",
       data: payload,
     });
+
+    reset();
+    setViewOne(true);
+    setViewTwo(false);
+    console.log(JSON.stringify(data));
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f9fc] pt-[4.5rem] pb-[3rem] md:pb-[4.5rem]">
+    <div className=" bg-[#f7f9fc] pt-[4.5rem] pb-[3rem] md:pb-[4.5rem]">
       <div className="container mx-auto">
         <div className="bg-white w-10/12 rounded-xl mx-auto shadow-lg overflow-hidden flex flex-col md:flex-row">
           <div className="w-full bg-[url('./assets/register-img.png')] bg-cover text-white px-10 py-[3.3rem] md:py-[5.5rem] md:w-1/2">
@@ -214,9 +228,27 @@ const Register = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="flex w-full justify-center rounded-md border border-transparent bg-primary px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    Register Now
+                    <div className={vOne}>
+                      <div>
+                        <div className="text-[1rem] flex justify-center py-2">
+                          Register Now
+                        </div>
+                      </div>
+                    </div>
+                    <div className={vTwo}>
+                      <div className="flex items-center justify-center py-1">
+                        <img
+                          src={
+                            require("../../../assets/Spinner-1.9s-44px.svg")
+                              .default
+                          }
+                          alt="mySvgImage"
+                        />
+                        <div className="text-[1rem]">Creating account...</div>
+                      </div>
+                    </div>
                   </button>
                 </div>
               </form>
