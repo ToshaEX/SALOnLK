@@ -109,7 +109,7 @@ const ServiceHandler = () => {
                   .map((item, i) => (
                     <tr
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray"
-                      key={i}
+                      key={item._id}
                     >
                       <th
                         scope="row"

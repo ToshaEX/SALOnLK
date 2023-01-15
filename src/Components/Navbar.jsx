@@ -3,10 +3,9 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { resetUser } from "../features/user/user-slice";
 import { Roles } from "../roles/roles";
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -14,22 +13,30 @@ function classNames(...classes) {
 const logOut = (dispatch) => {
   localStorage.removeItem("accessToken");
   dispatch(resetUser());
+  window.location.reload();
 };
 
 const Navbar = () => {
-  const { email, userName,role } = useSelector((state) => ({
+  const { email, userName, role } = useSelector((state) => ({
     email: state.user.email,
     userName: state.user.userName,
-    role:state.user.role
+    role: state.user.role,
   }));
 
   const dispatch = useDispatch();
+ 
+
   const navigation = [
     { name: "Home", to: "home", current: false },
     { name: "Services", to: "services", current: false },
     role === Roles.ADMIN && {
       name: "Manage",
       to: "manage",
+      current: false,
+    },
+    role === Roles.ADMIN && {
+      name: "Add Employee",
+      to: "sign-up",
       current: false,
     },
   ];
@@ -133,7 +140,7 @@ const Navbar = () => {
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              {userName+" "}({" "+role.toUpperCase()+" "})
+                              {userName + " "}({" " + role.toUpperCase() + " "})
                             </div>
                           )}
                         </Menu.Item>

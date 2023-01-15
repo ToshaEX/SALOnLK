@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "./Components/index";
 import LandingPage from "./views/LandingPage/LandingPage";
 import SignIn from "./views/Auth/SignIn/SignIn";
+import { createBrowserHistory } from "history";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,15 +19,16 @@ import ServiceHandler from "./views/Services/ServiceHandler";
 import { setUser, setAccessToken } from "./features/user/user-slice";
 import axios from "axios";
 
+const history = createBrowserHistory();
+
 const token = localStorage.getItem("accessToken");
-const clearToken =token===null? "":token.slice(1, token.length - 1);
+const clearToken = token === null ? "" : token.slice(1, token.length - 1);
 console.log(clearToken);
 axios.defaults.headers.common["Authorization"] = "Bearer " + clearToken;
 
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("accessToken");
-  console.log(typeof token);
 
   if (token) {
     const decoded = jwt_decode(token);
@@ -35,14 +37,15 @@ function App() {
   }
 
   return (
-    <div className="snap-y snap-mandatory snap-always overflow-x-hidden">
-      <Router>
-        <Navbar />
+    <div className="snap-y snap-mandatory snap-always overflow-x-clip">
+      <Router history={history}>
+        {!token ? <Redirect to="/sign-in" /> : <Redirect to="/home" />}
         <Switch>
           <Route
             path="/home"
             component={() => (
               <>
+                <Navbar />
                 <LandingPage />
               </>
             )}
@@ -63,13 +66,24 @@ function App() {
               </>
             )}
           />
-          <Route exact strict path="/services" component={() => <Services />} />
+          <Route
+            exact
+            strict
+            path="/services"
+            component={() => (
+              <>
+              <Navbar />
+                <Services />
+              </>
+            )}
+          />
           <Route
             exact
             strict
             path="/about-us"
             component={() => (
               <>
+                <Navbar />
                 <AboutUs />
               </>
             )}
@@ -81,12 +95,12 @@ function App() {
             path="/manage"
             component={() => (
               <>
+                <Navbar />
                 <ServiceHandler />
               </>
             )}
           />
         </Switch>
-        <Redirect to="/home" />
       </Router>
     </div>
   );

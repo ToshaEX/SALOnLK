@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+
+
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -41,7 +43,6 @@ const SignIn = () => {
   const vTwo = viewTwo ? "display" : "hidden";
 
   const formSubmit = (data) => {
-    Object.assign(data,{role:"user"})
     setViewOne(false);
     setViewTwo(true);
 
@@ -62,6 +63,7 @@ const SignIn = () => {
       const decoded = jwt_decode(token);
       dispatch(setUser(decoded));
       dispatch(setAccessToken(token));
+      window.location.reload();
     });
 
     reset();
