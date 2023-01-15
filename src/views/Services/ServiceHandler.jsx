@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CreateServices from "./CreateServices";
-import EditServices from "./EditServices";
+import ServicesView from "./ServicesView";
 
 const ServiceHandler = () => {
   const [select, setSelect] = useState("Hair");
   const [selectSub, setSelectSub] = useState("Hair Cut");
   const [show, setShow] = useState("display");
-
+  const [selectedService, SetSelectedService] = useState(null);
+  const [isModalOpen, SetIsModalOpen] = useState(false);
   const [service, setServices] = useState([]);
-
-  const [visibility, setVisibility] = useState(false);
-  const handleOnClose = () => setVisibility(false);
-
-  const [visibility2, setVisibility2] = useState(false);
-  const handleOnClose2 = () => setVisibility2(false);
-
-  const [name, setName] = useState();
-  const [desc, setDesc] = useState();
-  const [price, setPrice] = useState();
-  const [time, setTime] = useState();
 
   useEffect(() => {
     axios({
@@ -33,7 +22,7 @@ const ServiceHandler = () => {
       .catch((err) => {
         console.log("Failed to load Services", err);
       });
-  }, []);
+  }, [isModalOpen]);
 
   return (
     <div className="bg-white p-10">
@@ -43,7 +32,7 @@ const ServiceHandler = () => {
           <button
             type="submit"
             className="rounded-md border border-transparent bg-primary px-4 text-xs uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            onClick={() => setVisibility(true)}
+            onClick={() => SetIsModalOpen(true)}
           >
             Create new Service
           </button>
@@ -102,9 +91,9 @@ const ServiceHandler = () => {
                   <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">Time</div>
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  {/* <th scope="col" className="px-6 py-3">
                     <span className="sr-only">Edit</span>
-                  </th>
+                  </th> */}
                 </tr>
               </thead>
               <tbody>
@@ -132,11 +121,8 @@ const ServiceHandler = () => {
                       <td className="px-6 py-4 text-right text-green">
                         <div
                           onClick={() => {
-                            setVisibility2(true);
-                            setName(item.name);
-                            setDesc(item.description);
-                            setPrice(item.price);
-                            setTime(item.time);
+                            SetSelectedService(item);
+                            SetIsModalOpen(true);
                           }}
                           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
@@ -160,19 +146,13 @@ const ServiceHandler = () => {
       </div>
 
       {/* add create new service modal */}
-      <CreateServices visible={visibility} onClose={handleOnClose} />
-
-      {/* add edit services modal */}
-      <EditServices
-        visible={visibility2}
-        onClose={handleOnClose2}
-        categoryValue={select}
-        sub_categoryValue={selectSub}
-        nameValue={name}
-        descValue={desc}
-        priceValue={price}
-        timeValue={time}
-      />
+      {isModalOpen && (
+        <ServicesView
+          onClose={SetIsModalOpen}
+          service={selectedService}
+          setService={SetSelectedService}
+        />
+      )}
     </div>
   );
 };

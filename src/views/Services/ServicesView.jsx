@@ -7,7 +7,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const CreateServices = ({ visible, onClose }) => {
+const ServicesView = ({ onClose, service = null, setService }) => {
   const schema = yup.object().shape({
     name: yup.string().required("Name is required"),
     description: yup.string().required("Description is required!"),
@@ -33,7 +33,9 @@ const CreateServices = ({ visible, onClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const [select, setSelect] = useState("Hair");
-  const [selectSub, setSelectSub] = useState("Hair Cut");
+  const [selectSub, setSelectSub] = useState(
+    service === null ? "Hair Cut" : service.sub_category
+  );
   const [show, setShow] = useState("display");
 
   const [viewOne, setViewOne] = useState(true);
@@ -51,22 +53,19 @@ const CreateServices = ({ visible, onClose }) => {
   };
 
   async function newService(payload) {
-    const { data } = await axios({
+    await axios({
       method: "post",
       url: "http://localhost:3000/service",
       responseType: "json",
       data: payload,
-    });
+    }).then(()=>onClose(false))
     reset();
     setViewOne(true);
     setViewTwo(false);
-    console.log(JSON.stringify(data));
   }
-
-  if (!visible) return null;
-
   const handleOnClose = () => {
-    onClose();
+    onClose(false);
+    setService(null);
   };
 
   return (
@@ -80,7 +79,9 @@ const CreateServices = ({ visible, onClose }) => {
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
-        <h2 className="text-3xl mb-4">Create New Services</h2>
+        <h2 className="text-3xl mb-4">
+          {service === null ? "Create" : "Edit"} Services
+        </h2>
 
         <div>
           <form onSubmit={handleSubmit(formSubmit)}>
@@ -114,6 +115,7 @@ const CreateServices = ({ visible, onClose }) => {
                     type="text"
                     id="name"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    defaultValue={service===null?"":service.name}
                     placeholder="Name"
                     {...register("name")}
                   />
@@ -127,6 +129,7 @@ const CreateServices = ({ visible, onClose }) => {
                     type="number"
                     id="price"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    defaultValue={service===null?"":service.price}
                     placeholder="Price"
                     {...register("price")}
                   />
@@ -141,6 +144,7 @@ const CreateServices = ({ visible, onClose }) => {
                     id="time"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Time"
+                    defaultValue={service===null?"":service.time}
                     {...register("time")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -155,7 +159,9 @@ const CreateServices = ({ visible, onClose }) => {
                     <select
                       className="w-full rounded-lg text-sm"
                       id="sub_category"
-                      value={selectSub}
+                      value={
+                         selectSub
+                      }
                       onChange={(e) => {
                         setSelectSub(e.target.value);
                       }}
@@ -171,6 +177,7 @@ const CreateServices = ({ visible, onClose }) => {
                     id="description"
                     rows="6"
                     className="w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    defaultValue={service === null ? "" : service?.description}
                     placeholder="Description..."
                     {...register("description")}
                   />
@@ -190,7 +197,7 @@ const CreateServices = ({ visible, onClose }) => {
                 <div className={vOne}>
                   <div>
                     <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white flex justify-center py-2">
-                      Create Service
+                      {service === null ? "Create" : "Edit"} Service
                     </div>
                   </div>
                 </div>
@@ -216,4 +223,4 @@ const CreateServices = ({ visible, onClose }) => {
   );
 };
 
-export default CreateServices;
+export default ServicesView;
