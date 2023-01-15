@@ -18,7 +18,7 @@ const Home = () => {
         animate={spring}
       >
         <div className="text-center -translate-y-12 px-8 ml-0 md:text-start md:p-8 md:-translate-y-16 md:ml-10">
-          <span className="text-white max-w-md font-bold text-[58px] leading-none tracking-tight justify-center md:justify-start">
+          <span className="text-white max-w-md font-bold text-[52px] pl-[0.7rem] leading-none tracking-tight justify-center md:text-[58px] md:justify-start md:pl-0">
             A Smooth Saloon <br />
             Experience in <br />
             your Town
