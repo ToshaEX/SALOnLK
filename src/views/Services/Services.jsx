@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef} from "react";
 import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ import Brows from "./Brows";
 import Nails from "./Nails";
 import Cosmetology from "./Cosmetology";
 import Massage from "./Massage";
+import { useSelector } from "react-redux";
 
 const Services = () => {
   const [service, setServices] = useState([]);
@@ -29,6 +30,7 @@ const Services = () => {
   const ansClass3 = `${expandClass3} px-3 pb-3`;
   const expandClass4 = expand4 ? "display" : "hidden";
   const ansClass4 = `${expandClass4} px-3 pb-3`;
+
 
   useEffect(() => {
     axios({

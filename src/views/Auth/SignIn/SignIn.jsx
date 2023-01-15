@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { signIn } from "../../../features/user/user-slice";
+import { setUser, setAccessToken } from "../../../features/user/user-slice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 const SignIn = () => {
-  const userName = useSelector((state) => state.user.userName);
   const dispatch = useDispatch();
 
   const schema = yup.object().shape({
@@ -50,31 +50,28 @@ const SignIn = () => {
   };
 
   async function loginUser(payload) {
-    const { data } = await axios({
+    await axios({
       method: "post",
       url: "http://localhost:3000/auth/login",
       responseType: "json",
       data: payload,
+    }).then(({ data }) => {
+      const token = data.accessToken;
+      saveTokenInLocalStorage(token);
+      const decoded = jwt_decode(token);
+      dispatch(setUser(decoded));
+      dispatch(setAccessToken(token));
     });
 
     reset();
     setViewOne(true);
     setViewTwo(false);
 
-    saveTokenInLocalStorage(data.accessToken);
-
-    userRouting();
   }
 
   function saveTokenInLocalStorage(data) {
     localStorage.setItem("accessToken", JSON.stringify(data));
     console.log(JSON.stringify(data));
-  }
-
-  function userRouting() {
-    if (localStorage.getItem("accessToken") === undefined) {
-      <Link to="/register" />;
-    }
   }
 
   return (

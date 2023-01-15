@@ -2,23 +2,40 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { resetUser } from "../features/user/user-slice";
+import { Roles } from "../roles/roles";
 
-const navigation = [
-  { name: "Home", to: "home", current: false },
-  { name: "Register", to: "register", current: false },
-  { name: "Sign In", to: "sign-in", current: false },
-  { name: "Services", to: "services", current: false },
-];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+const logOut = (dispatch) => {
+  localStorage.removeItem("accessToken");
+  dispatch(resetUser());
+};
+
 const Navbar = () => {
-  const email = useSelector((state) => state.user.email);
+  const { email, userName,role } = useSelector((state) => ({
+    email: state.user.email,
+    userName: state.user.userName,
+    role:state.user.role
+  }));
+
+  const dispatch = useDispatch();
+  const navigation = [
+    { name: "Home", to: "home", current: false },
+    { name: "Services", to: "services", current: false },
+    role === Roles.ADMIN && {
+      name: "Manage",
+      to: "manage",
+      current: false,
+    },
+  ];
 
   return (
-    <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-dark">
+    <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-dark w-[100vw]">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -106,21 +123,36 @@ const Navbar = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-dark py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-gray-light">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            {email ? email : "your name"}
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-auto origin-top-right rounded-md bg-gray-dark py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-gray-light whitespace-nowrap">
+                      {userName && (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <div
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              {userName+" "}({" "+role.toUpperCase()+" "})
+                            </div>
+                          )}
+                        </Menu.Item>
+                      )}
+                      {email && (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <div
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              {email}
+                            </div>
+                          )}
+                        </Menu.Item>
+                      )}
+                      {/* <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
@@ -132,21 +164,55 @@ const Navbar = () => {
                             Settings
                           </a>
                         )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a href="/sign-in">
+                      </Menu.Item> */}
+                      {!userName ? (
+                        <>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link to="/sign-up">
+                                <div
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 "
+                                  )}
+                                >
+                                  Sign Up
+                                </div>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link to="/sign-in">
+                                <div
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Sign In
+                                </div>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </>
+                      ) : (
+                        <Menu.Item>
+                          {({ active }) => (
                             <div
+                              onClick={() => {
+                                logOut(dispatch);
+                              }}
                               className={classNames(
-                                active ? "bg-gray-100" : "",
+                                active ? "bg-gray-100 cursor-pointer" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Sign In
+                              Sign Out
                             </div>
-                          </a>
-                        )}
-                      </Menu.Item>
+                          )}
+                        </Menu.Item>
+                      )}
                     </Menu.Items>
                   </Transition>
                 </Menu>
