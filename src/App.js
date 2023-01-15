@@ -18,8 +18,8 @@ import ServiceHandler from "./views/Services/ServiceHandler";
 import { setUser, setAccessToken } from "./features/user/user-slice";
 import axios from "axios";
 
-const token = localStorage.getItem("accessToken")
-const clearToken = token.slice(1, token.length-1);
+const token = localStorage.getItem("accessToken");
+const clearToken =token===null? "":token.slice(1, token.length - 1);
 console.log(clearToken);
 axios.defaults.headers.common["Authorization"] = "Bearer " + clearToken;
 
