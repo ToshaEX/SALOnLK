@@ -41,6 +41,7 @@ const SignIn = () => {
   const vTwo = viewTwo ? "display" : "hidden";
 
   const formSubmit = (data) => {
+    Object.assign(data,{role:"user"})
     setViewOne(false);
     setViewTwo(true);
 
