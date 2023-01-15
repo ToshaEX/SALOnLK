@@ -49,7 +49,9 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
     data.category = select;
     data.sub_category = select === "Hair" ? selectSub : "";
-    return await newService(data);
+    return service === null
+      ? await newService(data)
+      : await updateService(data);
   };
 
   async function newService(payload) {
@@ -58,11 +60,23 @@ const ServicesView = ({ onClose, service = null, setService }) => {
       url: "http://localhost:3000/service",
       responseType: "json",
       data: payload,
-    }).then(()=>onClose(false))
+    }).then(() => handleOnClose());
     reset();
     setViewOne(true);
     setViewTwo(false);
   }
+
+  async function updateService(payload) {
+    await axios({
+      method: "patch",
+      url: `http://localhost:3000/service/${service._id}`,
+      responseType: "json",
+      data: payload,
+    }).then(() => handleOnClose());
+    reset();
+    setViewOne(true);
+  }
+
   const handleOnClose = () => {
     onClose(false);
     setService(null);
@@ -70,7 +84,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center">
-      <div className="w-full pb-10 pt-6 px-9 md:px-12 md:w-1/2 bg-white rounded-lg">
+      <div className="w-full pb-8 pt-6 px-9 md:px-10 md:w-1/2 bg-white rounded-lg">
         <div className="flex justify-end items-center">
           <button
             className="text-xl focus:outline-none pl-5"
@@ -115,7 +129,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                     type="text"
                     id="name"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    defaultValue={service===null?"":service.name}
+                    defaultValue={service === null ? "" : service.name}
                     placeholder="Name"
                     {...register("name")}
                   />
@@ -124,32 +138,34 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                   </p>
                 </div>
 
-                <div className="mb-3">
-                  <input
-                    type="number"
-                    id="price"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    defaultValue={service===null?"":service.price}
-                    placeholder="Price"
-                    {...register("price")}
-                  />
-                  <p className="text-[#ff6347] text-[12px]">
-                    {errors.price?.message}
-                  </p>
-                </div>
+                <div className="flex gap-2">
+                  <div className="mb-3">
+                    <input
+                      type="number"
+                      id="price"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      defaultValue={service === null ? "" : service.price}
+                      placeholder="Price"
+                      {...register("price")}
+                    />
+                    <p className="text-[#ff6347] text-[12px]">
+                      {errors.price?.message}
+                    </p>
+                  </div>
 
-                <div className="mb-3">
-                  <input
-                    type="number"
-                    id="time"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    placeholder="Time"
-                    defaultValue={service===null?"":service.time}
-                    {...register("time")}
-                  />
-                  <p className="text-[#ff6347] text-[12px]">
-                    {errors.time?.message}
-                  </p>
+                  <div className="mb-3">
+                    <input
+                      type="number"
+                      id="time"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="Time Duration"
+                      defaultValue={service === null ? "" : service.time}
+                      {...register("time")}
+                    />
+                    <p className="text-[#ff6347] text-[12px]">
+                      {errors.time?.message}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -159,9 +175,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                     <select
                       className="w-full rounded-lg text-sm"
                       id="sub_category"
-                      value={
-                         selectSub
-                      }
+                      value={selectSub}
                       onChange={(e) => {
                         setSelectSub(e.target.value);
                       }}
@@ -175,7 +189,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                 <div className="mb-[0.3rem]">
                   <textarea
                     id="description"
-                    rows="6"
+                    rows={select === "Hair" ? 4 : 6}
                     className="w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                     defaultValue={service === null ? "" : service?.description}
                     placeholder="Description..."
@@ -210,7 +224,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                       alt="mySvgImage"
                     />
                     <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white">
-                      Creating...
+                      {service === null ? "Creating..." : "Updating..."}
                     </div>
                   </div>
                 </div>

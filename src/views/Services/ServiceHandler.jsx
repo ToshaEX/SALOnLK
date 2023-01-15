@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ServicesView from "./ServicesView";
+import ServicesDelete from "./ServicesDelete";
 
 const ServiceHandler = () => {
   const [select, setSelect] = useState("Hair");
@@ -8,6 +9,7 @@ const ServiceHandler = () => {
   const [show, setShow] = useState("display");
   const [selectedService, SetSelectedService] = useState(null);
   const [isModalOpen, SetIsModalOpen] = useState(false);
+  const [isModalOpenTwo, SetIsModalOpenTwo] = useState(false);
   const [service, setServices] = useState([]);
 
   useEffect(() => {
@@ -22,45 +24,49 @@ const ServiceHandler = () => {
       .catch((err) => {
         console.log("Failed to load Services", err);
       });
-  }, [isModalOpen]);
+  }, [isModalOpen, isModalOpenTwo]);
 
   return (
     <div className="bg-white p-10">
       <div>
         {/* heder section */}
-        <div className=" h-[3.5rem] p-2 gap-5 flex align-center text-center justify-start">
-          <button
-            type="submit"
-            className="rounded-md border border-transparent bg-primary px-4 text-xs uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            onClick={() => SetIsModalOpen(true)}
-          >
-            Create new Service
-          </button>
+        <div className="h-[3.5rem] p-2 gap-5 flex align-center text-center justify-start pr-[5rem]">
+          <div>
+            <button
+              type="submit"
+              className="rounded-md h-full border border-transparent bg-primary px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
+              onClick={() => SetIsModalOpen(true)}
+            >
+              Create new Service
+            </button>
+          </div>
 
-          <select
-            className="w-[20rem] rounded-lg text-sm"
-            id="category"
-            value={select}
-            onChange={(e) => {
-              setSelect(e.target.value);
-              if (e.target.value === "Hair") {
-                setShow("display");
-              } else {
-                setShow("hidden");
-              }
-            }}
-          >
-            <option value="Hair">Hair</option>
-            <option value="Makeup">Makeup</option>
-            <option value="Brows">Brows</option>
-            <option value="Nails">Nails</option>
-            <option value="Cosmetology">Cosmetology</option>
-            <option value="Massage">Massage</option>
-          </select>
+          <div>
+            <select
+              className="md:w-[20rem] rounded-lg text-sm"
+              id="category"
+              value={select}
+              onChange={(e) => {
+                setSelect(e.target.value);
+                if (e.target.value === "Hair") {
+                  setShow("display");
+                } else {
+                  setShow("hidden");
+                }
+              }}
+            >
+              <option value="Hair">Hair</option>
+              <option value="Makeup">Makeup</option>
+              <option value="Brows">Brows</option>
+              <option value="Nails">Nails</option>
+              <option value="Cosmetology">Cosmetology</option>
+              <option value="Massage">Massage</option>
+            </select>
+          </div>
 
           <div className={show}>
             <select
-              className="w-[20rem] rounded-lg text-sm"
+              className="md:w-[20rem] rounded-lg text-sm"
               id="sub_category"
               value={selectSub}
               onChange={(e) => {
@@ -91,9 +97,6 @@ const ServiceHandler = () => {
                   <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">Time</div>
                   </th>
-                  {/* <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th> */}
                 </tr>
               </thead>
               <tbody>
@@ -118,7 +121,7 @@ const ServiceHandler = () => {
                       <td className="px-6 py-4">Rs:&nbsp;{item.price}</td>
                       <td className="px-6 py-4">{item.time}&nbsp;min</td>
 
-                      <td className="px-6 py-4 text-right text-green">
+                      <td className="px-6 py-4 text-right text-primary/80 cursor-pointer">
                         <div
                           onClick={() => {
                             SetSelectedService(item);
@@ -129,13 +132,16 @@ const ServiceHandler = () => {
                           Edit
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right text-orange">
-                        <a
-                          href="/"
+                      <td className="px-6 py-4 text-right text-orange cursor-pointer">
+                        <div
                           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          onClick={() => {
+                            SetSelectedService(item);
+                            SetIsModalOpenTwo(true);
+                          }}
                         >
                           Delete
-                        </a>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -145,10 +151,19 @@ const ServiceHandler = () => {
         </div>
       </div>
 
-      {/* add create new service modal */}
+      {/* add create new service modal and update modal */}
       {isModalOpen && (
         <ServicesView
           onClose={SetIsModalOpen}
+          service={selectedService}
+          setService={SetSelectedService}
+        />
+      )}
+
+      {/* add services delete modal */}
+      {isModalOpenTwo && (
+        <ServicesDelete
+          onClose={SetIsModalOpenTwo}
           service={selectedService}
           setService={SetSelectedService}
         />
