@@ -11,7 +11,7 @@ const OurStory = () => {
 
   return (
     <div className="bg-[#f7f9fc] p-[3rem] md:py-0 md:px-[7rem]">
-      <div className="text-center md:absolute md:pt-2 md:right-[27.2rem] md:mt-[4rem] z-10">
+      <div className="text-center z-10 md:absolute md:pt-2 md:right-[28.3rem] md:mt-[4rem]">
         <h2 className="font-bold text-[40px] leading-none tracking-tight">
           Our Story
         </h2>
@@ -23,7 +23,7 @@ const OurStory = () => {
         transition={{ delay: 1.5 }}
       >
         <div className="block md:flex md:gap-10">
-          <div className="">
+          <div>
             <img
               className="w-[600px] drop-shadow-xl cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:pb-10"
               src={require("../../../assets/Group 1.png")}
