@@ -11,9 +11,8 @@ import {
 import Services from "./views/Services/Services";
 import Register from "./views/Auth/Register/Register";
 import AboutUs from "./views/AboutUs/AboutUs";
-import Booking from "./views/Booking/Booking";
 import "./App.css";
-import ViewServices from "./views/Services/ViewServices";
+import ServiceHandler from "./views/Services/ServiceHandler";
 
 function App() {
   return (
@@ -65,23 +64,14 @@ function App() {
               </>
             )}
           />
+
           <Route
             exact
             strict
-            path="/booking"
+            path="/services/handler"
             component={() => (
               <>
-                <Booking />
-              </>
-            )}
-          />
-          <Route
-            exact
-            strict
-            path="/services/create"
-            component={() => (
-              <>
-                <ViewServices />
+                <ServiceHandler />
               </>
             )}
           />

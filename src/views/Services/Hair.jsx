@@ -31,9 +31,12 @@ const Hair = ({ service = [] }) => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-20">
               {hairCut.map((item, i) => (
-                <div className="max-w-[300px]" key={i}>
+                <div
+                  className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
+                  key={i}
+                >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">
                       <span className="text-[18px] tracking-tight">
@@ -48,7 +51,7 @@ const Hair = ({ service = [] }) => {
                   </div>
                   <div className="text-start pt-[10px]">
                     <span className="text-[16px] tracking-tight text-gray">
-                      {item.description}({item.time})
+                      {item.description}&nbsp;({item.time}&nbsp;min)
                     </span>
                   </div>
                 </div>
@@ -63,9 +66,12 @@ const Hair = ({ service = [] }) => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-20">
               {hairColor.map((item, i) => (
-                <div className="max-w-[300px]" key={i}>
+                <div
+                  className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
+                  key={i}
+                >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">
                       <span className="text-[18px] tracking-tight">
@@ -80,7 +86,7 @@ const Hair = ({ service = [] }) => {
                   </div>
                   <div className="text-start pt-[10px]">
                     <span className="text-[16px] tracking-tight text-gray">
-                      {item.description}({item.time})
+                      {item.description}&nbsp;({item.time}&nbsp;min)
                     </span>
                   </div>
                 </div>

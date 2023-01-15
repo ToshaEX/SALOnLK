@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const userName = useSelector((state) => state.user.userName);
@@ -34,11 +35,18 @@ const SignIn = () => {
     setGetCondition(!getCondition);
   };
 
+  const [viewOne, setViewOne] = useState(true);
+  const [viewTwo, setViewTwo] = useState(false);
+  const vOne = viewOne ? "display" : "hidden";
+  const vTwo = viewTwo ? "display" : "hidden";
+
   const formSubmit = (data) => {
+    setViewOne(false);
+    setViewTwo(true);
+
     console.log(getCondition);
     console.log(data);
     loginUser(data);
-    reset();
   };
 
   async function loginUser(payload) {
@@ -48,7 +56,25 @@ const SignIn = () => {
       responseType: "json",
       data: payload,
     });
+
+    reset();
+    setViewOne(true);
+    setViewTwo(false);
+
+    saveTokenInLocalStorage(data.accessToken);
+
+    userRouting();
+  }
+
+  function saveTokenInLocalStorage(data) {
+    localStorage.setItem("accessToken", JSON.stringify(data));
     console.log(JSON.stringify(data));
+  }
+
+  function userRouting() {
+    if (localStorage.getItem("accessToken") === undefined) {
+      <Link to="/register" />;
+    }
   }
 
   return (
@@ -119,7 +145,7 @@ const SignIn = () => {
 
                     <div className="text-sm">
                       <a
-                        href="#"
+                        href="/"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Forgot your password?
@@ -130,9 +156,27 @@ const SignIn = () => {
                   <div className="pt-[1rem]">
                     <button
                       type="submit"
-                      className="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="flex w-full justify-center rounded-md border border-transparent bg-primary px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                      Sign In
+                      <div className={vOne}>
+                        <div>
+                          <div className="text-[1rem] flex justify-center py-2">
+                            Sign In
+                          </div>
+                        </div>
+                      </div>
+                      <div className={vTwo}>
+                        <div className="flex items-center justify-center py-1">
+                          <img
+                            src={
+                              require("../../../assets/Spinner-1.9s-44px.svg")
+                                .default
+                            }
+                            alt="mySvgImage"
+                          />
+                          <div className="text-[1rem]">Logging...</div>
+                        </div>
+                      </div>
                     </button>
                   </div>
                 </form>

@@ -6,15 +6,20 @@ import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Link } from "react-scroll";
 import Hair from "./Hair";
+import MakeUp from "./MakeUp";
+import Brows from "./Brows";
+import Nails from "./Nails";
+import Cosmetology from "./Cosmetology";
+import Massage from "./Massage";
 
 const Services = () => {
+  const [service, setServices] = useState([]);
+  const [isLoading, setSIsLoading] = useState(true);
+
   const [expand1, setExpand1] = useState(false);
   const [expand2, setExpand2] = useState(false);
   const [expand3, setExpand3] = useState(false);
   const [expand4, setExpand4] = useState(false);
-  const [service, setServices] = useState([]);
-
-  const [isLoading, setSIsLoading] = useState(true);
 
   const expandClass1 = expand1 ? "display" : "hidden";
   const ansClass1 = `${expandClass1} px-3 pb-3`;
@@ -36,7 +41,7 @@ const Services = () => {
         setSIsLoading(false);
       })
       .catch((err) => {
-        console.log("Failed to laod Services", err);
+        console.log("Failed to load Services", err);
         setSIsLoading(false);
       });
   }, []);
@@ -88,7 +93,7 @@ const Services = () => {
                   />
                 </div>
                 <div className="serviceName">
-                  <span className="">Hair</span>
+                  <span>Hair</span>
                 </div>
               </div>
             </Link>
@@ -105,7 +110,7 @@ const Services = () => {
                   <img src={require("../../assets/makeup.png")} alt="makeup" />
                 </div>
                 <div className="serviceName">
-                  <span className="">MakeUp</span>
+                  <span>MakeUp</span>
                 </div>
               </div>
             </Link>
@@ -125,7 +130,7 @@ const Services = () => {
                   />
                 </div>
                 <div className="serviceName">
-                  <span className="">Brow</span>
+                  <span>Brow</span>
                 </div>
               </div>
             </Link>
@@ -162,7 +167,7 @@ const Services = () => {
                   <img src={require("../../assets/hair-comb.png")} alt="comb" />
                 </div>
                 <div className="serviceName">
-                  <span className="">Cosmetology</span>
+                  <span>Cosmetology</span>
                 </div>
               </div>
             </Link>
@@ -182,7 +187,7 @@ const Services = () => {
                   />
                 </div>
                 <div className="serviceName">
-                  <span className="">Massage</span>
+                  <span>Massage</span>
                 </div>
               </div>
             </Link>
@@ -192,527 +197,19 @@ const Services = () => {
           <Hair service={service} />
 
           {/* MakeUp Details Section */}
-          <section id="Makeup" className="text-center bg-[#f7f9fc] px-[1rem]">
-            <div className="pt-[5rem]">
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Makeup
-                </h2>
-              </div>
-
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  Complete your service with beautiful makeup and simply be
-                  amazing with <br /> complete look.
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Complimentary Touch-up
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $30
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Complete your service with this quick touch up, or pop
-                          in and meet with an available service professional or
-                          retail beauty advisor. (15 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Formal Makeup Application
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A make up application that includes enhanced make up
-                          techniques for a more dramatic look. (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Everyday Makeup Application
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $29
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Put your fresh face forward. This make up application
-                          will have you looking your best. (45 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Cocktail Makeup
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $48
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A make up application that includes enhanced make up
-                          techniques for a more dramatic look. (60 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <MakeUp service={service} />
 
           {/* Brows Details Section */}
-          <section id="Brows" className="text-center px-[1rem]">
-            <div className="pt-[5rem]">
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Brows
-                </h2>
-              </div>
-
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  Brows can change it all. Try out styling and tinting your
-                  brows and see <br /> the difference.
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Brow Wax & Style
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $30
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Includes a brow consultation, wax & style. (20 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Brow Tweeze
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $19
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Includes a brow consultation, tweeze & style. (20 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Brow Trim
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $20
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Includes a brow consultation, trim & style. (20 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Bang Trim
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            148
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A trim on the bang area. Shampoo, conditioner and
-                          scalp massage not included. (15 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <Brows service={service} />
 
           {/* Nails Details Section */}
-          <section id="Nails" className="text-center bg-[#f7f9fc] px-[1rem]">
-            <div className="pt-[5rem]">
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Nails
-                </h2>
-              </div>
-
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  Get your nails done for great mood. Simple pleasures can make
-                  your week, not <br /> just day.
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Cherie Manicure
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $50
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Delicate cuticle work, buffing, and shaping. To
-                          finish, a relaxing hand massage, topped off with a
-                          perfect polish. (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Gel Manicure
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $59
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          All the features of our Cherie manicure, but finish
-                          with nontoxic Gel Polish instead. (40 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Buff Manicure
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Our natural look manicure - no polish, but all of the
-                          pampering. (20 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Cherie Pedicure
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Our natural look pedi - no polish, but all of the
-                          pampering. Revitalize tired feet. (30 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <Nails service={service} />
 
           {/* Cosmetology Details Section */}
-          <section id="Cosmetology" className="text-center px-[1rem]">
-            <div className="pt-[5rem]">
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Cosmetology
-                </h2>
-              </div>
-
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  Indulge a little longer with a customized facial to help
-                  achieve your skin goals in <br /> 60-90 minutes.
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            60 Minute Customized Facial
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $40
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Customized Facial enhanced with your choice of
-                          Microdermabrasion for Smoother Skin. (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Hydra facial
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $39
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          The HydraFacial is a much-loved rejuvenation
-                          treatment, using patented Vortex technology to deliver
-                          botanical nutrients directly to the skin. (90 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Moisturizing Facial
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $20
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Revives stressed, dehydrated and overworked skin in
-                          minutes. (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Anti-Aging Therapy
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $49
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          This anti-aging treatment stimulates collagen
-                          production for a firmer complexion. (60 min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <Cosmetology service={service} />
 
           {/* Massage Details Section */}
-          <section id="Massage" className="text-center bg-[#f7f9fc] px-[1rem]">
-            <div className="pt-[5rem]">
-              <div className="mb-[18px]">
-                <h2 className="font-bold text-[40px] leading-none tracking-tight">
-                  Massage
-                </h2>
-              </div>
-
-              <div className="pt-[1rem] md:px-[3rem]">
-                <span className="text-[18px] tracking-tight">
-                  A whole-body hands-on treatment that helps you relax.
-                </span>
-              </div>
-
-              <div className="pb-[5rem] md:px-[5rem]">
-                <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:px-[5rem] md:gap-20">
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Deep Tissue Massage
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $50
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          Targets the deeper layers of muscle and connective
-                          tissue. The massage therapist uses slower strokes or
-                          friction techniques across the grain of the muscle.
-                          (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Swedish Massage
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $59
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          As the best-known type of bodywork performed today,
-                          one of the primary goals of the Swedish massage
-                          technique is to relax the entire body. (60 min)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="max-w-[300px]">
-                      <div className="flex">
-                        <div className="text-start pt-[2rem] w-full">
-                          <span className="text-[18px] tracking-tight">
-                            Sports Massage
-                          </span>
-                        </div>
-                        <div className="pt-[2rem] w-full text-end">
-                          <span className="text-[18px] tracking-tight font-light">
-                            $49
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-start pt-[10px]">
-                        <span className="text-[16px] tracking-tight text-gray">
-                          A form of treatment is commonly performed on athletes
-                          by certified sports massage is a popular technique of
-                          applying different types of pressure on the body. (20
-                          min)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <Massage service={service} />
         </div>
       </div>
 
