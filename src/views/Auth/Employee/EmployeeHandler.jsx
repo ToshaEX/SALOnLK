@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ServicesView from "./ServicesView";
-import ServicesDelete from "./ServicesDelete";
+import EmployeeView from "./EmployeeView";
+import EmployeeDelete from "./EmployeeDelete";
 
-export default function ServiceHandler() {
-  const [select, setSelect] = useState("Hair");
-  const [selectSub, setSelectSub] = useState("Hair Cut");
-  const [show, setShow] = useState("display");
+export default function EmployeeHandler() {
+  const [select, setSelect] = useState("beautician");
   const [selectedService, SetSelectedService] = useState(null);
   const [isModalOpen, SetIsModalOpen] = useState(false);
   const [isModalOpenTwo, SetIsModalOpenTwo] = useState(false);
@@ -27,7 +25,7 @@ export default function ServiceHandler() {
   }, [isModalOpen, isModalOpenTwo]);
 
   return (
-    <div id="MainServiceHandler" className="bg-white p-10">
+    <div id="MainEmployeeHandler" className="bg-white p-10">
       <div>
         {/* heder section */}
         <div className="h-[3.5rem] p-2 gap-5 flex align-center text-center justify-start pr-[5rem]">
@@ -37,44 +35,21 @@ export default function ServiceHandler() {
               className="rounded-md h-full border border-transparent bg-primary px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
               onClick={() => SetIsModalOpen(true)}
             >
-              Create new Service
+              Add New Employee
             </button>
           </div>
 
           <div>
             <select
               className="md:w-[20rem] rounded-lg text-sm"
-              id="category"
+              id="role"
               value={select}
               onChange={(e) => {
                 setSelect(e.target.value);
-                if (e.target.value === "Hair") {
-                  setShow("display");
-                } else {
-                  setShow("hidden");
-                }
               }}
             >
-              <option value="Hair">Hair</option>
-              <option value="Makeup">Makeup</option>
-              <option value="Brows">Brows</option>
-              <option value="Nails">Nails</option>
-              <option value="Cosmetology">Cosmetology</option>
-              <option value="Massage">Massage</option>
-            </select>
-          </div>
-
-          <div className={show}>
-            <select
-              className="md:w-[20rem] rounded-lg text-sm"
-              id="sub_category"
-              value={selectSub}
-              onChange={(e) => {
-                setSelectSub(e.target.value);
-              }}
-            >
-              <option value="Hair Cut">Hair Cut</option>
-              <option value="Color">Color</option>
+              <option value="beautician">Beautician</option>
+              <option value="admin">Admin</option>
             </select>
           </div>
         </div>
@@ -86,26 +61,22 @@ export default function ServiceHandler() {
               <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3">
-                    Service name
+                    Full name
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Description</div>
+                    <div className="flex items-center">Contact No:</div>
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Price</div>
+                    <div className="flex items-center">Email</div>
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Time</div>
+                    <div className="flex items-center">Gender</div>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {service
-                  .filter((val) =>
-                    select === "Hair"
-                      ? val.sub_category === selectSub
-                      : val.category === select
-                  )
+                  .filter((val) => val.role === select)
                   .map((item, i) => (
                     <tr
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray"
@@ -115,11 +86,11 @@ export default function ServiceHandler() {
                         scope="row"
                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                       >
-                        {item.name}
+                        {item.first_name}&nbsp;{item.last_name}
                       </th>
-                      <td className="px-6 py-4">{item.description}</td>
-                      <td className="px-6 py-4">Rs:&nbsp;{item.price}</td>
-                      <td className="px-6 py-4">{item.time}&nbsp;min</td>
+                      <td className="px-6 py-4">{item.phone}</td>
+                      <td className="px-6 py-4">{item.email}</td>
+                      <td className="px-6 py-4">{item.gender}</td>
 
                       <td className="px-6 py-4 text-right text-primary/80 cursor-pointer">
                         <div
@@ -151,18 +122,17 @@ export default function ServiceHandler() {
         </div>
       </div>
 
-      {/* add create new service modal and update modal */}
+      {/* add create new employee modal and update modal */}
       {isModalOpen && (
-        <ServicesView
+        <EmployeeView
           onClose={SetIsModalOpen}
           service={selectedService}
           setService={SetSelectedService}
         />
       )}
-
-      {/* add services delete modal */}
+      {/* add employee delete modal */}
       {isModalOpenTwo && (
-        <ServicesDelete
+        <EmployeeDelete
           onClose={SetIsModalOpenTwo}
           service={selectedService}
           setService={SetSelectedService}

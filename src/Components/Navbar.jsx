@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { resetUser } from "../features/user/user-slice";
 import { Roles } from "../roles/roles";
 
@@ -24,7 +24,6 @@ const Navbar = () => {
   }));
 
   const dispatch = useDispatch();
- 
 
   const navigation = [
     { name: "Home", to: "home", current: false },
@@ -35,8 +34,13 @@ const Navbar = () => {
       current: false,
     },
     role === Roles.ADMIN && {
-      name: "Add Employee",
-      to: "sign-up",
+      name: "",
+      to: "employee-handler",
+      current: false,
+    },
+    role === Roles.ADMIN && {
+      name: "",
+      to: "service-handler",
       current: false,
     },
   ];

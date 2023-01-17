@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar } from "./Components/index";
+import { Navbar, SideMenu } from "./Components/index";
 import LandingPage from "./views/LandingPage/LandingPage";
 import SignIn from "./views/Auth/SignIn/SignIn";
 import { createBrowserHistory } from "history";
@@ -18,6 +18,8 @@ import jwt_decode from "jwt-decode";
 import ServiceHandler from "./views/Services/ServiceHandler";
 import { setUser, setAccessToken } from "./features/user/user-slice";
 import axios from "axios";
+import EmployeeHandler from "./views/Auth/Employee/EmployeeHandler";
+import Dashboard from "./views/Manage/Dashboard";
 
 const history = createBrowserHistory();
 
@@ -72,7 +74,7 @@ function App() {
             path="/services"
             component={() => (
               <>
-              <Navbar />
+                <Navbar />
                 <Services />
               </>
             )}
@@ -96,7 +98,40 @@ function App() {
             component={() => (
               <>
                 <Navbar />
-                <ServiceHandler />
+                <div className="flex">
+                  <SideMenu />
+                  <Dashboard />
+                </div>
+              </>
+            )}
+          />
+
+          <Route
+            exact
+            strict
+            path="/service-handler"
+            component={() => (
+              <>
+                <Navbar />
+                <div className="flex">
+                  <SideMenu />
+                  <ServiceHandler />
+                </div>
+              </>
+            )}
+          />
+
+          <Route
+            exact
+            strict
+            path="/employee-handler"
+            component={() => (
+              <>
+                <Navbar />
+                <div className="flex">
+                  <SideMenu />
+                  <EmployeeHandler />
+                </div>
               </>
             )}
           />

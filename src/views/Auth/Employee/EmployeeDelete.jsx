@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const ServicesDelete = ({ onClose, service = null, setService }) => {
+const EmployeeDelete = ({ onClose, service = null, setService }) => {
   const formSubmit = (data) => {
     return data === false ? null : deleteService();
   };
@@ -24,7 +24,7 @@ const ServicesDelete = ({ onClose, service = null, setService }) => {
       <div className="w-full pb-8 pt-6 px-9 md:px-10 md:w-1/2 bg-white rounded-lg">
         <h2 className="text-[25px] mb-1 font-bold">Delete Confirmation</h2>
         <h3 className="text-md mb-3">
-          Are you sure, You want to delete a Service?
+          Are you sure, You want to delete this Employee?
         </h3>
 
         <div>
@@ -35,7 +35,7 @@ const ServicesDelete = ({ onClose, service = null, setService }) => {
                 onClick={() => {
                   formSubmit(true);
                 }}
-                className="px-10 bg-primary rounded-md border border-transparent text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="px-10 rounded-md border border-transparent bg-primary text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Yes
               </button>
@@ -57,4 +57,4 @@ const ServicesDelete = ({ onClose, service = null, setService }) => {
   );
 };
 
-export default ServicesDelete;
+export default EmployeeDelete;

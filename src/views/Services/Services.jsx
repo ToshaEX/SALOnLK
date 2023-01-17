@@ -1,8 +1,6 @@
-import React, { useState, useEffect,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CTA from "../../Components/CTA";
 import Footer from "../../Components/Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Link } from "react-scroll";
 import Hair from "./Hair";
@@ -12,6 +10,7 @@ import Nails from "./Nails";
 import Cosmetology from "./Cosmetology";
 import Massage from "./Massage";
 import { useSelector } from "react-redux";
+import { RiCloseCircleLine, RiAddCircleLine } from "react-icons/ri";
 
 const Services = () => {
   const [service, setServices] = useState([]);
@@ -30,7 +29,6 @@ const Services = () => {
   const ansClass3 = `${expandClass3} px-3 pb-3`;
   const expandClass4 = expand4 ? "display" : "hidden";
   const ansClass4 = `${expandClass4} px-3 pb-3`;
-
 
   useEffect(() => {
     axios({
@@ -87,8 +85,8 @@ const Services = () => {
               offset={-100}
               duration={500}
             >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-4 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
+              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-5 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
                   <img
                     src={require("../../assets/woman-hair.png")}
                     alt="hair"
@@ -108,7 +106,7 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
                   <img src={require("../../assets/makeup.png")} alt="makeup" />
                 </div>
                 <div className="serviceName">
@@ -125,7 +123,7 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
                   <img
                     src={require("../../assets/mascara.png")}
                     alt="mascara"
@@ -145,7 +143,7 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
                   <img
                     src={require("../../assets/nail-polish.png")}
                     alt="nail"
@@ -165,7 +163,7 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
                   <img src={require("../../assets/hair-comb.png")} alt="comb" />
                 </div>
                 <div className="serviceName">
@@ -182,7 +180,7 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
                   <img
                     src={require("../../assets/massage.png")}
                     alt="massage"
@@ -243,11 +241,7 @@ const Services = () => {
                     setExpand1(!expand1);
                   }}
                 >
-                  {expand1 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
+                  {expand1 ? <RiCloseCircleLine /> : <RiAddCircleLine />}
                 </button>
               </div>
               <div className={ansClass1}>
@@ -270,11 +264,7 @@ const Services = () => {
                     setExpand2(!expand2);
                   }}
                 >
-                  {expand2 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
+                  {expand2 ? <RiCloseCircleLine /> : <RiAddCircleLine />}
                 </button>
               </div>
               <div className={ansClass2}>
@@ -299,11 +289,7 @@ const Services = () => {
                     setExpand3(!expand3);
                   }}
                 >
-                  {expand3 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
+                  {expand3 ? <RiCloseCircleLine /> : <RiAddCircleLine />}
                 </button>
               </div>
               <div className={ansClass3}>
@@ -328,11 +314,7 @@ const Services = () => {
                     setExpand4(!expand4);
                   }}
                 >
-                  {expand4 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
+                  {expand4 ? <RiCloseCircleLine /> : <RiAddCircleLine />}
                 </button>
               </div>
               <div className={ansClass4}>
