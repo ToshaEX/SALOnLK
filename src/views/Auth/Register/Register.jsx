@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import Spinner from "../../../assets/Spinner-1.9s-44px.svg";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const phoneRegExp =
@@ -214,7 +216,7 @@ const Register = () => {
 
                     <label className="ml-2 text-sm font-medium text-gray-900">
                       I agree with the
-                      <a href="#" className="text-blue-600 hover:underline">
+                      <a href="/" className="hover:underline">
                         {" "}
                         terms and conditions
                       </a>
@@ -240,19 +242,19 @@ const Register = () => {
                     </div>
                     <div className={vTwo}>
                       <div className="flex items-center justify-center py-1">
-                        <img
-                          src={
-                            require("../../../assets/Spinner-1.9s-44px.svg")
-                              .default
-                          }
-                          alt="mySvgImage"
-                        />
+                        <img src={Spinner.default} alt="mySvgImage" />
                         <div className="text-[1rem]">Creating account...</div>
                       </div>
                     </div>
                   </button>
                 </div>
               </form>
+              <div className="mt-3 text-[12px] font-medium text-gray-900">
+                Already have an account?&nbsp;
+                <Link to="/sign-in">
+                  <span className="hover:underline">Sign In</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

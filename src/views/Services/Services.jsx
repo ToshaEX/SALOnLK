@@ -1,16 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
-import CTA from "../../Components/CTA";
-import Footer from "../../Components/Footer";
+import { CTA, Footer } from "../../Components/index";
 import axios from "axios";
 import { Link } from "react-scroll";
-import Hair from "./Hair";
-import MakeUp from "./MakeUp";
-import Brows from "./Brows";
-import Nails from "./Nails";
-import Cosmetology from "./Cosmetology";
-import Massage from "./Massage";
-import { useSelector } from "react-redux";
+import {
+  Hair,
+  MakeUp,
+  Brows,
+  Nails,
+  Cosmetology,
+  Massage,
+} from "./ServiceTypes/index";
+
 import { RiCloseCircleLine, RiAddCircleLine } from "react-icons/ri";
+import NailImg from "../../assets/nail-polish.png";
+import BrowImg from "../../assets/mascara.png";
+import CosmetologyImg from "../../assets/hair-comb.png";
+import HairImg from "../../assets/woman-hair.png";
+import MakeupImg from "../../assets/makeup.png";
+import MassageImg from "../../assets/massage.png";
+
+import { useSelector } from "react-redux";
 
 const Services = () => {
   const [service, setServices] = useState([]);
@@ -87,10 +96,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-5 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img
-                    src={require("../../assets/woman-hair.png")}
-                    alt="hair"
-                  />
+                  <img src={HairImg} alt="hair" />
                 </div>
                 <div className="serviceName">
                   <span>Hair</span>
@@ -107,7 +113,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={require("../../assets/makeup.png")} alt="makeup" />
+                  <img src={MakeupImg} alt="makeup" />
                 </div>
                 <div className="serviceName">
                   <span>MakeUp</span>
@@ -124,10 +130,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img
-                    src={require("../../assets/mascara.png")}
-                    alt="mascara"
-                  />
+                  <img src={BrowImg} alt="mascara" />
                 </div>
                 <div className="serviceName">
                   <span>Brow</span>
@@ -144,10 +147,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img
-                    src={require("../../assets/nail-polish.png")}
-                    alt="nail"
-                  />
+                  <img src={NailImg} alt="nail" />
                 </div>
                 <div className="serviceName">
                   <span className="">Nails</span>
@@ -164,7 +164,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={require("../../assets/hair-comb.png")} alt="comb" />
+                  <img src={CosmetologyImg} alt="comb" />
                 </div>
                 <div className="serviceName">
                   <span>Cosmetology</span>
@@ -181,10 +181,7 @@ const Services = () => {
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
                 <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img
-                    src={require("../../assets/massage.png")}
-                    alt="massage"
-                  />
+                  <img src={MassageImg} alt="massage" />
                 </div>
                 <div className="serviceName">
                   <span>Massage</span>

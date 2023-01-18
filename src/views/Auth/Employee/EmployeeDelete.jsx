@@ -45,7 +45,7 @@ const EmployeeDelete = ({ onClose, service = null, setService }) => {
                   formSubmit(false);
                   handleOnClose();
                 }}
-                className="px-10 bg-black/30 rounded-md border border-transparent bg-primary px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="px-10 bg-black/30 rounded-md border border-transparent bg-primary text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 No
               </button>

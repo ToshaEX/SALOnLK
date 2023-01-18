@@ -1,5 +1,11 @@
 import React from "react";
 import emailjs from "@emailjs/browser";
+import Logo from "../assets/salo.png";
+import Fb from "../assets/facebook.png";
+import Twitter from "../assets/twitter.png";
+import Instagram from "../assets/instagram.png";
+
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const sendEmail = (e) => {
@@ -23,79 +29,118 @@ const Footer = () => {
     e.target.reset();
   };
 
+  const socialList = [
+    {
+      src: Fb,
+      alt: "fb",
+      url: "/",
+    },
+    {
+      src: Twitter,
+      alt: "twitter",
+      url: "/",
+    },
+    {
+      src: Instagram,
+      alt: "instagram",
+      url: "/",
+    },
+  ];
+
+  const listOne = [
+    {
+      name: "About Us",
+      path: "/about-us",
+    },
+    {
+      name: "Services",
+      path: "/services",
+    },
+    {
+      name: "Products",
+      path: "/home",
+    },
+    {
+      name: "FAQ",
+      path: "/home",
+    },
+  ];
+
+  const listTwo = [
+    {
+      name: "Contact Us",
+      path: "/home",
+    },
+    {
+      name: "T & C",
+      path: "/home",
+    },
+  ];
+
+  const listThree = [
+    {
+      name: "Terms of Use",
+      path: "/home",
+    },
+    {
+      name: "Privacy Policy",
+      path: "/home",
+    },
+  ];
+
   return (
     <footer className="flex flex-col-reverse items-center bg-[#171618] justify-between px-[5rem] py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
       <div className="mx-auto my-6 text-center text-white md:hidden">
         Copyright &copy; 2022 SalonLK. All rights reserved
       </div>
       <div>
-        <img
-          className="mx-auto h-[75px] w-auto"
-          src={require("../assets/salo.png")}
-          alt="salon"
-        />
+        <Link to="/home">
+          <img className="mx-auto h-[75px] w-auto" src={Logo} alt="salon" />
+        </Link>
 
         <div className="flex items-center gap-5">
-          <div className="cursor-pointer">
-            <img
-              className="h-5 w-auto"
-              src={require("../assets/facebook.png")}
-              alt="fb"
-            />
-          </div>
-          <div className="cursor-pointer">
-            <img
-              className="h-5 w-auto"
-              src={require("../assets/twitter.png")}
-              alt="twitter"
-            />
-          </div>
-          <div className="cursor-pointer">
-            <img
-              className="h-5 w-auto"
-              src={require("../assets/instagram.png")}
-              alt="instagram"
-            />
-          </div>
+          {socialList.map((item, index) => {
+            return (
+              <div key={index}>
+                <a href={item.url}>
+                  <img className="h-5 w-auto" src={item.src} alt={item.alt} />
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="text-white">
         <div className="pb-[5px] text-base">Links</div>
         <div className="text-[14px] flex gap-5">
           <ul>
-            <li>
-              <a href="#">About Us</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Products</a>
-            </li>
-            <li>
-              <a href="#">FAQ</a>
-            </li>
+            {listOne.map((item, index) => {
+              return (
+                <Link to={item.path}>
+                  <li key={index}>{item.name}</li>
+                </Link>
+              );
+            })}
           </ul>
 
           <ul>
-            <li>
-              <a href="#">Contact Us</a>
-            </li>
-            <li>
-              <a href="#">Our Team</a>
-            </li>
-            <li>
-              <a href="#">T & C</a>
-            </li>
+            {listTwo.map((item, index) => {
+              return (
+                <Link to={item.path}>
+                  <li key={index}>{item.name}</li>
+                </Link>
+              );
+            })}
           </ul>
 
           <ul>
-            <li>
-              <a href="#">Terms of Use</a>
-            </li>
-            <li>
-              <a href="#">Privacy Policy</a>
-            </li>
+            {listThree.map((item, index) => {
+              return (
+                <Link to={item.path}>
+                  <li key={index}>{item.name}</li>
+                </Link>
+              );
+            })}
           </ul>
         </div>
       </div>

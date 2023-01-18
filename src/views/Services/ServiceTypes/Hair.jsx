@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ServicesModal from "./ServicesModal";
+import ServicesModal from "../ServicesModal";
 
 const Hair = ({ service = [] }) => {
   const hairCut = service.filter((val) => val.sub_category === "Hair Cut");

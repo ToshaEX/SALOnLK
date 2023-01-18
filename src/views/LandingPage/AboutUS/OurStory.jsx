@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Group from "../../../assets/Group 1.png";
 
 const OurStory = () => {
   const spring = {
@@ -26,7 +27,7 @@ const OurStory = () => {
           <div>
             <img
               className="w-[600px] drop-shadow-xl cursor-pointer transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:pb-10"
-              src={require("../../../assets/Group 1.png")}
+              src={Group}
               alt="team"
             />
           </div>

@@ -1,7 +1,28 @@
 import React from "react";
-import Footer from "../../Components/Footer";
+import T1 from "../../assets/Team-1.webp";
+import T2 from "../../assets/Team-2.webp";
+import T3 from "../../assets/Team-3.webp";
+import T4 from "../../assets/Team-4.webp";
+import T5 from "../../assets/Team-5.webp";
+import T6 from "../../assets/Team-6.webp";
+import { Footer } from "../../Components/index";
 
 const AboutUs = () => {
+  const ListOne = [
+    { src: T1, alt: "t1", name: "Jessica Anderson", position: "Founder" },
+
+    { src: T2, alt: "t2", name: "John Williams", position: "Cosmetologist" },
+
+    { src: T3, alt: "t3", name: "Emily Thompson", position: "Hairdresser" },
+  ];
+  const ListTwo = [
+    { src: T4, alt: "t4", name: "David Johnson", position: "Barber" },
+
+    { src: T5, alt: "t5", name: "Sarah Jones", position: "Nail Specialist" },
+
+    { src: T6, alt: "t6", name: "Michael Smith", position: "Therapist" },
+  ];
+
   return (
     <div>
       {/* About Us Section */}
@@ -69,93 +90,47 @@ const AboutUs = () => {
 
         <div>
           <div className="pt-5 text-center md:flex md:justify-between md:px-[16rem] md:pt-10">
-            <div className="cursor-pointer pt-10 md:pt-0">
-              <div className="w-[200px] m-auto mb-[22px]">
-                <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../assets/Team-1.webp")}
-                  alt="t1"
-                />
-              </div>
-              <span className="relative block first-letter:first-line:text-[16px]">
-                Jessica Anderson
-              </span>
-              <span className="relative block text-[14px]">Founder</span>
-            </div>
-
-            <div className="cursor-pointer pt-10 md:pt-0">
-              <div className="w-[200px] m-auto mb-[22px]">
-                <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../assets/Team-2.webp")}
-                  alt="t2"
-                />
-              </div>
-              <span className="relative block first-letter:first-line:text-[16px]">
-                John Williams
-              </span>
-              <span className="relative block text-[14px]">Cosmetologist</span>
-            </div>
-
-            <div className="cursor-pointer pt-10 md:pt-0">
-              <div className="w-[200px] m-auto mb-[22px]">
-                <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../assets/Team-3.webp")}
-                  alt="t3"
-                />
-              </div>
-              <span className="relative block first-letter:first-line:text-[16px]">
-                Emily Thompson
-              </span>
-              <span className="relative block text-[14px]">Hairdresser</span>
-            </div>
+            {ListOne.map((items, index) => {
+              return (
+                <div className="cursor-pointer pt-10 md:pt-0" key={index}>
+                  <div className="w-[200px] m-auto mb-[22px]">
+                    <img
+                      className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                      src={items.src}
+                      alt={items.alt}
+                    />
+                  </div>
+                  <span className="relative block first-letter:first-line:text-[16px]">
+                    {items.name}
+                  </span>
+                  <span className="relative block text-[14px]">
+                    {items.position}
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
           <div className="pt-5 text-center pb-[4rem] md:flex md:justify-between md:px-[16rem] md:pt-10">
-            <div className="cursor-pointer pt-10 md:pt-0">
-              <div className="w-[200px] m-auto mb-[22px]">
-                <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../assets/Team-4.webp")}
-                  alt="t4"
-                />
-              </div>
-              <span className="relative block first-letter:first-line:text-[16px]">
-                David Johnson
-              </span>
-              <span className="relative block text-[14px]">Barber</span>
-            </div>
-
-            <div className="cursor-pointer pt-10 md:pt-0">
-              <div className="w-[200px] m-auto mb-[22px]">
-                <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../assets/Team-5.webp")}
-                  alt="t5"
-                />
-              </div>
-              <span className="relative block first-letter:first-line:text-[16px]">
-                Sarah Jones
-              </span>
-              <span className="relative block text-[14px]">
-                Nail Specialist
-              </span>
-            </div>
-
-            <div className="cursor-pointer pt-10 md:pt-0">
-              <div className="w-[200px] m-auto mb-[22px]">
-                <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-                  src={require("../../assets/Team-6.webp")}
-                  alt="t6"
-                />
-              </div>
-              <span className="relative block first-letter:first-line:text-[16px]">
-                Michael Smith
-              </span>
-              <span className="relative block text-[14px]">Therapist</span>
-            </div>
+            {ListTwo.map((items, index) => {
+              return (
+                <div className="cursor-pointer pt-10 md:pt-0" key={index}>
+                  <div className="w-[200px] m-auto mb-[22px]">
+                    <img
+                      className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                      src={items.src}
+                      alt={items.alt}
+                    />
+                  </div>
+                  <span className="relative block first-letter:first-line:text-[16px]">
+                    {items.name}
+                  </span>
+                  <span className="relative block text-[14px]">
+                    {items.position}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

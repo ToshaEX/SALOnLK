@@ -5,10 +5,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
-
+import Spinner from "../../../assets/Spinner-1.9s-44px.svg";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -69,7 +68,6 @@ const SignIn = () => {
     reset();
     setViewOne(true);
     setViewTwo(false);
-
   }
 
   function saveTokenInLocalStorage(data) {
@@ -167,19 +165,19 @@ const SignIn = () => {
                       </div>
                       <div className={vTwo}>
                         <div className="flex items-center justify-center py-1">
-                          <img
-                            src={
-                              require("../../../assets/Spinner-1.9s-44px.svg")
-                                .default
-                            }
-                            alt="mySvgImage"
-                          />
+                          <img src={Spinner.default} alt="mySvgImage" />
                           <div className="text-[1rem]">Logging...</div>
                         </div>
                       </div>
                     </button>
                   </div>
                 </form>
+                <div className="mt-3 text-[12px] font-medium text-gray-900">
+                  Don't have and account?&nbsp;
+                  <Link to="/sign-up">
+                    <span className="hover:underline">Register Now</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

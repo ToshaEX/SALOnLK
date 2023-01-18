@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { resetUser } from "../features/user/user-slice";
 import { Roles } from "../roles/roles";
+import Logo from "../assets/salo.png";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -67,14 +68,14 @@ const Navbar = () => {
                   <Link to="/home">
                     <img
                       className="block h-10 w-auto lg:hidden"
-                      src={require("../assets/salo.png")}
+                      src={Logo}
                       alt="logo"
                     />
                   </Link>
                   <Link to="/home">
                     <img
                       className="hidden h-[75px] w-auto lg:block"
-                      src={require("../assets/salo.png")}
+                      src={Logo}
                       alt="logo"
                     />
                   </Link>
@@ -85,10 +86,6 @@ const Navbar = () => {
                       <Link
                         to={(location) => ({ ...location, pathname: item.to })}
                         key={`${item.name}-item`}
-                        // onClick={(e) =>{
-                        //   e.preventDefault();
-
-                        // }}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-blue"

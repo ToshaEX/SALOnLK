@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Nail from "../../../assets/nail-polish.png";
+import Brow from "../../../assets/mascara.png";
+import Cosmetology from "../../../assets/hair-comb.png";
+import Hair from "../../../assets/woman-hair.png";
+import Makeup from "../../../assets/makeup.png";
+import Massage from "../../../assets/massage.png";
 
 const ServicesMenu = () => {
   const [text, setText] = useState(
@@ -27,7 +33,7 @@ const ServicesMenu = () => {
           <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={require("../../../assets/nail-polish.png")}
+              src={Nail}
               alt="nail"
             />
           </div>
@@ -48,7 +54,7 @@ const ServicesMenu = () => {
           <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={require("../../../assets/mascara.png")}
+              src={Brow}
               alt="mascara"
             />
           </div>
@@ -69,7 +75,7 @@ const ServicesMenu = () => {
           <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={require("../../../assets/hair-comb.png")}
+              src={Cosmetology}
               alt="comb"
             />
           </div>
@@ -90,7 +96,7 @@ const ServicesMenu = () => {
           <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={require("../../../assets/woman-hair.png")}
+              src={Hair}
               alt="hair"
             />
           </div>
@@ -111,7 +117,7 @@ const ServicesMenu = () => {
           <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={require("../../../assets/makeup.png")}
+              src={Makeup}
               alt="makeup"
             />
           </div>
@@ -132,7 +138,7 @@ const ServicesMenu = () => {
           <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={require("../../../assets/massage.png")}
+              src={Massage}
               alt="massage"
             />
           </div>
