@@ -7,7 +7,6 @@ import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import Spinner from "../../../assets/Spinner-1.9s-44px.svg";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -165,7 +164,13 @@ const SignIn = () => {
                       </div>
                       <div className={vTwo}>
                         <div className="flex items-center justify-center py-1">
-                          <img src={Spinner.default} alt="mySvgImage" />
+                          <img
+                            src={
+                              require("../../../assets/Spinner-1.9s-44px.svg")
+                                .default
+                            }
+                            alt="mySvgImage"
+                          />
                           <div className="text-[1rem]">Logging...</div>
                         </div>
                       </div>

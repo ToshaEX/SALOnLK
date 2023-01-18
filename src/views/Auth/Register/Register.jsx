@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import Spinner from "../../../assets/Spinner-1.9s-44px.svg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -242,7 +241,13 @@ const Register = () => {
                     </div>
                     <div className={vTwo}>
                       <div className="flex items-center justify-center py-1">
-                        <img src={Spinner.default} alt="mySvgImage" />
+                        <img
+                          src={
+                            require("../../../assets/Spinner-1.9s-44px.svg")
+                              .default
+                          }
+                          alt="mySvgImage"
+                        />
                         <div className="text-[1rem]">Creating account...</div>
                       </div>
                     </div>
