@@ -60,7 +60,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
   async function newService(payload) {
     await axios({
       method: "post",
-      url: "http://localhost:3000/service",
+      url: "http://localhost:3000/",
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());

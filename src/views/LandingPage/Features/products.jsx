@@ -1,8 +1,8 @@
 import React from "react";
-import ProductOne from "../../../assets/Shop11.webp";
-import ProductTwo from "../../../assets/Shop12.webp";
-import ProductThree from "../../../assets/Shop13.webp";
-import ProductFour from "../../../assets/Shop14.webp";
+import ProductOne from "../../../assets/Shop12.png";
+import ProductTwo from "../../../assets/Shop11.png";
+import ProductThree from "../../../assets/Shop13.png";
+import ProductFour from "../../../assets/Shop14.png";
 
 const Products = () => {
   const ProductList = [
@@ -16,13 +16,13 @@ const Products = () => {
       src: ProductTwo,
       alt: "p2",
       name: "Eye Cream",
-      price: "260.00",
+      price: "360.00",
     },
     {
       src: ProductThree,
       alt: "p3",
       name: "Super Glow",
-      price: "380.00",
+      price: "480.00",
     },
     {
       src: ProductFour,
@@ -42,10 +42,10 @@ const Products = () => {
       <div className="pt-10 text-center md:flex md:justify-between md:text-start md:px-[10rem]">
         {ProductList.map((items, index) => {
           return (
-            <div key={index} className="cursor-pointer">
+            <div key={index} className="cursor-pointer pb-3">
               <div className="w-[200px] m-auto mb-[22px]">
                 <img
-                  className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                  className="drop-shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
                   src={items.src}
                   alt={items.alt}
                 />
@@ -63,7 +63,7 @@ const Products = () => {
 
       <div className="flex items-center justify-center pt-10 md:w-auto md:pt-8">
         <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
-          Shop Now
+          All Products
         </button>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EmployeeView from "./EmployeeView";
 import EmployeeDelete from "./EmployeeDelete";
+import { DataTable } from "../../../Components/index";
 
 export default function EmployeeHandler() {
   const [select, setSelect] = useState("beautician");
@@ -13,7 +14,7 @@ export default function EmployeeHandler() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:3000/service",
+      url: "http://localhost:3000/",
       responseType: "json",
     })
       .then((res) => {
@@ -23,6 +24,82 @@ export default function EmployeeHandler() {
         console.log("Failed to load Services", err);
       });
   }, [isModalOpen, isModalOpenTwo]);
+
+  const columns = [
+    {
+      field: "_id",
+      width: 0,
+      hide: true,
+    },
+    {
+      field: "firstName",
+      headerName: "FIRST NAME",
+      width: 180,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "lastName",
+      headerName: "LAST NAME",
+      width: 180,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "role",
+      headerName: "ROLE",
+      width: 150,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "email",
+      headerName: "EMAIL",
+      width: 180,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "phone",
+      headerName: "CONTACT NO:",
+      width: 180,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "gender",
+      headerName: "GENDER:",
+      width: 150,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "col5",
+      headerName: "",
+      width: 80,
+      cellClassName: "edit-column-cell",
+    },
+    {
+      field: "col6",
+      headerName: "",
+      width: 80,
+      cellClassName: "delete-column-cell",
+    },
+  ];
+
+  const getClickedItem = (type, data) => {
+    delete data.col5;
+    delete data.col6;
+    delete data.id;
+
+    if (type === "edit") {
+      SetSelectedService(data);
+      SetIsModalOpen(true);
+    } else if (type === "delete") {
+      SetSelectedService(data);
+      SetIsModalOpenTwo(true);
+    }
+  };
 
   return (
     <div id="MainEmployeeHandler" className="bg-white p-10">
@@ -55,71 +132,24 @@ export default function EmployeeHandler() {
         </div>
 
         {/* list view section */}
-        <div className="p-3">
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-5">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Full name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Contact No:</div>
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Email</div>
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Gender</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {service
-                  .filter((val) => val.role === select)
-                  .map((item, i) => (
-                    <tr
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray"
-                      key={item._id}
-                    >
-                      <th
-                        scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                      >
-                        {item.first_name}&nbsp;{item.last_name}
-                      </th>
-                      <td className="px-6 py-4">{item.phone}</td>
-                      <td className="px-6 py-4">{item.email}</td>
-                      <td className="px-6 py-4">{item.gender}</td>
-
-                      <td className="px-6 py-4 text-right text-primary/80 cursor-pointer">
-                        <div
-                          onClick={() => {
-                            SetSelectedService(item);
-                            SetIsModalOpen(true);
-                          }}
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                        >
-                          Edit
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-right text-orange cursor-pointer">
-                        <div
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                          onClick={() => {
-                            SetSelectedService(item);
-                            SetIsModalOpenTwo(true);
-                          }}
-                        >
-                          Delete
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <DataTable
+          columns={columns}
+          rows={service
+            .filter((val) => val.role === select)
+            .map((item, i) => ({
+              id: i,
+              _id: item._id,
+              firstName: item.first_name,
+              lastName: item.last_name,
+              role: select,
+              email: item.email,
+              phone: item.phone,
+              gender: item.gender,
+              col5: "Edit",
+              col6: "Delete",
+            }))}
+          callback={getClickedItem}
+        />
       </div>
 
       {/* add create new employee modal and update modal */}

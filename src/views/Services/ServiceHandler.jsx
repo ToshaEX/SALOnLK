@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ServicesView from "./ServicesView";
 import ServicesDelete from "./ServicesDelete";
+import { DataTable } from "../../Components/index";
 
 export default function ServiceHandler() {
   const [select, setSelect] = useState("Hair");
@@ -26,11 +27,86 @@ export default function ServiceHandler() {
       });
   }, [isModalOpen, isModalOpenTwo]);
 
+  const columns = [
+    {
+      field: "_id",
+      width: 0,
+      hide: true,
+    },
+    {
+      field: "name",
+      headerName: "SERVICE NAME",
+      width: 180,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "category",
+      width: 0,
+      hide: true,
+    },
+    {
+      field: "sub_category",
+      width: 0,
+      hide: true,
+    },
+    {
+      field: "description",
+      headerName: "DESCRIPTION",
+      width: 500,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "price",
+      headerName: "PRICE",
+      width: 110,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "time",
+      headerName: "TIME",
+      width: 110,
+      cellClassName: "data-column-cell",
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "col5",
+      headerName: "",
+      width: 80,
+      cellClassName: "edit-column-cell",
+    },
+    {
+      field: "col6",
+      headerName: "",
+      width: 80,
+      cellClassName: "delete-column-cell",
+    },
+  ];
+
+  const getClickedItem = (type, data) => {
+    data.price = parseInt(data.price.slice(4));
+    data.time = parseInt(data.time.slice(0, data.time.length - 4));
+
+    delete data.col5;
+    delete data.col6;
+    delete data.id;
+
+    if (type === "edit") {
+      SetSelectedService(data);
+      SetIsModalOpen(true);
+    } else if (type === "delete") {
+      SetSelectedService(data);
+      SetIsModalOpenTwo(true);
+    }
+  };
+
   return (
     <div id="MainServiceHandler" className="bg-white p-10">
       <div>
         {/* heder section */}
-        <div className="h-[3.5rem] p-2 gap-5 flex align-center text-center justify-start pr-[5rem]">
+        <div className="h-[3.5rem] pt-2 pb-2 gap-5 flex align-center text-center justify-start pr-[5rem]">
           <div>
             <button
               type="submit"
@@ -80,75 +156,28 @@ export default function ServiceHandler() {
         </div>
 
         {/* list view section */}
-        <div className="p-3">
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-5">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Service name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Description</div>
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Price</div>
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">Time</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {service
-                  .filter((val) =>
-                    select === "Hair"
-                      ? val.sub_category === selectSub
-                      : val.category === select
-                  )
-                  .map((item, i) => (
-                    <tr
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray"
-                      key={item._id}
-                    >
-                      <th
-                        scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                      >
-                        {item.name}
-                      </th>
-                      <td className="px-6 py-4">{item.description}</td>
-                      <td className="px-6 py-4">Rs:&nbsp;{item.price}</td>
-                      <td className="px-6 py-4">{item.time}&nbsp;min</td>
-
-                      <td className="px-6 py-4 text-right text-primary/80 cursor-pointer">
-                        <div
-                          onClick={() => {
-                            SetSelectedService(item);
-                            SetIsModalOpen(true);
-                          }}
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                        >
-                          Edit
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-right text-orange cursor-pointer">
-                        <div
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                          onClick={() => {
-                            SetSelectedService(item);
-                            SetIsModalOpenTwo(true);
-                          }}
-                        >
-                          Delete
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <DataTable
+          columns={columns}
+          rows={service
+            .filter((val) =>
+              select === "Hair"
+                ? val.sub_category === selectSub
+                : val.category === select
+            )
+            .map((item, i) => ({
+              id: i,
+              _id: item._id,
+              category: select,
+              sub_category: selectSub,
+              name: item.name,
+              description: item.description,
+              price: `Rs: ${item.price}`,
+              time: `${item.time} min`,
+              col5: "Edit",
+              col6: "Delete",
+            }))}
+          callback={getClickedItem}
+        />
       </div>
 
       {/* add create new service modal and update modal */}
