@@ -35,16 +35,6 @@ const Navbar = () => {
       current: false,
     },
     role === Roles.ADMIN && {
-      name: "",
-      to: "employee-handler",
-      current: false,
-    },
-    role === Roles.ADMIN && {
-      name: "",
-      to: "service-handler",
-      current: false,
-    },
-    role === Roles.ADMIN && {
       name: "booking",
       to: "booking",
       current: false,
