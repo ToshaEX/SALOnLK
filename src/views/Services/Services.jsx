@@ -195,7 +195,7 @@ const Services = () => {
       </div>
 
       {/* import CTA Section */}
-      <CTA />
+      <CTA color={"#ffffff"} />
 
       {/* Frequently asked Section */}
       <FAQ />

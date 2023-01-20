@@ -20,6 +20,7 @@ import { setUser, setAccessToken } from "./features/user/user-slice";
 import axios from "axios";
 import EmployeeHandler from "./views/Auth/Employee/EmployeeHandler";
 import Dashboard from "./views/Manage/Dashboard";
+import Booking from "./views/Booking/Booking";
 
 const history = createBrowserHistory();
 
@@ -132,6 +133,16 @@ function App() {
                   <SideMenu />
                   <EmployeeHandler />
                 </div>
+              </>
+            )}
+          />
+
+          <Route
+            path="/booking"
+            component={() => (
+              <>
+                <Navbar />
+                <Booking />
               </>
             )}
           />

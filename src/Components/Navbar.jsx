@@ -44,6 +44,11 @@ const Navbar = () => {
       to: "service-handler",
       current: false,
     },
+    role === Roles.ADMIN && {
+      name: "booking",
+      to: "booking",
+      current: false,
+    },
   ];
 
   return (

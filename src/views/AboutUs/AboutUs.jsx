@@ -5,7 +5,7 @@ import T3 from "../../assets/Team-3.webp";
 import T4 from "../../assets/Team-4.webp";
 import T5 from "../../assets/Team-5.webp";
 import T6 from "../../assets/Team-6.webp";
-import { Footer } from "../../Components/index";
+import { Footer, NumberCounter } from "../../Components/index";
 
 const AboutUs = () => {
   const ListOne = [
@@ -50,10 +50,11 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      <NumberCounter />
 
       {/* our story section */}
-      <div className="pt-[4rem] pb-[4rem]">
-        <div className="pb-[2rem] md:pb-[3rem]">
+      <div className="pt-[4rem] pb-[4rem] bg-[#f7f9fc]">
+        <div className="pb-[2rem] md:pb-[2.8rem]">
           <h2 className="font-bold text-[38px] leading-none tracking-tight text-center">
             Our Story
           </h2>
@@ -81,7 +82,7 @@ const AboutUs = () => {
       </div>
 
       {/* our team section */}
-      <div className="bg-[#f7f9fc]">
+      <div>
         <div className="pt-[4rem] md:mb-[16px]">
           <h2 className="font-bold text-[38px] leading-none tracking-tight text-center">
             Our Team

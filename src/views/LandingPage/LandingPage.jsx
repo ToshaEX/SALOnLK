@@ -15,6 +15,7 @@ const LandingPage = () => {
       <CTA />
       <Products />
       <Reviews />
+
       <Footer />
     </>
   );

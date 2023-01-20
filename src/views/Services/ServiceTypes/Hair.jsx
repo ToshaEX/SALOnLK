@@ -40,10 +40,10 @@ const Hair = ({ service = [] }) => {
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
                   key={i}
-                  onClick={() => {
-                    SetSelectedService(item);
-                    SetIsModalOpen(true);
-                  }}
+                  // onClick={() => {
+                  //   SetSelectedService(item);
+                  //   SetIsModalOpen(true);
+                  // }}
                 >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">
@@ -79,10 +79,10 @@ const Hair = ({ service = [] }) => {
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
                   key={i}
-                  onClick={() => {
-                    SetSelectedService(item);
-                    SetIsModalOpen(true);
-                  }}
+                  // onClick={() => {
+                  //   SetSelectedService(item);
+                  //   SetIsModalOpen(true);
+                  // }}
                 >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">
