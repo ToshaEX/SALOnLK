@@ -8,8 +8,8 @@ const ServicesDelete = ({ onClose, service = null, setService }) => {
 
   async function deleteService() {
     await axios({
-      method: "delete",
-      url: `http://localhost:3000/service/${service._id}`,
+      method: "DELETE",
+      url: `service/${service._id}`,
       responseType: "json",
     }).then(() => handleOnClose());
   }

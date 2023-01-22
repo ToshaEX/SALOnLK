@@ -8,8 +8,8 @@ const EmployeeDelete = ({ onClose, user = null, setUser }) => {
 
   async function deleteUser() {
     await axios({
-      method: "delete",
-      url: `http://localhost:3000/`,
+      method: "DELETE",
+      url: `user/${user._id}`,
       responseType: "json",
     }).then(() => handleOnClose());
   }

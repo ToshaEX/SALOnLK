@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import TableauReport from "tableau-react";
+import GoToTop from "../../GoToTop";
 
 export default function Dashboard() {
   // let divElement = document.getElementById("viz1674282101400");
@@ -54,6 +55,7 @@ export default function Dashboard() {
           query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
         />
       </div>
+      <GoToTop />
     </div>
   );
 }

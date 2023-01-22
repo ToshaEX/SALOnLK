@@ -2,7 +2,6 @@ import React from "react";
 import { BiGridAlt, BiUser } from "react-icons/bi";
 import { RiScissorsFill } from "react-icons/ri";
 import { SlSettings } from "react-icons/sl";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 
 export default function SideMenu() {
@@ -34,11 +33,7 @@ export default function SideMenu() {
       id="sidebar-mainSection"
       className="bg-primary h-auto px-5 min-w-[70px] md:min-w-[200px]"
     >
-      <div className="px-3 pb-5 pt-8 hidden md:flex md:justify-end">
-        <HiOutlineMenuAlt3 className="text-xl text-white" />
-      </div>
-
-      <div className="pb-5 hidden md:block">
+      <div className="pb-5 pt-8 hidden md:block">
         <div className="text-xl font-light border-b border-gray/100 pb-3 text-white">
           Menu
         </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import ServicesView from "./ServicesView";
 import ServicesDelete from "./ServicesDelete";
 import { Table } from "../../Components/index";
+import GoToTop from "../../GoToTop";
 
 export default function ServiceHandler() {
   const [select, setSelect] = useState("Hair");
@@ -16,8 +17,7 @@ export default function ServiceHandler() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:3000/service",
-      
+      url: "service",
       responseType: "json",
     })
       .then((res) => {
@@ -182,6 +182,8 @@ export default function ServiceHandler() {
           setService={setSelectedService}
         />
       )}
+
+      <GoToTop />
     </div>
   );
 }

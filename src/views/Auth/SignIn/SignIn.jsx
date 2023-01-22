@@ -51,8 +51,8 @@ const SignIn = () => {
 
   async function loginUser(payload) {
     await axios({
-      method: "post",
-      url: "http://localhost:3000/auth/login",
+      method: "POST",
+      url: "auth/login",
       responseType: "json",
       data: payload,
     }).then(({ data }) => {

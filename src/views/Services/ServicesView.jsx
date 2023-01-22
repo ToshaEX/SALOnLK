@@ -61,8 +61,8 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   async function newService(payload) {
     await axios({
-      method: "post",
-      url: "http://localhost:3000/service",
+      method: "POST",
+      url: "service",
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
@@ -73,8 +73,8 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   async function updateService(payload) {
     await axios({
-      method: "patch",
-      url: `http://localhost:3000/service/${service._id}`,
+      method: "PATH",
+      url: `service/${service._id}`,
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());

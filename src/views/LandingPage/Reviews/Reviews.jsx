@@ -72,7 +72,7 @@ const Reviews = () => {
                   <figure className="mx-auto max-w-screen-md text-center">
                     <blockquote>
                       <p className="text-[20px] italic font-medium text-gray tracking-tight">
-                        {item.review}
+                        “&nbsp;{item.review}&nbsp;„
                       </p>
                     </blockquote>
                     <figcaption className="flex justify-center items-center mt-6 space-x-3">

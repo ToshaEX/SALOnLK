@@ -70,8 +70,8 @@ const Register = () => {
 
   async function registerUser(payload) {
     const { data } = await axios({
-      method: "post",
-      url: "http://localhost:3000/user/signup",
+      method: "POST",
+      url: "user/signup",
       responseType: "json",
       data: payload,
     });

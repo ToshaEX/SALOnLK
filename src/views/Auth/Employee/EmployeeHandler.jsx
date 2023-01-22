@@ -3,6 +3,7 @@ import axios from "axios";
 import EmployeeView from "./EmployeeView";
 import EmployeeDelete from "./EmployeeDelete";
 import { Table } from "../../../Components/index";
+import GoToTop from "../../../GoToTop";
 
 export default function EmployeeHandler() {
   const [select, setSelect] = useState("beautician");
@@ -14,7 +15,7 @@ export default function EmployeeHandler() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:3000/",
+      url: "user",
       responseType: "json",
     })
       .then((res) => {
@@ -29,38 +30,28 @@ export default function EmployeeHandler() {
     {
       name: "FIRST NAME",
       selector: (row) => row.first_name,
-      maxWidth: "180px",
-      wrap: true,
     },
     {
       name: "LAST NAME",
       selector: (row) => row.last_name,
-      maxWidth: "180px",
-      wrap: true,
     },
     {
       name: "ROLE",
       selector: (row) => row.role,
-      maxWidth: "180px",
-      wrap: true,
     },
     {
       name: "EMAIL",
       selector: (row) => row.email,
-      maxWidth: "180px",
-      wrap: true,
+      width: "180px",
     },
     {
-      name: "CONTACT NO:",
+      name: "CONTACT NO",
       selector: (row) => row.phone,
-      sortable: true,
-      maxWidth: "100px",
     },
     {
       name: "GENDER",
       selector: (row) => row.gender,
       sortable: true,
-      maxWidth: "100px",
     },
     {
       name: "",
@@ -138,8 +129,8 @@ export default function EmployeeHandler() {
           .filter((val) => val.role === select)
           .map((item, i) => ({
             id: item._id,
-            firstName: item.first_name,
-            lastName: item.last_name,
+            first_name: item.first_name,
+            last_name: item.last_name,
             role: select,
             email: item.email,
             phone: item.phone,
@@ -163,6 +154,8 @@ export default function EmployeeHandler() {
           setUser={setSelectedUser}
         />
       )}
+
+      <GoToTop />
     </div>
   );
 }

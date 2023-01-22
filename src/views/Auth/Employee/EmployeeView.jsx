@@ -18,14 +18,20 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
       .matches(phoneRegExp, "Contact number is not valid")
       .min(10, "too short")
       .max(10, "too long"),
-    email: yup
-      .string()
-      .email("E-mail is not valid!")
-      .required("E-mail is required"),
-    password: yup
-      .string()
-      .required("Password is required!")
-      .min(6, "Password has to be longer than 6 characters!"),
+    email:
+      user === null
+        ? yup
+            .string()
+            .email("E-mail is not valid!")
+            .required("E-mail is required")
+        : "",
+    password:
+      user === null
+        ? yup
+            .string()
+            .required("Password is required!")
+            .min(6, "Password has to be longer than 6 characters!")
+        : "",
   });
 
   const {
@@ -59,8 +65,8 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
 
   async function newUser(payload) {
     await axios({
-      method: "post",
-      url: "http://localhost:3000/user/signup",
+      method: "POST",
+      url: "user/signup",
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
@@ -71,8 +77,8 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
 
   async function updateUser(payload) {
     await axios({
-      method: "patch",
-      url: `http://localhost:3000/`,
+      method: "PATCH",
+      url: `user/${user._id}`,
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
@@ -155,6 +161,7 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Email address"
                     defaultValue={user === null ? "" : user.email}
+                    disabled={user === null ? false : true}
                     {...register("email")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -200,6 +207,7 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Password"
                     defaultValue={user === null ? "" : user.password}
+                    disabled={user === null ? false : true}
                     {...register("password")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
