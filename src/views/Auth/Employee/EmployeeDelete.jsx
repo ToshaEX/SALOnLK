@@ -1,22 +1,22 @@
 import React from "react";
 import axios from "axios";
 
-const EmployeeDelete = ({ onClose, service = null, setService }) => {
+const EmployeeDelete = ({ onClose, user = null, setUser }) => {
   const formSubmit = (data) => {
-    return data === false ? null : deleteService();
+    return data === false ? null : deleteUser();
   };
 
-  async function deleteService() {
+  async function deleteUser() {
     await axios({
       method: "delete",
-      url: `http://localhost:3000/service/${service._id}`,
+      url: `http://localhost:3000/`,
       responseType: "json",
     }).then(() => handleOnClose());
   }
 
   const handleOnClose = () => {
     onClose(false);
-    setService(null);
+    setUser(null);
   };
 
   return (

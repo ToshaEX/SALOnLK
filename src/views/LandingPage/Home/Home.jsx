@@ -2,20 +2,20 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Home = () => {
-  const spring = {
-    translateX: 0,
-    opacity: 1,
-    transition: { duration: 2, delay: 0 },
-  };
-
   return (
     <section
       id="home"
       className="flex bg-[url('./assets/hero.jpg')] h-screen bg-cover bg-center bg-blend-multiply bg-no-repeat items-center bg-black bg-opacity-10"
     >
       <motion.div
-        initial={{ translateX: "-100%", opacity: 0 }}
-        animate={spring}
+        initial="hidden"
+        whileInView="visible"
+        viewPort={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, x: -50 },
+          visible: { opacity: 1, x: 0 },
+        }}
       >
         <div className="text-center -translate-y-12 px-8 ml-0 md:text-start md:p-8 md:-translate-y-16 md:ml-10">
           <span className="text-white max-w-md font-bold text-[52px] pl-[0.7rem] leading-none tracking-tight justify-center md:text-[58px] md:justify-start md:pl-0">

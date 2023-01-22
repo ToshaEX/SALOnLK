@@ -5,6 +5,7 @@ import OurStory from "./AboutUS/OurStory";
 import Products from "./Features/products";
 import Reviews from "./Reviews/Reviews";
 import { CTA, Footer } from "../../Components/index";
+import GoToTop from "../../GoToTop";
 
 const LandingPage = () => {
   return (
@@ -15,8 +16,8 @@ const LandingPage = () => {
       <CTA />
       <Products />
       <Reviews />
-
       <Footer />
+      <GoToTop />
     </>
   );
 };

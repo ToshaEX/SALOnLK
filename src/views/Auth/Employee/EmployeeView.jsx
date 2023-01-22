@@ -5,7 +5,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { RiCloseCircleLine } from "react-icons/ri";
 
-const EmployeeView = ({ onClose, service = null, setService }) => {
+const EmployeeView = ({ onClose, user = null, setUser }) => {
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -35,11 +35,12 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const [select, setSelect] = useState("Hair");
-  const [selectSub, setSelectSub] = useState(
-    service === null ? "Hair Cut" : service.sub_category
+  const [selectRole, setSelectRole] = useState(
+    user === null ? "beautician" : user.role
   );
-  const [show, setShow] = useState("display");
+  const [selectGender, setSelectGender] = useState(
+    user === null ? "Other" : user.gender
+  );
 
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
@@ -50,17 +51,16 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
     setViewOne(false);
     setViewTwo(true);
 
-    data.category = select;
-    data.sub_category = select === "Hair" ? selectSub : "";
-    return service === null
-      ? await newService(data)
-      : await updateService(data);
+    data.role = selectRole;
+    data.gender = selectGender;
+
+    return user === null ? await newUser(data) : await updateUser(data);
   };
 
-  async function newService(payload) {
+  async function newUser(payload) {
     await axios({
       method: "post",
-      url: "http://localhost:3000/",
+      url: "http://localhost:3000/user/signup",
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
@@ -69,10 +69,10 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
     setViewTwo(false);
   }
 
-  async function updateService(payload) {
+  async function updateUser(payload) {
     await axios({
       method: "patch",
-      url: `http://localhost:3000/service/${service._id}`,
+      url: `http://localhost:3000/`,
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
@@ -82,7 +82,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
 
   const handleOnClose = () => {
     onClose(false);
-    setService(null);
+    setUser(null);
   };
 
   return (
@@ -97,7 +97,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
           </button>
         </div>
         <h2 className="text-3xl mb-4">
-          {service === null ? "Add" : "Edit"} Employee
+          {user === null ? "Add" : "Edit"} Employee
         </h2>
 
         <div>
@@ -111,6 +111,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                       id="first_name"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="First Name"
+                      defaultValue={user === null ? "" : user.first_name}
                       {...register("first_name")}
                     />
                     <p className="text-[#ff6347] text-[12px]">
@@ -124,6 +125,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                       id="last_name"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Last Name"
+                      defaultValue={user === null ? "" : user.last_name}
                       {...register("last_name")}
                     />
                     <p className="text-[#ff6347] text-[12px]">
@@ -138,6 +140,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                     id="phone"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Contact Number"
+                    defaultValue={user === null ? "" : user.phone}
                     {...register("phone")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -151,6 +154,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Email address"
+                    defaultValue={user === null ? "" : user.email}
                     {...register("email")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -164,8 +168,10 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                   <select
                     id="gender"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    defaultValue={"Male"}
-                    {...register("gender")}
+                    value={selectGender}
+                    onChange={(e) => {
+                      setSelectGender(e.target.value);
+                    }}
                   >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -177,8 +183,10 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                   <select
                     id="role"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    defaultValue={"beautician"}
-                    {...register("role")}
+                    value={selectRole}
+                    onChange={(e) => {
+                      setSelectRole(e.target.value);
+                    }}
                   >
                     <option value="beautician">Beautician</option>
                     <option value="admin">Admin</option>
@@ -191,6 +199,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Password"
+                    defaultValue={user === null ? "" : user.password}
                     {...register("password")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -208,7 +217,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                 <div className={vOne}>
                   <div>
                     <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white flex justify-center py-2">
-                      {service === null ? "Add" : "Edit"} Employee
+                      {user === null ? "Add" : "Edit"} Employee
                     </div>
                   </div>
                 </div>
@@ -221,7 +230,7 @@ const EmployeeView = ({ onClose, service = null, setService }) => {
                       alt="mySvgImage"
                     />
                     <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white">
-                      {service === null ? "Creating..." : "Updating..."}
+                      {user === null ? "Creating..." : "Updating..."}
                     </div>
                   </div>
                 </div>

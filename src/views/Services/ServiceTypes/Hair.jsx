@@ -5,8 +5,8 @@ const Hair = ({ service = [] }) => {
   const hairCut = service.filter((val) => val.sub_category === "Hair Cut");
   const hairColor = service.filter((val) => val.sub_category === "Color");
 
-  const [selectedService, SetSelectedService] = useState(null);
-  const [isModalOpen, SetIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section
@@ -35,14 +35,14 @@ const Hair = ({ service = [] }) => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {hairCut.map((item, i) => (
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
-                  key={i}
+                  key={"haircut-list" + i}
                   // onClick={() => {
-                  //   SetSelectedService(item);
-                  //   SetIsModalOpen(true);
+                  //   setSelectedService(item);
+                  //   setIsModalOpen(true);
                   // }}
                 >
                   <div className="flex">
@@ -74,14 +74,14 @@ const Hair = ({ service = [] }) => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {hairColor.map((item, i) => (
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
-                  key={i}
+                  key={"hairColor-list" + i}
                   // onClick={() => {
-                  //   SetSelectedService(item);
-                  //   SetIsModalOpen(true);
+                  //   setSelectedService(item);
+                  //   setIsModalOpen(true);
                   // }}
                 >
                   <div className="flex">
@@ -109,9 +109,9 @@ const Hair = ({ service = [] }) => {
       </div>
       {isModalOpen && (
         <ServicesModal
-          onClose={SetIsModalOpen}
+          onClose={setIsModalOpen}
           service={selectedService}
-          setService={SetSelectedService}
+          setService={setSelectedService}
         />
       )}
     </section>

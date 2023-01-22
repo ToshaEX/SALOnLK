@@ -17,12 +17,13 @@ import CosmetologyImg from "../../assets/hair-comb.png";
 import HairImg from "../../assets/woman-hair.png";
 import MakeupImg from "../../assets/makeup.png";
 import MassageImg from "../../assets/massage.png";
-
+import GoToTop from "../../GoToTop";
 import { useSelector } from "react-redux";
 
 const Services = () => {
   const [service, setServices] = useState([]);
   const [isLoading, setSIsLoading] = useState(true);
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -40,7 +41,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div>
+    <section id="service">
       {/* Service Menu Section */}
       <div className="bg-[url('./assets/services-bg.png')]">
         <div className="p-[3rem] text-white">
@@ -202,7 +203,9 @@ const Services = () => {
 
       {/* import footer Section */}
       <Footer />
-    </div>
+
+      <GoToTop />
+    </section>
   );
 };
 

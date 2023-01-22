@@ -42,7 +42,7 @@ const Products = () => {
       <div className="pt-10 text-center md:flex md:justify-between md:text-start md:px-[10rem]">
         {ProductList.map((items, index) => {
           return (
-            <div key={index} className="cursor-pointer pb-3">
+            <div key={"product-list" + index} className="cursor-pointer pb-3">
               <div className="w-[200px] m-auto mb-[22px]">
                 <img
                   className="drop-shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
@@ -63,7 +63,7 @@ const Products = () => {
 
       <div className="flex items-center justify-center pt-10 md:w-auto md:pt-8">
         <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
-          All Products
+          Check Out All Products
         </button>
       </div>
     </div>

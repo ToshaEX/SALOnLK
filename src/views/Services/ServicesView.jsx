@@ -11,14 +11,14 @@ const ServicesView = ({ onClose, service = null, setService }) => {
     description: yup.string().required("Description is required!"),
     price: yup
       .number()
-      .typeError("Price is not a number")
+      .typeError("Price should be a number")
       .positive("Price is not a positive number")
       .integer("Price should be a number")
       .required("Price is required"),
     time: yup
       .number()
       .positive("Time is not a positive number")
-      .typeError("Time is not a number")
+      .typeError("Time should be a number")
       .integer("Time should be a number")
       .required("Time is required!"),
   });
@@ -34,7 +34,11 @@ const ServicesView = ({ onClose, service = null, setService }) => {
     service === null ? "Hair" : service.category
   );
   const [selectSub, setSelectSub] = useState(
-    service === null ? "Hair Cut" : service.sub_category
+    service === null
+      ? "Hair Cut"
+      : service.sub_category === ""
+      ? "Hair Cut"
+      : service.sub_category
   );
 
   const [show, setShow] = useState(select === "Hair" ? false : true);
@@ -74,6 +78,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
+    console.log(payload);
     reset();
     setViewOne(true);
   }

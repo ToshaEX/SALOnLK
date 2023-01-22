@@ -1,6 +1,6 @@
 import React from "react";
 import emailjs from "@emailjs/browser";
-import Logo from "../assets/salo.png";
+import Logo from "../assets/logo-lg.png";
 import Fb from "../assets/facebook.png";
 import Twitter from "../assets/twitter.png";
 import Instagram from "../assets/instagram.png";
@@ -95,13 +95,17 @@ const Footer = () => {
       </div>
       <div>
         <Link to="/home">
-          <img className="mx-auto h-[75px] w-auto" src={Logo} alt="salon" />
+          <img
+            className="mx-auto h-[48px] my-3 w-auto"
+            src={Logo}
+            alt="salon"
+          />
         </Link>
 
         <div className="flex items-center gap-5">
           {socialList.map((item, index) => {
             return (
-              <div key={index}>
+              <div key={"footer-img-list" + index}>
                 <a href={item.url}>
                   <img className="h-5 w-auto" src={item.src} alt={item.alt} />
                 </a>
@@ -116,8 +120,8 @@ const Footer = () => {
           <ul>
             {listOne.map((item, index) => {
               return (
-                <Link to={item.path}>
-                  <li key={index}>{item.name}</li>
+                <Link to={item.path} key={"footer-list-1" + index}>
+                  <li>{item.name}</li>
                 </Link>
               );
             })}
@@ -126,8 +130,8 @@ const Footer = () => {
           <ul>
             {listTwo.map((item, index) => {
               return (
-                <Link to={item.path}>
-                  <li key={index}>{item.name}</li>
+                <Link to={item.path} key={"footer-list-2" + index}>
+                  <li>{item.name}</li>
                 </Link>
               );
             })}
@@ -136,8 +140,8 @@ const Footer = () => {
           <ul>
             {listThree.map((item, index) => {
               return (
-                <Link to={item.path}>
-                  <li key={index}>{item.name}</li>
+                <Link to={item.path} key={"footer-list-3" + index}>
+                  <li>{item.name}</li>
                 </Link>
               );
             })}
@@ -165,7 +169,7 @@ const Footer = () => {
 
             <button
               type="submit"
-              className="h-10 w-8/12 justify-center border border-transparent bg-primary text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="h-10 w-8/12 justify-center bg-primary text-sm font-medium text-white hover:bg-gray/40 border-l border-primary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Subscribe
             </button>

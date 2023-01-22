@@ -6,6 +6,7 @@ import T4 from "../../assets/Team-4.webp";
 import T5 from "../../assets/Team-5.webp";
 import T6 from "../../assets/Team-6.webp";
 import { Footer, NumberCounter } from "../../Components/index";
+import GoToTop from "../../GoToTop";
 
 const AboutUs = () => {
   const ListOne = [
@@ -24,7 +25,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <div>
+    <section id="about">
       {/* About Us Section */}
       <div className="bg-[url('./assets/about_us-bg.png')]">
         <div className="p-[3rem] text-white">
@@ -60,7 +61,7 @@ const AboutUs = () => {
           </h2>
         </div>
 
-        <p className="text-[1.2rem] px-[3rem] md:px-[13.2rem]">
+        <p className="text-[1.2rem] px-[3rem] md:px-[13.2rem] text-center">
           We started our journey as a small beauty studio in Colombo, Sri Lanka
           with a dream to create the best beauty studio in the world. From the
           very beginning, we knew that there could be no compromises when it
@@ -93,7 +94,10 @@ const AboutUs = () => {
           <div className="pt-5 text-center md:flex md:justify-between md:px-[16rem] md:pt-10">
             {ListOne.map((items, index) => {
               return (
-                <div className="cursor-pointer pt-10 md:pt-0" key={index}>
+                <div
+                  className="cursor-pointer pt-10 md:pt-0"
+                  key={"about-list-1" + index}
+                >
                   <div className="w-[200px] m-auto mb-[22px]">
                     <img
                       className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
@@ -115,7 +119,10 @@ const AboutUs = () => {
           <div className="pt-5 text-center pb-[4rem] md:flex md:justify-between md:px-[16rem] md:pt-10">
             {ListTwo.map((items, index) => {
               return (
-                <div className="cursor-pointer pt-10 md:pt-0" key={index}>
+                <div
+                  className="cursor-pointer pt-10 md:pt-0"
+                  key={"about-list-2" + index}
+                >
                   <div className="w-[200px] m-auto mb-[22px]">
                     <img
                       className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
@@ -137,7 +144,8 @@ const AboutUs = () => {
       </div>
       {/* import footer Section */}
       <Footer />
-    </div>
+      <GoToTop />
+    </section>
   );
 };
 

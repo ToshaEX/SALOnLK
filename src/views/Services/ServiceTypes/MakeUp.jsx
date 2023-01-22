@@ -21,11 +21,11 @@ const MakeUp = ({ service = [] }) => {
 
         <div className="pb-[5rem] md:px-[5rem]">
           <div className="pt-[3rem] px-[1rem] md:px-[10rem]">
-            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {Makeup.map((item, i) => (
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-white px-4 pb-3 rounded-md hover:shadow-md"
-                  key={i}
+                  key={"makeup-list" + i}
                 >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">

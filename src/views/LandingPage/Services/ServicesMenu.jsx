@@ -13,14 +13,14 @@ const ServicesMenu = () => {
   );
 
   return (
-    <div className="p-[3rem]">
+    <div className="p-0 md:p-[3rem]">
       <div className="text-center mb-[18px]">
-        <h2 className="font-bold text-[40px] leading-none tracking-tight">
+        <h2 className="font-bold text-[40px] leading-none tracking-tight px-[3rem] pt-[3rem] md:px-0 md:pt-0">
           Service Menu
         </h2>
       </div>
 
-      <div className="flex items-center justify-center pt-10 pb-[18px] gap-[1px] mb-[20px] text-center md:gap-20">
+      <div className="p-[1.5rem] flex items-center justify-between pt-10 pb-[18px] text-center mx-auto md:justify-center md:gap-20 md:mb-[20px]">
         <div
           id="1"
           className="cursor-pointer"
@@ -30,14 +30,14 @@ const ServicesMenu = () => {
             );
           }}
         >
-          <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={Nail}
               alt="nail"
             />
           </div>
-          <div className="serviceName">
+          <div className="serviceName hidden md:block">
             <span>Nails</span>
           </div>
         </div>
@@ -51,14 +51,14 @@ const ServicesMenu = () => {
             );
           }}
         >
-          <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={Brow}
               alt="mascara"
             />
           </div>
-          <div className="serviceName">
+          <div className="serviceName hidden md:block">
             <span>Brow</span>
           </div>
         </div>
@@ -72,14 +72,14 @@ const ServicesMenu = () => {
             );
           }}
         >
-          <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={Cosmetology}
               alt="comb"
             />
           </div>
-          <div className="serviceName">
+          <div className="serviceName hidden md:block">
             <span>Cosmetology</span>
           </div>
         </div>
@@ -93,14 +93,14 @@ const ServicesMenu = () => {
             );
           }}
         >
-          <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={Hair}
               alt="hair"
             />
           </div>
-          <div className="serviceName">
+          <div className="serviceName hidden md:block">
             <span>Hair</span>
           </div>
         </div>
@@ -114,14 +114,14 @@ const ServicesMenu = () => {
             );
           }}
         >
-          <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={Makeup}
               alt="makeup"
             />
           </div>
-          <div className="serviceName">
+          <div className="serviceName hidden md:block">
             <span>MakeUp</span>
           </div>
         </div>
@@ -131,24 +131,24 @@ const ServicesMenu = () => {
           className="cursor-pointer"
           onClick={() => {
             setText(
-              "There are some things in life where it’s better to receive than to give, and massage is one of them."
+              "There are some things in life where it's better to receive than to give, and massage is one of them."
             );
           }}
         >
-          <div className="h-[40px] w-[40px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
             <img
               className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
               src={Massage}
               alt="massage"
             />
           </div>
-          <div className="serviceName">
+          <div className="serviceName hidden md:block">
             <span>Massage</span>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center px-[3rem] md:px-0">
         <div className="text-center max-w-md">
           <span
             id="textParagraph"
@@ -159,7 +159,7 @@ const ServicesMenu = () => {
         </div>
       </div>
 
-      <div className="flex pt-8 justify-center">
+      <div className="flex pt-8 justify-center pb-[3rem] md:pb-0">
         <Link to="/services">
           <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
             View Service Menu

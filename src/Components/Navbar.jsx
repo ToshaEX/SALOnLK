@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { resetUser } from "../features/user/user-slice";
 import { Roles } from "../roles/roles";
-import Logo from "../assets/salo.png";
+import Logo from "../assets/logo-sm.png";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -62,25 +62,23 @@ const Navbar = () => {
                 <div className="flex flex-shrink-0 items-center">
                   <Link to="/home">
                     <img
-                      className="block h-10 w-auto lg:hidden"
+                      className="block h-[45px] w-auto lg:hidden"
                       src={Logo}
                       alt="logo"
                     />
                   </Link>
                   <Link to="/home">
-                    <img
-                      className="hidden h-[75px] w-auto lg:block"
-                      src={Logo}
-                      alt="logo"
-                    />
+                    <div className="hidden w-auto lg:block">
+                      <img src={Logo} alt="logo" className="h-[48px]" />
+                    </div>
                   </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:ml-6 sm:block md:ml-12">
                   <div className="flex space-x-4 p-5">
                     {navigation.map((item) => (
                       <Link
                         to={(location) => ({ ...location, pathname: item.to })}
-                        key={`${item.name}-item`}
+                        key={`${item.name}-item-1`}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-blue"
@@ -227,7 +225,7 @@ const Navbar = () => {
             <div className="space-y-1 px-2 pt-2 pb-3 ">
               {navigation.map((item) => (
                 <Disclosure.Button
-                  key={item.name}
+                  key={`${item.name}-item-2`}
                   as="a"
                   href={item.to}
                   className={classNames(

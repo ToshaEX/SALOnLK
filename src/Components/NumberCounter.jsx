@@ -31,7 +31,7 @@ function NumberCounter() {
           return (
             <div
               className="flex-col justify-center items-center text-center px-[1rem] py-[1rem] md:border-r border-[#C7C7C7] "
-              key={i}
+              key={"counter-list" + i}
             >
               <ScrollTrigger
                 onEnter={() => setViewPort(true)}
