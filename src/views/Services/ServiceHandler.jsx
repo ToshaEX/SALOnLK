@@ -17,6 +17,7 @@ export default function ServiceHandler() {
     axios({
       method: "GET",
       url: "http://localhost:3000/service",
+      
       responseType: "json",
     })
       .then((res) => {

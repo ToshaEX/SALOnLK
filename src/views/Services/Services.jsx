@@ -27,7 +27,7 @@ const Services = () => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:3000/service",
+      url: "service",
       responseType: "json",
     })
       .then((res) => {
