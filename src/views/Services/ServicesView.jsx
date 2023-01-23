@@ -73,12 +73,14 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   async function updateService(payload) {
     await axios({
-      method: "PATH",
+      method: "PATCH",
       url: `service/${service._id}`,
       responseType: "json",
       data: payload,
-    }).then(() => handleOnClose());
-    console.log(payload);
+    }).then(() => {
+      handleOnClose();
+    });
+
     reset();
     setViewOne(true);
   }

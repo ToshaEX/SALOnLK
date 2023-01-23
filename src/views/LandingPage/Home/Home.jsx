@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -31,9 +32,11 @@ const Home = () => {
             </span>
           </div>
           <div className="flex pt-4 justify-center md:justify-start">
-            <button className="btn-primary hover:bg-gray-dark">
-              Book an Appointment
-            </button>
+            <Link to="/booking">
+              <button className="btn-primary hover:bg-gray-dark">
+                Book an Appointment
+              </button>
+            </Link>
           </div>
         </div>
       </motion.div>

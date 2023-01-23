@@ -7,6 +7,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -55,14 +56,19 @@ const SignIn = () => {
       url: "auth/login",
       responseType: "json",
       data: payload,
-    }).then(({ data }) => {
-      const token = data.accessToken;
-      saveTokenInLocalStorage(token);
-      const decoded = jwt_decode(token);
-      dispatch(setUser(decoded));
-      dispatch(setAccessToken(token));
-      window.location.reload();
-    });
+    })
+      .then(({ data }) => {
+        const token = data.accessToken;
+        saveTokenInLocalStorage(token);
+        const decoded = jwt_decode(token);
+        dispatch(setUser(decoded));
+        dispatch(setAccessToken(token));
+        toast.success("Login Successfully");
+        window.location.reload();
+      })
+      .catch((errors) => {
+        toast.error("There is an error!");
+      });
 
     reset();
     setViewOne(true);
@@ -76,7 +82,7 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="min-h-[90vh] bg-[#f7f9fc] py-[4.5rem] md:py-[6rem]">
+      <div className="min-h-screen bg-[#f7f9fc] py-[4.5rem] md:py-[6rem]">
         <div className="container mx-auto">
           <div className="bg-white w-10/12 rounded-xl mx-auto shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div className="w-full bg-[url('./assets/signin-img.png')] bg-cover text-white px-10 py-[3.3rem] md:py-20 md:w-1/2">
@@ -188,6 +194,7 @@ const SignIn = () => {
           </div>
         </div>
       </div>
+      <Toaster position="bottom-right" />
     </>
   );
 };

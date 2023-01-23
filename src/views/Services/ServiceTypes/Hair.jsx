@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import ServicesModal from "../ServicesModal";
+import React from "react";
 
 const Hair = ({ service = [] }) => {
   const hairCut = service.filter((val) => val.sub_category === "Hair Cut");
   const hairColor = service.filter((val) => val.sub_category === "Color");
-
-  const [selectedService, setSelectedService] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section
@@ -40,10 +36,6 @@ const Hair = ({ service = [] }) => {
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
                   key={"haircut-list" + i}
-                  // onClick={() => {
-                  //   setSelectedService(item);
-                  //   setIsModalOpen(true);
-                  // }}
                 >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">
@@ -79,10 +71,6 @@ const Hair = ({ service = [] }) => {
                 <div
                   className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
                   key={"hairColor-list" + i}
-                  // onClick={() => {
-                  //   setSelectedService(item);
-                  //   setIsModalOpen(true);
-                  // }}
                 >
                   <div className="flex">
                     <div className="text-start pt-[2rem] w-full">
@@ -107,13 +95,6 @@ const Hair = ({ service = [] }) => {
           </div>
         </div>
       </div>
-      {isModalOpen && (
-        <ServicesModal
-          onClose={setIsModalOpen}
-          service={selectedService}
-          setService={setSelectedService}
-        />
-      )}
     </section>
   );
 };

@@ -60,6 +60,11 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
     data.role = selectRole;
     data.gender = selectGender;
 
+    if (user !== null) {
+      data.email = user.email;
+      data.password = user.password;
+    }
+
     return user === null ? await newUser(data) : await updateUser(data);
   };
 
@@ -81,7 +86,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
       url: `user/${user._id}`,
       responseType: "json",
       data: payload,
-    }).then(() => handleOnClose());
+    }).then(() => {
+      handleOnClose();
+    });
     reset();
     setViewOne(true);
   }

@@ -39,7 +39,7 @@ const Products = () => {
         </h2>
       </div>
 
-      <div className="pt-10 text-center md:flex md:justify-between md:text-start md:px-[10rem]">
+      <div className="pt-10 text-center md:flex md:justify-between md:text-start md:px-[11rem]">
         {ProductList.map((items, index) => {
           return (
             <div key={"product-list" + index} className="cursor-pointer pb-3">

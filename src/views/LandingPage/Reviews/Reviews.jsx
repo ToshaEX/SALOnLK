@@ -33,7 +33,7 @@ const Reviews = () => {
           What Our Customers Say
         </h2>
 
-        <div className="mt-5">
+        <div className="mt-6">
           <svg
             aria-hidden="true"
             className="mx-auto mb-3 w-12 h-12 text-gray-400"
@@ -68,7 +68,7 @@ const Reviews = () => {
           {reviews.map((item, i) => {
             return (
               <SwiperSlide key={"review-slide" + i}>
-                <div className="pt-[3px] pb-[25px] cursor-pointer">
+                <div className="pb-[25px] cursor-pointer">
                   <figure className="mx-auto max-w-screen-md text-center">
                     <blockquote>
                       <p className="text-[20px] italic font-medium text-gray tracking-tight">

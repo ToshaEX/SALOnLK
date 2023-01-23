@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const phoneRegExp =
@@ -69,17 +70,23 @@ const Register = () => {
   };
 
   async function registerUser(payload) {
-    const { data } = await axios({
+    await axios({
       method: "POST",
       url: "user/signup",
       responseType: "json",
       data: payload,
-    });
+    })
+      .then(() => {
+        toast.success("Successfully Registered");
+        window.location.reload();
+      })
+      .catch((errors) => {
+        toast.error("There is an error!");
+      });
 
     reset();
     setViewOne(true);
     setViewTwo(false);
-    console.log(JSON.stringify(data));
   }
 
   return (
@@ -264,6 +271,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Toaster position="bottom-right" />
     </div>
   );
 };

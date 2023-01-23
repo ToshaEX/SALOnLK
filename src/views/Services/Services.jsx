@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { CTA, Footer, FAQ } from "../../Components/index";
 import axios from "axios";
 import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom";
 import {
   Hair,
   MakeUp,
@@ -60,9 +61,11 @@ const Services = () => {
           </div>
 
           <div className="flex pt-[3rem] justify-center">
-            <button className="btn-primary hover:bg-gray-dark">
-              Book an Appointment
-            </button>
+            <NavLink to="/booking">
+              <button className="btn-primary hover:bg-gray-dark">
+                Book an Appointment
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>

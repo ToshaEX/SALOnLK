@@ -12,6 +12,104 @@ const ServicesMenu = () => {
     "Get your nails done for great mood. Simple pleasures can make your week, not just day."
   );
 
+  const [nailLine, setNailLine] = useState(true);
+  const [browsLine, setBrowsLine] = useState(false);
+  const [cosLine, setCosLine] = useState(false);
+  const [hairLine, setHairLine] = useState(false);
+  const [makeupLine, setMakeupLine] = useState(false);
+  const [massageLine, setMassageLine] = useState(false);
+
+  function CheckLine(lineName) {
+    if (lineName === "Nails") {
+      setNailLine(true);
+      setBrowsLine(false);
+      setCosLine(false);
+      setHairLine(false);
+      setMakeupLine(false);
+      setMassageLine(false);
+    } else if (lineName === "Brow") {
+      setBrowsLine(true);
+      setNailLine(false);
+      setCosLine(false);
+      setHairLine(false);
+      setMakeupLine(false);
+      setMassageLine(false);
+    } else if (lineName === "Cosmetology") {
+      setCosLine(true);
+      setBrowsLine(false);
+      setHairLine(false);
+      setNailLine(false);
+      setMakeupLine(false);
+      setMassageLine(false);
+    } else if (lineName === "Hair") {
+      setHairLine(true);
+      setCosLine(false);
+      setBrowsLine(false);
+      setNailLine(false);
+      setMakeupLine(false);
+      setMassageLine(false);
+    } else if (lineName === "MakeUp") {
+      setMakeupLine(true);
+      setCosLine(false);
+      setBrowsLine(false);
+      setNailLine(false);
+      setHairLine(false);
+      setMassageLine(false);
+    } else if (lineName === "Massage") {
+      setMassageLine(true);
+      setCosLine(false);
+      setBrowsLine(false);
+      setNailLine(false);
+      setHairLine(false);
+      setMakeupLine(false);
+    }
+  }
+
+  const servicesList = [
+    {
+      name: "Nails",
+      description:
+        "Get your nails done for great mood. Simple pleasures can make your week, not just day.",
+      img: Nail,
+      line: nailLine,
+    },
+    {
+      name: "Brow",
+      description:
+        "Brows can change it all. Try out styling and tinting your brows and see the difference.",
+      img: Brow,
+      line: browsLine,
+    },
+    {
+      name: "Cosmetology",
+      description:
+        "Indulge a little longer with a customized facial to help achieve your skin goals in 60-90 minutes.",
+      img: Cosmetology,
+      line: cosLine,
+    },
+    {
+      name: "Hair",
+      description:
+        "Stylish hair cuts, gorgeous styling, incredible color services and best hair treatments. Choose your dream service!",
+      img: Hair,
+      line: hairLine,
+    },
+    {
+      name: "MakeUp",
+      description:
+        "Complete your service with beautiful makeup and simply be amazing with complete look.",
+      img: Makeup,
+      line: makeupLine,
+    },
+    {
+      name: "Massage",
+      description:
+        "There are some things in life where it's better to receive than to give, and massage is one of them.",
+      img: Massage,
+      line: massageLine,
+    },
+  ];
+
   return (
     <div className="p-0 md:p-[3rem]">
       <div className="text-center mb-[18px]">
@@ -21,131 +119,31 @@ const ServicesMenu = () => {
       </div>
 
       <div className="p-[1.5rem] flex items-center justify-between pt-10 pb-[18px] text-center mx-auto md:justify-center md:gap-20 md:mb-[20px]">
-        <div
-          id="1"
-          className="cursor-pointer"
-          onClick={() => {
-            setText(
-              "Get your nails done for great mood. Simple pleasures can make your week, not just day."
-            );
-          }}
-        >
-          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
-            <img
-              className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={Nail}
-              alt="nail"
-            />
-          </div>
-          <div className="serviceName hidden md:block">
-            <span>Nails</span>
-          </div>
-        </div>
-
-        <div
-          id="2"
-          className="cursor-pointer px-1"
-          onClick={() => {
-            setText(
-              "Brows can change it all. Try out styling and tinting your brows and see the difference."
-            );
-          }}
-        >
-          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
-            <img
-              className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={Brow}
-              alt="mascara"
-            />
-          </div>
-          <div className="serviceName hidden md:block">
-            <span>Brow</span>
-          </div>
-        </div>
-
-        <div
-          id="3"
-          className="cursor-pointer pr-1"
-          onClick={() => {
-            setText(
-              "Indulge a little longer with a customized facial to help achieve your skin goals in 60-90 minutes."
-            );
-          }}
-        >
-          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
-            <img
-              className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={Cosmetology}
-              alt="comb"
-            />
-          </div>
-          <div className="serviceName hidden md:block">
-            <span>Cosmetology</span>
-          </div>
-        </div>
-
-        <div
-          id="4"
-          className="cursor-pointer"
-          onClick={() => {
-            setText(
-              "Stylish hair cuts, gorgeous styling, incredible color services and best hair treatments. Choose your dream service!"
-            );
-          }}
-        >
-          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
-            <img
-              className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={Hair}
-              alt="hair"
-            />
-          </div>
-          <div className="serviceName hidden md:block">
-            <span>Hair</span>
-          </div>
-        </div>
-
-        <div
-          id="5"
-          className="cursor-pointer px-1"
-          onClick={() => {
-            setText(
-              "Complete your service with beautiful makeup and simply be amazing with complete look."
-            );
-          }}
-        >
-          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
-            <img
-              className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={Makeup}
-              alt="makeup"
-            />
-          </div>
-          <div className="serviceName hidden md:block">
-            <span>MakeUp</span>
-          </div>
-        </div>
-
-        <div
-          id="6"
-          className="cursor-pointer"
-          onClick={() => {
-            setText(
-              "There are some things in life where it's better to receive than to give, and massage is one of them."
-            );
-          }}
-        >
-          <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
-            <img
-              className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
-              src={Massage}
-              alt="massage"
-            />
-          </div>
-          <div className="serviceName hidden md:block">
-            <span>Massage</span>
-          </div>
-        </div>
+        {servicesList.map((item, i) => {
+          return (
+            <div key={"services-list-1" + i}>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setText(item.description);
+                  CheckLine(item.name);
+                }}
+              >
+                <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+                  <img
+                    className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
+                    src={item.img}
+                    alt="service-list"
+                  />
+                </div>
+                <div className="hidden md:block">
+                  <span>{item.name}</span>
+                </div>
+              </div>
+              <div className="h-[2px] bg-[#273444]" hidden={!item.line}></div>
+            </div>
+          );
+        })}
       </div>
 
       <div className="flex items-center justify-center px-[3rem] md:px-0">
