@@ -8,8 +8,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import toast, { Toaster } from "react-hot-toast";
-import { Input, Button, InputRightElement, InputGroup } from "@chakra-ui/react";
-import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -37,9 +35,6 @@ const SignIn = () => {
   const handleCheckBoxChange = () => {
     setGetCondition(!getCondition);
   };
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
 
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
@@ -109,9 +104,10 @@ const SignIn = () => {
               <div>
                 <form onSubmit={handleSubmit(formSubmit)}>
                   <div className="mb-3 mt-5">
-                    <Input
+                    <input
                       type="email"
                       id="email-address"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Email address"
                       {...register("email")}
                     />
@@ -121,20 +117,13 @@ const SignIn = () => {
                   </div>
 
                   <div className="mb-3">
-                    <InputGroup size="md">
-                      <Input
-                        id="password"
-                        pr="4.5rem"
-                        type={show ? "text" : "password"}
-                        placeholder="Enter password"
-                        {...register("password")}
-                      />
-                      <InputRightElement width="4.5rem">
-                        <Button h="1.75rem" size="sm" onClick={handleClick}>
-                          {show ? <RxEyeClosed /> : <RxEyeOpen />}
-                        </Button>
-                      </InputRightElement>
-                    </InputGroup>
+                    <input
+                      type="password"
+                      id="password"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="Password"
+                      {...register("password")}
+                    />
                     <p className="text-[#ff6347] text-[12px]">
                       {errors.password?.message}
                     </p>

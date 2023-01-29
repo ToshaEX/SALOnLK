@@ -6,13 +6,6 @@ import { IoMdCalendar } from "react-icons/io";
 import axios from "axios";
 import ProfitChart from "./Charts/ProfitChart";
 import ServiceChart from "./Charts/ServiceChart";
-import {
-  Stat,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  StatGroup,
-} from "@chakra-ui/react";
 
 export default function Dashboard() {
   const [services, setServices] = useState([]);
@@ -100,20 +93,23 @@ export default function Dashboard() {
                     {item.icon}
                   </div>
                   <div className="px-3">
-                    <StatGroup>
-                      <Stat>
-                        <StatNumber>{item.numbers}</StatNumber>
-                        <div className="flex items-center justify-between md:mb-2">
-                          <StatHelpText>
-                            <StatArrow type={item.percentageValue} />
-                            {item.percentage}%
-                          </StatHelpText>
-                          <div className="text-[8px] text-gray ">
-                            {item.date}
-                          </div>
-                        </div>
-                      </Stat>
-                    </StatGroup>
+                    <div className="font-semibold text-[22px]">
+                      {item.numbers}
+                    </div>
+                    <div className="flex items-center justify-between text-[15px] mt-2 md:mb-2">
+                      <div
+                        className={
+                          item.percentageValue === "increase"
+                            ? "text-green"
+                            : "text-orange"
+                        }
+                      >
+                        {item.percentageValue === "increase" ? "+" : "-"}
+                        {item.percentage}%
+                      </div>
+
+                      <div className="text-[9px] text-gray ">{item.date}</div>
+                    </div>
                   </div>
                 </div>
               );
