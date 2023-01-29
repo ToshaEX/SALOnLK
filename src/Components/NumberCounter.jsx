@@ -1,9 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
+import axios from "axios";
 
 function NumberCounter() {
+  const [users, setUsers] = useState(0);
+  const [beauticians, setBeauticians] = useState(0);
   const [viewPort, setViewPort] = useState(false);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "user/count?role=user",
+      responseType: "json",
+    })
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to load Services", err);
+      });
+
+    axios({
+      method: "GET",
+      url: "user/count?role=beautician",
+      responseType: "json",
+    })
+      .then((res) => {
+        setBeauticians(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to load Services", err);
+      });
+  }, []);
 
   const details = [
     {
@@ -11,11 +40,11 @@ function NumberCounter() {
       name: "Years of Experience",
     },
     {
-      endValue: 1056,
+      endValue: beauticians,
       name: "Happy Customers",
     },
     {
-      endValue: 26,
+      endValue: users,
       name: "Number of Staff",
     },
     {

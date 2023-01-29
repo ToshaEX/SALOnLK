@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { Select, Input, Textarea } from "@chakra-ui/react";
 
 const ServicesView = ({ onClose, service = null, setService }) => {
   const schema = yup.object().shape({
@@ -110,8 +111,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
             <div className="flex justify-between align-center gap-5">
               <div className="w-1/2">
                 <div className="mb-3 mt-5">
-                  <select
-                    className="w-full rounded-lg text-sm"
+                  <Select
                     id="category"
                     value={select}
                     onChange={(e) => {
@@ -129,14 +129,13 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                     <option value="Nails">Nails</option>
                     <option value="Cosmetology">Cosmetology</option>
                     <option value="Massage">Massage</option>
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="text"
                     id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     defaultValue={service === null ? "" : service.name}
                     placeholder="Name"
                     {...register("name")}
@@ -148,10 +147,9 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
                 <div className="flex gap-2 w-full">
                   <div className="mb-3">
-                    <input
+                    <Input
                       type="number"
                       id="price"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       defaultValue={service === null ? "" : service.price}
                       placeholder="Price"
                       {...register("price")}
@@ -162,10 +160,9 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                   </div>
 
                   <div className="mb-3">
-                    <input
+                    <Input
                       type="number"
                       id="time"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Time Duration"
                       defaultValue={service === null ? "" : service.time}
                       {...register("time")}
@@ -180,8 +177,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
               <div className="w-1/2 mt-5">
                 <div>
                   <div className="mb-3">
-                    <select
-                      className="w-full rounded-lg text-sm"
+                    <Select
                       id="sub_category"
                       value={selectSub}
                       disabled={show}
@@ -191,15 +187,14 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                     >
                       <option value="Hair Cut">Hair cut</option>
                       <option value="Color">Color</option>
-                    </select>
+                    </Select>
                   </div>
                 </div>
 
                 <div className="mb-[0.3rem]">
-                  <textarea
+                  <Textarea
                     id="description"
                     rows="4"
-                    className="w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                     defaultValue={service === null ? "" : service?.description}
                     placeholder="Description..."
                     {...register("description")}

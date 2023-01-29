@@ -24,7 +24,7 @@ const Brows = ({ service = [] }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {brows.map((item, i) => (
                 <div
-                  className="md:max-w-[300px] cursor-pointer hover:bg-[#f7f9fc] px-4 pb-3 rounded-md hover:shadow-md"
+                  className="md:max-w-[300px] px-4 pb-3"
                   key={"brows-list" + i}
                 >
                   <div className="flex">

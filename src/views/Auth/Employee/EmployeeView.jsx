@@ -3,7 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import {
+  Select,
+  Input,
+  Button,
+  InputRightElement,
+  InputGroup,
+} from "@chakra-ui/react";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const EmployeeView = ({ onClose, user = null, setUser }) => {
   const phoneRegExp =
@@ -47,6 +55,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
   const [selectGender, setSelectGender] = useState(
     user === null ? "Other" : user.gender
   );
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
@@ -119,10 +130,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
               <div className="w-1/2">
                 <div className="flex gap-2 mt-5 mb-3">
                   <div>
-                    <input
+                    <Input
                       type="text"
                       id="first_name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="First Name"
                       defaultValue={user === null ? "" : user.first_name}
                       {...register("first_name")}
@@ -133,10 +143,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                   </div>
 
                   <div>
-                    <input
+                    <Input
                       type="text"
                       id="last_name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Last Name"
                       defaultValue={user === null ? "" : user.last_name}
                       {...register("last_name")}
@@ -148,10 +157,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                 </div>
 
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="tel"
                     id="phone"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Contact Number"
                     defaultValue={user === null ? "" : user.phone}
                     {...register("phone")}
@@ -162,10 +170,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                 </div>
 
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Email address"
                     defaultValue={user === null ? "" : user.email}
                     disabled={user === null ? false : true}
@@ -179,9 +186,8 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
 
               <div className="w-1/2 mt-5">
                 <div className="mb-3">
-                  <select
+                  <Select
                     id="gender"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     value={selectGender}
                     onChange={(e) => {
                       setSelectGender(e.target.value);
@@ -190,13 +196,12 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="mb-3">
-                  <select
+                  <Select
                     id="role"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     value={selectRole}
                     onChange={(e) => {
                       setSelectRole(e.target.value);
@@ -204,19 +209,30 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                   >
                     <option value="beautician">Beautician</option>
                     <option value="admin">Admin</option>
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="mb-3">
-                  <input
-                    type="password"
-                    id="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    placeholder="Password"
-                    defaultValue={user === null ? "" : user.password}
-                    disabled={user === null ? false : true}
-                    {...register("password")}
-                  />
+                  <InputGroup size="md">
+                    <Input
+                      id="password"
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                      placeholder="Enter password"
+                      defaultValue={user === null ? "" : user.password}
+                      disabled={user === null ? false : true}
+                      {...register("password")}
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button
+                        h="1.75rem"
+                        size="sm"
+                        onClick={user === null ? handleClick : ""}
+                      >
+                        {show ? <RxEyeClosed /> : <RxEyeOpen />}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.password?.message}
                   </p>

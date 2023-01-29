@@ -21,6 +21,8 @@ import axios from "axios";
 import EmployeeHandler from "./views/Auth/Employee/EmployeeHandler";
 import Dashboard from "./views/Manage/Dashboard";
 import Booking from "./views/Booking/Booking";
+import { Flex } from "@chakra-ui/react";
+import ManageCharts from "./views/Manage/Charts/ManageCharts";
 
 const history = createBrowserHistory();
 
@@ -100,10 +102,10 @@ function App() {
             component={() => (
               <>
                 <Navbar />
-                <div className="flex">
+                <Flex>
                   <SideMenu />
                   <Dashboard />
-                </div>
+                </Flex>
               </>
             )}
           />
@@ -115,10 +117,10 @@ function App() {
             component={() => (
               <>
                 <Navbar />
-                <div className="flex">
+                <Flex>
                   <SideMenu />
                   <ServiceHandler />
-                </div>
+                </Flex>
               </>
             )}
           />
@@ -130,10 +132,25 @@ function App() {
             component={() => (
               <>
                 <Navbar />
-                <div className="flex">
+                <Flex>
                   <SideMenu />
                   <EmployeeHandler />
-                </div>
+                </Flex>
+              </>
+            )}
+          />
+
+          <Route
+            exact
+            strict
+            path="/chart-handler"
+            component={() => (
+              <>
+                <Navbar />
+                <Flex>
+                  <SideMenu />
+                  <ManageCharts />
+                </Flex>
               </>
             )}
           />

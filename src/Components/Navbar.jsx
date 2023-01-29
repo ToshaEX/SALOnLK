@@ -45,7 +45,7 @@ const Navbar = () => {
     <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-dark w-[100vw]">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:pr-8 lg:pl-6">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -62,18 +62,18 @@ const Navbar = () => {
                 <div className="flex flex-shrink-0 items-center">
                   <Link to="/home">
                     <img
-                      className="block h-[45px] w-auto lg:hidden"
+                      className="block h-[48px] w-auto lg:hidden"
                       src={Logo}
                       alt="logo"
                     />
                   </Link>
                   <Link to="/home">
                     <div className="hidden w-auto lg:block">
-                      <img src={Logo} alt="logo" className="h-[48px]" />
+                      <img src={Logo} alt="logo" className="h-[50px]" />
                     </div>
                   </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block md:ml-12">
+                <div className="hidden sm:ml-6 sm:block md:pl-3 md:ml-12">
                   <div className="flex space-x-4 p-5">
                     {navigation.map((item) => (
                       <Link
@@ -93,7 +93,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center pl-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
                   className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -224,10 +224,10 @@ const Navbar = () => {
           <Disclosure.Panel className="absolute w-[100vw] bg-gray-dark/70 text-gray-light sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 ">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <Link
+                  to={(location) => ({ ...location, pathname: item.to })}
                   key={`${item.name}-item-2`}
                   as="a"
-                  href={item.to}
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
@@ -237,7 +237,7 @@ const Navbar = () => {
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Link>
               ))}
             </div>
           </Disclosure.Panel>

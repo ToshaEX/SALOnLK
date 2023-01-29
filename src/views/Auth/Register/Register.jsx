@@ -5,6 +5,14 @@ import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  Select,
+  Input,
+  Button,
+  InputRightElement,
+  InputGroup,
+} from "@chakra-ui/react";
+import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const Register = () => {
   const phoneRegExp =
@@ -48,6 +56,9 @@ const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
   const vOne = viewOne ? "display" : "hidden";
@@ -65,7 +76,6 @@ const Register = () => {
       return object;
     }, {});
 
-    console.log(newDetails);
     registerUser(newDetails);
   };
 
@@ -115,10 +125,9 @@ const Register = () => {
               <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="grid gap-3 grid-cols-2 mb-3">
                   <div>
-                    <input
+                    <Input
                       type="text"
                       id="first_name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="First Name"
                       {...register("first_name")}
                     />
@@ -128,10 +137,9 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <input
+                    <Input
                       type="text"
                       id="last_name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Last Name"
                       {...register("last_name")}
                     />
@@ -142,10 +150,9 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="tel"
                     id="phone"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Contact Number"
                     {...register("phone")}
                   />
@@ -155,10 +162,9 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Email address"
                     {...register("email")}
                   />
@@ -168,9 +174,8 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                  <select
+                  <Select
                     id="gender"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     defaultValue={"other"}
                     {...register("gender")}
                   >
@@ -180,30 +185,40 @@ const Register = () => {
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="mb-3">
-                  <input
-                    type="password"
-                    id="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    placeholder="Password"
-                    {...register("password")}
-                  />
+                  <InputGroup size="md">
+                    <Input
+                      id="password"
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                      placeholder="Enter password"
+                      {...register("password")}
+                    />
+                  </InputGroup>
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.password?.message}
                   </p>
                 </div>
 
                 <div className="mb-5">
-                  <input
-                    type="password"
-                    id="confirm-password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
-                    placeholder="Confirm Password"
-                    {...register("confirmPassword")}
-                  />
+                  <InputGroup size="md">
+                    <Input
+                      id="confirm-password"
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                      placeholder="Confirm password"
+                      {...register("confirmPassword")}
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button h="1.75rem" size="sm" onClick={handleClick}>
+                        {show ? <RxEyeClosed /> : <RxEyeOpen />}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.confirmPassword?.message}
                   </p>

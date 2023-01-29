@@ -1,55 +1,143 @@
-import React, { useEffect, useRef } from "react";
-import Tableau from "tableau-react";
+import React, { useEffect, useState } from "react";
 import GoToTop from "../../GoToTop";
+import { BiUser, BiDollar } from "react-icons/bi";
+import { RiScissorsFill } from "react-icons/ri";
+import { IoMdCalendar } from "react-icons/io";
+import axios from "axios";
+import ProfitChart from "./Charts/ProfitChart";
+import ServiceChart from "./Charts/ServiceChart";
+import {
+  Stat,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup,
+} from "@chakra-ui/react";
 
 export default function Dashboard() {
-  // const options = {
-  //   width: 500,
-  //   height: 500,
-  //   hideTabs: true,
-  //   // added interval support - an integer can be passed as milliseconds in the options object and refreshDataAsync() will refresh the data automatically on your preferred interval.
-  //   // All other vizCreate options are supported here, too
-  //   // They are listed here: https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#vizcreateoptions_record
-  // };
+  const [services, setServices] = useState([]);
+  const [users, setUsers] = useState(0);
 
-  // const filters = {
-  //   Colors: ["Blue", "Red"],
-  //   Sizes: ["Small", "Medium"],
-  // };
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "service",
+      responseType: "json",
+    })
+      .then((res) => {
+        setServices(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to load Services", err);
+      });
 
-  // const parameters = {
-  //   Param1: "Value",
-  //   Param2: "Other Value",
-  // };
+    axios({
+      method: "GET",
+      url: "user/count?role=user",
+      responseType: "json",
+    })
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to load Services", err);
+      });
+  }, []);
 
-  const options = {
-    hideTabs: true,
-    hideToolbar: true,
-  };
+  const numberDetails = [
+    {
+      name: "Total Customers",
+      numbers: users,
+      percentage: "14.32",
+      percentageValue: "increase",
+      date: "Since last month",
+      icon: <BiUser />,
+    },
+    {
+      name: "Total Appointments",
+      numbers: "1024",
+      percentage: "12.24",
+      percentageValue: "decrease",
+      date: "Since last month",
+      icon: <IoMdCalendar />,
+    },
+    {
+      name: "Total Services",
+      numbers: services.length,
+      percentage: "5.67",
+      percentageValue: "increase",
+      date: "Since last month",
+      icon: <RiScissorsFill />,
+    },
+    {
+      name: "Profit",
+      numbers: `Rs: ${52510}`,
+      percentage: "18.46",
+      percentageValue: "increase",
+      date: "Since last month",
+      icon: <BiDollar />,
+    },
+  ];
 
   return (
     <div
       id="MainDashboard"
-      className="h-screen border-r border-gray-200 w-60 p-8 mt-[1rem]"
+      className="h-screen border-r border-gray-200 w-60 p-10 bg-white"
     >
-      <div className="w-[68rem] h-[36rem] bg-green">
-        <Tableau
-          url="https://public.tableau.com/views/JSAPI-Superstore/Overview?:language=en-US&:display_count=n&:origin=viz_share_link"
-          options={options}
-        />
+      <div className="grid grid-cols-1 grid-rows-2 gap-3">
+        {/* first section */}
+        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:h-[15.5rem]">
+          {/* number cards */}
+          <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-2 md:col-span-1">
+            {numberDetails.map((item, index) => {
+              return (
+                <div
+                  className="bg-white rounded-md shadow-md"
+                  key={"dashboard-list-1" + index}
+                >
+                  <div className="flex justify-between items-center p-3 mt-1">
+                    <p className="text-[13px]">{item.name}&nbsp;</p>
+                    {item.icon}
+                  </div>
+                  <div className="px-3">
+                    <StatGroup>
+                      <Stat>
+                        <StatNumber>{item.numbers}</StatNumber>
+                        <div className="flex items-center justify-between md:mb-2">
+                          <StatHelpText>
+                            <StatArrow type={item.percentageValue} />
+                            {item.percentage}%
+                          </StatHelpText>
+                          <div className="text-[8px] text-gray ">
+                            {item.date}
+                          </div>
+                        </div>
+                      </Stat>
+                    </StatGroup>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {/* liner chart */}
+          <div className="bg-white shadow-md rounded-md md:col-span-2 px-3 pt-3 pb-0 overflow-hidden text-[13px]">
+            <ProfitChart />
+          </div>
+        </div>
+
+        {/* second section */}
+        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:row-span-6 md:h-[20rem]">
+          {/* customer vs services chart */}
+          <div className="shadow-md rounded-md md:col-span-2">
+            appointment list
+          </div>
+          {/* bookings */}
+          <div className="shadow-md rounded-md md:col-span-1 overflow-hidden text-[13px] bg-white p-3">
+            <ServiceChart />
+          </div>
+        </div>
       </div>
 
-      {/* <div className="bg-green">
-        <TableauReport
-          url="http://public.tableau.com/static/images/gl/globalshala6/Sheet1/1_rss.png"
-          // filters={filters}
-          // parameters={parameters}
-          // options={options} // vizCreate options
-          // Overwrite default query params
-          // defaults to '?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes'
-          query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
-        />
-      </div> */}
       <GoToTop />
     </div>
   );

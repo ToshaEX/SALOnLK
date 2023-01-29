@@ -5,3 +5,4 @@ export { default as Footer } from "./Footer";
 export { default as Table } from "./Table";
 export { default as FAQ } from "./FAQ";
 export { default as NumberCounter } from "./NumberCounter";
+export { default as StepProgressBar } from "./StepProgressBar";
