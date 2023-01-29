@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdAdd } from "react-icons/io";
 
 const Hair = ({ service = [] }) => {
   const hairCut = service.filter((val) => val.sub_category === "Hair Cut");
@@ -54,6 +55,16 @@ const Hair = ({ service = [] }) => {
                       {item.description}&nbsp;({item.time}&nbsp;min)
                     </span>
                   </div>
+                  <div className="flex justify-end pt-2">
+                    <button
+                      id="addToCart"
+                      className="text-[13px] flex items-center bg-primary px-2 text-xl rounded-md text-white  border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => ""}
+                    >
+                      <IoMdAdd />
+                      &nbsp;Add
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -88,6 +99,16 @@ const Hair = ({ service = [] }) => {
                     <span className="text-[16px] tracking-tight text-gray">
                       {item.description}&nbsp;({item.time}&nbsp;min)
                     </span>
+                  </div>
+                  <div className="flex justify-end pt-2">
+                    <button
+                      id="addToCart"
+                      className="text-[13px] flex items-center bg-primary px-2 text-xl rounded-md text-white  border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => ""}
+                    >
+                      <IoMdAdd />
+                      &nbsp;Add
+                    </button>
                   </div>
                 </div>
               ))}
