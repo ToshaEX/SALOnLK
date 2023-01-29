@@ -1,41 +1,34 @@
-import React, { useState, useEffect,useRef} from "react";
-import CTA from "../../Components/CTA";
-import Footer from "../../Components/Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect, useRef } from "react";
+import { CTA, Footer, FAQ } from "../../Components/index";
 import axios from "axios";
 import { Link } from "react-scroll";
-import Hair from "./Hair";
-import MakeUp from "./MakeUp";
-import Brows from "./Brows";
-import Nails from "./Nails";
-import Cosmetology from "./Cosmetology";
-import Massage from "./Massage";
+import { NavLink } from "react-router-dom";
+import {
+  Hair,
+  MakeUp,
+  Brows,
+  Nails,
+  Cosmetology,
+  Massage,
+} from "./ServiceTypes/index";
+
+import NailImg from "../../assets/nail-polish.png";
+import BrowImg from "../../assets/mascara.png";
+import CosmetologyImg from "../../assets/hair-comb.png";
+import HairImg from "../../assets/woman-hair.png";
+import MakeupImg from "../../assets/makeup.png";
+import MassageImg from "../../assets/massage.png";
+import GoToTop from "../../GoToTop";
 import { useSelector } from "react-redux";
 
 const Services = () => {
   const [service, setServices] = useState([]);
   const [isLoading, setSIsLoading] = useState(true);
 
-  const [expand1, setExpand1] = useState(false);
-  const [expand2, setExpand2] = useState(false);
-  const [expand3, setExpand3] = useState(false);
-  const [expand4, setExpand4] = useState(false);
-
-  const expandClass1 = expand1 ? "display" : "hidden";
-  const ansClass1 = `${expandClass1} px-3 pb-3`;
-  const expandClass2 = expand2 ? "display" : "hidden";
-  const ansClass2 = `${expandClass2} px-3 pb-3`;
-  const expandClass3 = expand3 ? "display" : "hidden";
-  const ansClass3 = `${expandClass3} px-3 pb-3`;
-  const expandClass4 = expand4 ? "display" : "hidden";
-  const ansClass4 = `${expandClass4} px-3 pb-3`;
-
-
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:3000/service",
+      url: "service",
       responseType: "json",
     })
       .then((res) => {
@@ -49,7 +42,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div>
+    <section id="service">
       {/* Service Menu Section */}
       <div className="bg-[url('./assets/services-bg.png')]">
         <div className="p-[3rem] text-white">
@@ -68,9 +61,11 @@ const Services = () => {
           </div>
 
           <div className="flex pt-[3rem] justify-center">
-            <button className="btn-primary hover:bg-gray-dark">
-              Book an Appointment
-            </button>
+            <NavLink to="/booking">
+              <button className="btn-primary hover:bg-gray-dark">
+                Book an Appointment
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -87,12 +82,9 @@ const Services = () => {
               offset={-100}
               duration={500}
             >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-4 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    src={require("../../assets/woman-hair.png")}
-                    alt="hair"
-                  />
+              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-5 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
+                  <img src={HairImg} alt="hair" />
                 </div>
                 <div className="serviceName">
                   <span>Hair</span>
@@ -108,8 +100,8 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img src={require("../../assets/makeup.png")} alt="makeup" />
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
+                  <img src={MakeupImg} alt="makeup" />
                 </div>
                 <div className="serviceName">
                   <span>MakeUp</span>
@@ -125,11 +117,8 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    src={require("../../assets/mascara.png")}
-                    alt="mascara"
-                  />
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
+                  <img src={BrowImg} alt="mascara" />
                 </div>
                 <div className="serviceName">
                   <span>Brow</span>
@@ -145,11 +134,8 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    src={require("../../assets/nail-polish.png")}
-                    alt="nail"
-                  />
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
+                  <img src={NailImg} alt="nail" />
                 </div>
                 <div className="serviceName">
                   <span className="">Nails</span>
@@ -165,8 +151,8 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img src={require("../../assets/hair-comb.png")} alt="comb" />
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
+                  <img src={CosmetologyImg} alt="comb" />
                 </div>
                 <div className="serviceName">
                   <span>Cosmetology</span>
@@ -182,11 +168,8 @@ const Services = () => {
               duration={500}
             >
               <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[35px] w-[35px] m-auto mb-[5px] md:h-[50px] md:w-[50px]">
-                  <img
-                    src={require("../../assets/massage.png")}
-                    alt="massage"
-                  />
+                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
+                  <img src={MassageImg} alt="massage" />
                 </div>
                 <div className="serviceName">
                   <span>Massage</span>
@@ -216,139 +199,16 @@ const Services = () => {
       </div>
 
       {/* import CTA Section */}
-      <CTA />
+      <CTA color={"#ffffff"} />
 
       {/* Frequently asked Section */}
-      <div className="text-center bg-[#f7f9fc] pb-10">
-        <div className="pt-[3rem]">
-          <div className="mb-[18px]">
-            <h2 className="font-bold text-[40px] leading-none tracking-tight">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="pt-[1rem] px-[3rem] pb-[2rem]">
-            <span className="text-[18px] tracking-tight">
-              You have questions? We have answers.
-            </span>
-          </div>
-
-          <div className="flex justify-center items-center px-[3rem] text-start pb-1">
-            <div className="shadow rounded bg-white w-[500px] md:w-[800px]">
-              <div className="flex text-md font-medium justify-between px-3 py-3">
-                <div className="">Q: HOW DO I SCHEDULE AN APPOINTMENT?</div>
-                <button
-                  className="text-xl focus:outline-none pl-5"
-                  onClick={() => {
-                    setExpand1(!expand1);
-                  }}
-                >
-                  {expand1 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
-                </button>
-              </div>
-              <div className={ansClass1}>
-                A: Schedule your appointment here online with our booking
-                assistant, by phone at your desired salon location.
-                <br />
-                Reservations for your appointment are held with a credit card.
-                Please review the Cancellation Policy.
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center px-[3rem] text-start pb-1">
-            <div className="shadow rounded bg-white w-[500px] md:w-[800px]">
-              <div className="flex text-md font-medium justify-between px-3 py-3">
-                <div className="">Q: HOW DOES YOUR PRICING WORK?</div>
-                <button
-                  className="text-xl focus:outline-none pl-5"
-                  onClick={() => {
-                    setExpand2(!expand2);
-                  }}
-                >
-                  {expand2 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
-                </button>
-              </div>
-              <div className={ansClass2}>
-                A: Hair length or technique does not determine gender, and we
-                believe that hair color and cuts should be individually curated
-                for every guest. All of our services are based on the time
-                needed to complete them. This allows us to customize your
-                service based on your hair type and your desired result
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center px-[3rem] text-start pb-1">
-            <div className="shadow rounded bg-white w-[500px] md:w-[800px]">
-              <div className="flex text-md font-medium justify-between px-3 py-3">
-                <div className="">
-                  Q: WHAT SERVICES OR PRODUCTS SHOULD I PICK?
-                </div>
-                <button
-                  className="text-xl focus:outline-none pl-5"
-                  onClick={() => {
-                    setExpand3(!expand3);
-                  }}
-                >
-                  {expand3 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
-                </button>
-              </div>
-              <div className={ansClass3}>
-                A: Just book an in-person or virtual consultation with one of
-                our stylists to provide recommendations for your hair wants and
-                needs. <br />
-                We're here to answer any questions you might have about your
-                current hair and how you want it to look and feel. Or, we're
-                happy to provide recommendations if you're not sure what you
-                want yet!
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center px-[3rem] text-start pb-1">
-            <div className="shadow rounded bg-white w-[500px] md:w-[800px]">
-              <div className="flex text-md font-medium justify-between px-3 py-3">
-                <div className="">Q: WHAT BRAND OF PRODUCTS DO YOU CARY?</div>
-                <button
-                  className="text-xl focus:outline-none pl-5"
-                  onClick={() => {
-                    setExpand4(!expand4);
-                  }}
-                >
-                  {expand4 ? (
-                    <FontAwesomeIcon icon={faXmark} />
-                  ) : (
-                    <FontAwesomeIcon icon={faPlus} />
-                  )}
-                </button>
-              </div>
-              <div className={ansClass4}>
-                A: <br />
-                VaHi: Oribe & Olaplex
-                <br />
-                Powder Springs: Aveda
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <FAQ />
 
       {/* import footer Section */}
       <Footer />
-    </div>
+
+      <GoToTop />
+    </section>
   );
 };
 

@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { RiCloseCircleLine } from "react-icons/ri";
+import { Select, Input, Textarea } from "@chakra-ui/react";
 
 const ServicesView = ({ onClose, service = null, setService }) => {
   const schema = yup.object().shape({
@@ -13,14 +12,14 @@ const ServicesView = ({ onClose, service = null, setService }) => {
     description: yup.string().required("Description is required!"),
     price: yup
       .number()
-      .typeError("Price is not a number")
+      .typeError("Price should be a number")
       .positive("Price is not a positive number")
       .integer("Price should be a number")
       .required("Price is required"),
     time: yup
       .number()
       .positive("Time is not a positive number")
-      .typeError("Time is not a number")
+      .typeError("Time should be a number")
       .integer("Time should be a number")
       .required("Time is required!"),
   });
@@ -32,11 +31,18 @@ const ServicesView = ({ onClose, service = null, setService }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const [select, setSelect] = useState("Hair");
-  const [selectSub, setSelectSub] = useState(
-    service === null ? "Hair Cut" : service.sub_category
+  const [select, setSelect] = useState(
+    service === null ? "Hair" : service.category
   );
-  const [show, setShow] = useState("display");
+  const [selectSub, setSelectSub] = useState(
+    service === null
+      ? "Hair Cut"
+      : service.sub_category === ""
+      ? "Hair Cut"
+      : service.sub_category
+  );
+
+  const [show, setShow] = useState(select === "Hair" ? false : true);
 
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
@@ -56,8 +62,8 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   async function newService(payload) {
     await axios({
-      method: "post",
-      url: "http://localhost:3000/service",
+      method: "POST",
+      url: "service",
       responseType: "json",
       data: payload,
     }).then(() => handleOnClose());
@@ -68,11 +74,14 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   async function updateService(payload) {
     await axios({
-      method: "patch",
-      url: `http://localhost:3000/service/${service._id}`,
+      method: "PATCH",
+      url: `service/${service._id}`,
       responseType: "json",
       data: payload,
-    }).then(() => handleOnClose());
+    }).then(() => {
+      handleOnClose();
+    });
+
     reset();
     setViewOne(true);
   }
@@ -90,7 +99,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
             className="text-xl focus:outline-none pl-5"
             onClick={handleOnClose}
           >
-            <FontAwesomeIcon icon={faXmark} />
+            <RiCloseCircleLine />
           </button>
         </div>
         <h2 className="text-3xl mb-4">
@@ -102,16 +111,15 @@ const ServicesView = ({ onClose, service = null, setService }) => {
             <div className="flex justify-between align-center gap-5">
               <div className="w-1/2">
                 <div className="mb-3 mt-5">
-                  <select
-                    className="w-full rounded-lg text-sm"
+                  <Select
                     id="category"
                     value={select}
                     onChange={(e) => {
                       setSelect(e.target.value);
                       if (e.target.value === "Hair") {
-                        setShow("display");
+                        setShow(false);
                       } else {
-                        setShow("hidden");
+                        setShow(true);
                       }
                     }}
                   >
@@ -121,14 +129,13 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                     <option value="Nails">Nails</option>
                     <option value="Cosmetology">Cosmetology</option>
                     <option value="Massage">Massage</option>
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="text"
                     id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     defaultValue={service === null ? "" : service.name}
                     placeholder="Name"
                     {...register("name")}
@@ -138,12 +145,11 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                   </p>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full">
                   <div className="mb-3">
-                    <input
+                    <Input
                       type="number"
                       id="price"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       defaultValue={service === null ? "" : service.price}
                       placeholder="Price"
                       {...register("price")}
@@ -154,10 +160,9 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                   </div>
 
                   <div className="mb-3">
-                    <input
+                    <Input
                       type="number"
                       id="time"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Time Duration"
                       defaultValue={service === null ? "" : service.time}
                       {...register("time")}
@@ -170,27 +175,26 @@ const ServicesView = ({ onClose, service = null, setService }) => {
               </div>
 
               <div className="w-1/2 mt-5">
-                <div className={show}>
+                <div>
                   <div className="mb-3">
-                    <select
-                      className="w-full rounded-lg text-sm"
+                    <Select
                       id="sub_category"
                       value={selectSub}
+                      disabled={show}
                       onChange={(e) => {
                         setSelectSub(e.target.value);
                       }}
                     >
                       <option value="Hair Cut">Hair cut</option>
                       <option value="Color">Color</option>
-                    </select>
+                    </Select>
                   </div>
                 </div>
 
                 <div className="mb-[0.3rem]">
-                  <textarea
+                  <Textarea
                     id="description"
-                    rows={select === "Hair" ? 4 : 6}
-                    className="w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    rows="4"
                     defaultValue={service === null ? "" : service?.description}
                     placeholder="Description..."
                     {...register("description")}
@@ -211,7 +215,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
                 <div className={vOne}>
                   <div>
                     <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white flex justify-center py-2">
-                      {service === null ? "Create" : "Edit"} Service
+                      {service === null ? "Create" : "Update"} Service
                     </div>
                   </div>
                 </div>
