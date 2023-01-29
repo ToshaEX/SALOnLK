@@ -5,6 +5,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const Register = () => {
   const phoneRegExp =
@@ -47,6 +48,9 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
@@ -184,7 +188,7 @@ const Register = () => {
 
                 <div className="mb-3">
                   <input
-                    type="password"
+                    type={show ? "text" : "password"}
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Password"
@@ -195,14 +199,21 @@ const Register = () => {
                   </p>
                 </div>
 
-                <div className="mb-5">
+                <div className="mb-5 relative">
                   <input
-                    type="password"
+                    type={show ? "text" : "password"}
                     id="confirm-password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Confirm Password"
                     {...register("confirmPassword")}
                   />
+
+                  <span
+                    className="absolute top-0 right-3 bottom-0 flex items-center text-gray-dark"
+                    onClick={handleClick}
+                  >
+                    {show ? <RxEyeOpen /> : <RxEyeClosed />}
+                  </span>
 
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.confirmPassword?.message}

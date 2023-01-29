@@ -8,7 +8,7 @@ import GoToTop from "../../GoToTop";
 export default function ServiceHandler() {
   const [select, setSelect] = useState("Hair");
   const [selectSub, setSelectSub] = useState("Hair Cut");
-  const [show, setShow] = useState("display w-[18rem] pl-[1rem]");
+  const [show, setShow] = useState("display w-[18rem] pl-[1.5rem]");
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenTwo, setIsModalOpenTwo] = useState(false);

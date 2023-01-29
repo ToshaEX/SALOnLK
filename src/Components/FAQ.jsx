@@ -39,9 +39,10 @@ const FAQ = () => {
   const styles = {
     bgColor: "white",
     // rowTitleColor: "blue",
+    rowTitleTextSize: "16px",
     rowContentColor: "grey",
     // arrowColor: "red",
-    rowContentTextSize: "16px",
+    rowContentTextSize: "15px",
   };
 
   const config = {

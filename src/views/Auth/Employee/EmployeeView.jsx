@@ -211,9 +211,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                   </select>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 relative">
                   <input
-                    type="password"
+                    type={show ? "text" : "password"}
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Password"
@@ -221,6 +221,20 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                     disabled={user === null ? false : true}
                     {...register("password")}
                   />
+                  <span
+                    className="absolute top-0 right-3 bottom-0 flex items-center text-gray-dark"
+                    onClick={user === null ? handleClick : ""}
+                  >
+                    {user === null ? (
+                      show ? (
+                        <RxEyeOpen />
+                      ) : (
+                        <RxEyeClosed />
+                      )
+                    ) : (
+                      ""
+                    )}
+                  </span>
 
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.password?.message}

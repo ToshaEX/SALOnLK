@@ -79,7 +79,7 @@ export default function Dashboard() {
     >
       <div className="grid grid-cols-1 grid-rows-2 gap-3">
         {/* first section */}
-        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:h-[15.5rem]">
+        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:h-[15.3rem]">
           {/* number cards */}
           <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-2 md:col-span-1">
             {numberDetails.map((item, index) => {
@@ -96,7 +96,7 @@ export default function Dashboard() {
                     <div className="font-semibold text-[22px]">
                       {item.numbers}
                     </div>
-                    <div className="flex items-center justify-between text-[15px] mt-2 md:mb-2">
+                    <div className="flex items-center justify-between text-[15px] mt-2">
                       <div
                         className={
                           item.percentageValue === "increase"

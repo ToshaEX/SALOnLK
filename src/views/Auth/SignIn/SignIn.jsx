@@ -8,6 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import toast, { Toaster } from "react-hot-toast";
+import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ const SignIn = () => {
   const handleCheckBoxChange = () => {
     setGetCondition(!getCondition);
   };
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   const [viewOne, setViewOne] = useState(true);
   const [viewTwo, setViewTwo] = useState(false);
@@ -116,14 +120,20 @@ const SignIn = () => {
                     </p>
                   </div>
 
-                  <div className="mb-3">
+                  <div className="mb-3 relative">
                     <input
-                      type="password"
+                      type={show ? "text" : "password"}
                       id="password"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Password"
                       {...register("password")}
                     />
+                    <span
+                      className="absolute top-0 right-3 bottom-0 flex items-center text-gray-dark"
+                      onClick={handleClick}
+                    >
+                      {show ? <RxEyeOpen /> : <RxEyeClosed />}
+                    </span>
                     <p className="text-[#ff6347] text-[12px]">
                       {errors.password?.message}
                     </p>
