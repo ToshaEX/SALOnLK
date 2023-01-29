@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ServicesView from "./ServicesView";
-import { Select } from "@chakra-ui/react";
 import ServicesDelete from "./ServicesDelete";
 import { Table } from "../../Components/index";
 import GoToTop from "../../GoToTop";
@@ -9,7 +8,7 @@ import GoToTop from "../../GoToTop";
 export default function ServiceHandler() {
   const [select, setSelect] = useState("Hair");
   const [selectSub, setSelectSub] = useState("Hair Cut");
-  const [show, setShow] = useState("display w-[18rem]");
+  const [show, setShow] = useState("display w-[18rem] pl-[1.5rem]");
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenTwo, setIsModalOpenTwo] = useState(false);
@@ -109,9 +108,10 @@ export default function ServiceHandler() {
         </div>
 
         <div className="w-[18rem]">
-          <Select
+          <select
             id="category"
             value={select}
+            className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
             onChange={(e) => {
               setSelect(e.target.value);
               if (e.target.value === "Hair") {
@@ -127,20 +127,21 @@ export default function ServiceHandler() {
             <option value="Nails">Nails</option>
             <option value="Cosmetology">Cosmetology</option>
             <option value="Massage">Massage</option>
-          </Select>
+          </select>
         </div>
 
         <div className={show}>
-          <Select
+          <select
             id="sub_category"
             value={selectSub}
+            className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
             onChange={(e) => {
               setSelectSub(e.target.value);
             }}
           >
             <option value="Hair Cut">Hair Cut</option>
             <option value="Color">Color</option>
-          </Select>
+          </select>
         </div>
       </div>
 

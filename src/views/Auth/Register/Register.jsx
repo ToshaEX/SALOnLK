@@ -5,13 +5,6 @@ import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  Select,
-  Input,
-  Button,
-  InputRightElement,
-  InputGroup,
-} from "@chakra-ui/react";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const Register = () => {
@@ -125,10 +118,11 @@ const Register = () => {
               <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="grid gap-3 grid-cols-2 mb-3">
                   <div>
-                    <Input
+                    <input
                       type="text"
                       id="first_name"
                       placeholder="First Name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       {...register("first_name")}
                     />
                     <p className="text-[#ff6347] text-[12px]">
@@ -137,10 +131,11 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <Input
+                    <input
                       type="text"
                       id="last_name"
                       placeholder="Last Name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       {...register("last_name")}
                     />
                     <p className="text-[#ff6347] text-[12px]">
@@ -150,10 +145,11 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                  <Input
+                  <input
                     type="tel"
                     id="phone"
                     placeholder="Contact Number"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     {...register("phone")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -162,10 +158,11 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                  <Input
+                  <input
                     type="email"
                     id="email"
                     placeholder="Email address"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     {...register("email")}
                   />
                   <p className="text-[#ff6347] text-[12px]">
@@ -174,8 +171,9 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                  <Select
+                  <select
                     id="gender"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     defaultValue={"other"}
                     {...register("gender")}
                   >
@@ -185,39 +183,37 @@ const Register = () => {
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                  </Select>
+                  </select>
                 </div>
 
                 <div className="mb-3">
-                  <InputGroup size="md">
-                    <Input
-                      id="password"
-                      pr="4.5rem"
-                      type={show ? "text" : "password"}
-                      placeholder="Enter password"
-                      {...register("password")}
-                    />
-                  </InputGroup>
+                  <input
+                    type={show ? "text" : "password"}
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Password"
+                    {...register("password")}
+                  />
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.password?.message}
                   </p>
                 </div>
 
-                <div className="mb-5">
-                  <InputGroup size="md">
-                    <Input
-                      id="confirm-password"
-                      pr="4.5rem"
-                      type={show ? "text" : "password"}
-                      placeholder="Confirm password"
-                      {...register("confirmPassword")}
-                    />
-                    <InputRightElement width="4.5rem">
-                      <Button h="1.75rem" size="sm" onClick={handleClick}>
-                        {show ? <RxEyeClosed /> : <RxEyeOpen />}
-                      </Button>
-                    </InputRightElement>
-                  </InputGroup>
+                <div className="mb-5 relative">
+                  <input
+                    type={show ? "text" : "password"}
+                    id="confirm-password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword")}
+                  />
+
+                  <span
+                    className="absolute top-0 right-3 bottom-0 flex items-center text-gray-dark"
+                    onClick={handleClick}
+                  >
+                    {show ? <RxEyeOpen /> : <RxEyeClosed />}
+                  </span>
 
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.confirmPassword?.message}

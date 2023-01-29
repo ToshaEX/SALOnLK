@@ -5,7 +5,6 @@ import { RiScissorsFill, RiPieChartFill } from "react-icons/ri";
 import { IoMdCalendar } from "react-icons/io";
 import { SlSettings } from "react-icons/sl";
 import { HiOutlineMenuAlt3, HiOutlineMenuAlt2 } from "react-icons/hi";
-import { Flex, IconButton, Menu, MenuButton, Text } from "@chakra-ui/react";
 
 export default function SideMenu() {
   const sideMenuList = [
@@ -44,79 +43,60 @@ export default function SideMenu() {
   const [navSize, changeNavSize] = useState("large");
 
   return (
-    <Flex
-      pos="sticky"
-      minHeight="100vh"
-      boxShadow="0 0 12px 0 rgba(0, 0, 0, 0.05)"
-      w={navSize === "small" ? "75px" : "200px"}
-      flexDir="column"
-      justifyContent="space-between"
-      bg="#273444"
+    <div
+      id="sidebar-mainSection"
+      className={
+        navSize === "small"
+          ? "w-[75px] bg-primary px-4"
+          : "w-[200px] bg-primary px-5"
+      }
     >
-      <Flex
-        p="5%"
-        flexDir="column"
-        w="100%"
-        alignItems={navSize === "small" ? "center" : "flex-start"}
-        as="nav"
-      >
-        <IconButton
-          background="none"
-          mt={5}
-          _hover={{ background: "none" }}
-          icon={
-            navSize === "small" ? (
-              <HiOutlineMenuAlt3 className="mt-[13px] text-white text-xl" />
-            ) : (
-              <HiOutlineMenuAlt2 className="text-white text-xl" />
-            )
-          }
-          onClick={() => {
-            if (navSize === "small") {
-              changeNavSize("large");
-            } else {
-              changeNavSize("small");
-            }
-          }}
-        />
-
-        {sideMenuList.map((item, index) => {
-          return (
-            <Flex
-              mt={5}
-              flexDir="column"
-              w="100%"
-              alignItems={navSize === "small" ? "center" : "flex-start"}
-              key={index + "sidebar-list"}
-            >
-              <Menu>
-                <Link to={item.path}>
-                  <MenuButton
-                    w={navSize === "small" ? "100%" : "180px"}
-                    _hover={{ textDecor: "none", backgroundColor: "#AEC8CA" }}
-                    p={3}
-                    //backgroundColor={"#AEC8CA"}
-                    borderRadius={8}
-                  >
-                    <Flex>
-                      <div className="text-xl text-gray mt-0.5">
-                        {item.icon}
-                      </div>
-                      <Text
-                        ml={5}
-                        display={navSize === "small" ? "none" : "flex"}
-                        color="white"
-                      >
+      <div className="routes pt-10 md:pt-0 ">
+        <div className="mb-[2rem] flex justify-end cursor-pointer">
+          <div className={navSize === "small" ? "hidden" : "block"}>
+            <HiOutlineMenuAlt3
+              className="mt-[13px] text-white text-xl"
+              onClick={() => {
+                if (navSize === "small") {
+                  changeNavSize("large");
+                } else {
+                  changeNavSize("small");
+                }
+              }}
+            />
+          </div>
+          <div className={navSize === "small" ? "block px-3" : "hidden"}>
+            <HiOutlineMenuAlt2
+              className="mt-[13px] text-white text-xl"
+              onClick={() => {
+                if (navSize === "small") {
+                  changeNavSize("large");
+                } else {
+                  changeNavSize("small");
+                }
+              }}
+            />
+          </div>
+        </div>
+        <div>
+          {sideMenuList.map((item, index) => {
+            return (
+              <Link to={item.path} key={"side-menu-list" + index}>
+                <div className="py-[4.8px]">
+                  <div className="mb-2 flex justify-start rounded-md gap-4 items-center py-[0.7rem] text-primary/80 hover:bg-gray/90 hover:text-white hover:shadow-md md:px-3">
+                    <span className="text-xl text-white">{item.icon}</span>
+                    <div className={navSize === "small" ? "hidden" : "block"}>
+                      <span className="text-md font-extralight text-white ">
                         {item.name}
-                      </Text>
-                    </Flex>
-                  </MenuButton>
-                </Link>
-              </Menu>
-            </Flex>
-          );
-        })}
-      </Flex>
-    </Flex>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }

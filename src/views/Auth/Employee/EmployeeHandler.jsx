@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Select } from "@chakra-ui/react";
 import EmployeeView from "./EmployeeView";
 import EmployeeDelete from "./EmployeeDelete";
 import { Table } from "../../../Components/index";
@@ -109,16 +108,17 @@ export default function EmployeeHandler() {
         </div>
 
         <div className="w-[18rem]">
-          <Select
+          <select
             id="role"
             value={select}
+            className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
             onChange={(e) => {
               setSelect(e.target.value);
             }}
           >
             <option value="beautician">Beautician</option>
             <option value="admin">Admin</option>
-          </Select>
+          </select>
         </div>
       </div>
 

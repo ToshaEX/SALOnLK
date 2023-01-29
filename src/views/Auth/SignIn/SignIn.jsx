@@ -8,7 +8,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import toast, { Toaster } from "react-hot-toast";
-import { Input, Button, InputRightElement, InputGroup } from "@chakra-ui/react";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
 const SignIn = () => {
@@ -109,9 +108,10 @@ const SignIn = () => {
               <div>
                 <form onSubmit={handleSubmit(formSubmit)}>
                   <div className="mb-3 mt-5">
-                    <Input
+                    <input
                       type="email"
                       id="email-address"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Email address"
                       {...register("email")}
                     />
@@ -120,21 +120,20 @@ const SignIn = () => {
                     </p>
                   </div>
 
-                  <div className="mb-3">
-                    <InputGroup size="md">
-                      <Input
-                        id="password"
-                        pr="4.5rem"
-                        type={show ? "text" : "password"}
-                        placeholder="Enter password"
-                        {...register("password")}
-                      />
-                      <InputRightElement width="4.5rem">
-                        <Button h="1.75rem" size="sm" onClick={handleClick}>
-                          {show ? <RxEyeClosed /> : <RxEyeOpen />}
-                        </Button>
-                      </InputRightElement>
-                    </InputGroup>
+                  <div className="mb-3 relative">
+                    <input
+                      type={show ? "text" : "password"}
+                      id="password"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                      placeholder="Password"
+                      {...register("password")}
+                    />
+                    <span
+                      className="absolute top-0 right-3 bottom-0 flex items-center text-gray-dark"
+                      onClick={handleClick}
+                    >
+                      {show ? <RxEyeOpen /> : <RxEyeClosed />}
+                    </span>
                     <p className="text-[#ff6347] text-[12px]">
                       {errors.password?.message}
                     </p>

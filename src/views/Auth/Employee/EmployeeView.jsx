@@ -3,13 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import {
-  Select,
-  Input,
-  Button,
-  InputRightElement,
-  InputGroup,
-} from "@chakra-ui/react";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 
@@ -130,9 +123,10 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
               <div className="w-1/2">
                 <div className="flex gap-2 mt-5 mb-3">
                   <div>
-                    <Input
+                    <input
                       type="text"
                       id="first_name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="First Name"
                       defaultValue={user === null ? "" : user.first_name}
                       {...register("first_name")}
@@ -143,9 +137,10 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                   </div>
 
                   <div>
-                    <Input
+                    <input
                       type="text"
                       id="last_name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                       placeholder="Last Name"
                       defaultValue={user === null ? "" : user.last_name}
                       {...register("last_name")}
@@ -157,9 +152,10 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                 </div>
 
                 <div className="mb-3">
-                  <Input
+                  <input
                     type="tel"
                     id="phone"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Contact Number"
                     defaultValue={user === null ? "" : user.phone}
                     {...register("phone")}
@@ -170,9 +166,10 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                 </div>
 
                 <div className="mb-3">
-                  <Input
+                  <input
                     type="email"
                     id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     placeholder="Email address"
                     defaultValue={user === null ? "" : user.email}
                     disabled={user === null ? false : true}
@@ -186,8 +183,9 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
 
               <div className="w-1/2 mt-5">
                 <div className="mb-3">
-                  <Select
+                  <select
                     id="gender"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     value={selectGender}
                     onChange={(e) => {
                       setSelectGender(e.target.value);
@@ -196,12 +194,13 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                  </Select>
+                  </select>
                 </div>
 
                 <div className="mb-3">
-                  <Select
+                  <select
                     id="role"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     value={selectRole}
                     onChange={(e) => {
                       setSelectRole(e.target.value);
@@ -209,30 +208,34 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
                   >
                     <option value="beautician">Beautician</option>
                     <option value="admin">Admin</option>
-                  </Select>
+                  </select>
                 </div>
 
-                <div className="mb-3">
-                  <InputGroup size="md">
-                    <Input
-                      id="password"
-                      pr="4.5rem"
-                      type={show ? "text" : "password"}
-                      placeholder="Enter password"
-                      defaultValue={user === null ? "" : user.password}
-                      disabled={user === null ? false : true}
-                      {...register("password")}
-                    />
-                    <InputRightElement width="4.5rem">
-                      <Button
-                        h="1.75rem"
-                        size="sm"
-                        onClick={user === null ? handleClick : ""}
-                      >
-                        {show ? <RxEyeClosed /> : <RxEyeOpen />}
-                      </Button>
-                    </InputRightElement>
-                  </InputGroup>
+                <div className="mb-3 relative">
+                  <input
+                    type={show ? "text" : "password"}
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    placeholder="Password"
+                    defaultValue={user === null ? "" : user.password}
+                    disabled={user === null ? false : true}
+                    {...register("password")}
+                  />
+                  <span
+                    className="absolute top-0 right-3 bottom-0 flex items-center text-gray-dark"
+                    onClick={user === null ? handleClick : ""}
+                  >
+                    {user === null ? (
+                      show ? (
+                        <RxEyeOpen />
+                      ) : (
+                        <RxEyeClosed />
+                      )
+                    ) : (
+                      ""
+                    )}
+                  </span>
+
                   <p className="text-[#ff6347] text-[12px]">
                     {errors.password?.message}
                   </p>

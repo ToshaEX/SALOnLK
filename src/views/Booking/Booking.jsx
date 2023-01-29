@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Footer, StepProgressBar } from "../../Components/index";
-import { Button, ButtonGroup } from "@chakra-ui/react";
 
 const Booking = () => {
   const [index, setIndex] = useState(1);
@@ -29,20 +28,20 @@ const Booking = () => {
 
         <div className="p-10 bg-green">hi</div>
         <div className="px-10 py-3 flex">
-          <Button
+          <button
             type="submit"
-            className="rounded-md h-[2.3rem] w-[9rem] border border-transparent px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
+            className="bg-[#273444] rounded-md h-[2.3rem] w-[9rem] border border-transparent px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
             onClick={() => prevButton()}
           >
             Previous
-          </Button>
-          <Button
+          </button>
+          <button
             type="submit"
-            className="rounded-md h-[2.3rem] w-[9rem] border border-transparent px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
+            className="bg-[#273444] rounded-md h-[2.3rem] w-[9rem] border border-transparent px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
             onClick={() => nextButton()}
           >
             Next
-          </Button>
+          </button>
         </div>
       </div>
     </section>
