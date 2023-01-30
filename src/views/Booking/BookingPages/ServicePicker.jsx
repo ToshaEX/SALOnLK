@@ -59,13 +59,23 @@ function ServicePicker(props) {
 
                   <button
                     className="text-[15px] py-1 px-3 rounded-md"
-                    disabled={pickServices.includes(itemOne._id) ? true : false}
                     onClick={() => {
-                      props.handleService(itemOne._id);
-                      setPickServices((arr) => arr.concat(itemOne._id));
+                      if (pickServices.includes(itemOne._id)) {
+                        props.handleService(itemOne._id, "remove");
+                        setPickServices((arr) =>
+                          arr.filter((item) => item !== itemOne._id)
+                        );
+                      } else {
+                        props.handleService(itemOne._id, "add");
+                        setPickServices((arr) => arr.concat(itemOne._id));
+                      }
                     }}
                   >
-                    {pickServices.includes(itemOne._id) ? "" : <BiPlus />}
+                    {pickServices.includes(itemOne._id) ? (
+                      <BiMinus />
+                    ) : (
+                      <BiPlus />
+                    )}
                   </button>
                 </div>
               ))}
@@ -243,7 +253,11 @@ function ServicePicker(props) {
                       setPickServices((arr) => arr.concat(itemSix._id));
                     }}
                   >
-                    {pickServices.includes(itemSix._id) ? "" : <BiPlus />}
+                    {pickServices.includes(itemSix._id) ? (
+                      <BiMinus />
+                    ) : (
+                      <BiPlus />
+                    )}
                   </button>
                 </div>
               ))}
