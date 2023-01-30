@@ -6,7 +6,7 @@ import axios from "axios";
 function NumberCounter() {
   const [users, setUsers] = useState(0);
   const [beauticians, setBeauticians] = useState(0);
-  const [viewPort, setViewPort] = useState(false);
+  const [viewPorts, setViewPorts] = useState(false);
 
   useEffect(() => {
     axios({
@@ -63,11 +63,11 @@ function NumberCounter() {
               key={"counter-list" + i}
             >
               <ScrollTrigger
-                onEnter={() => setViewPort(true)}
-                onExit={() => setViewPort(false)}
+                onEnter={() => setViewPorts(true)}
+                onExit={() => setViewPorts(false)}
               >
                 <strong className="font-semibold text-5xl" defaultValue={0}>
-                  {viewPort && (
+                  {viewPorts && (
                     <CountUp
                       start={0}
                       end={items.endValue}
