@@ -50,3 +50,30 @@ body,
   filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
     drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
 }
+
+.react-calendar {
+  border-radius: 1rem !important;
+}
+
+.react-calendar__navigation__prev2-button {
+  display: none !important;
+}
+.react-calendar__navigation__next2-button {
+  display: none !important;
+}
+
+.react-calendar__navigation {
+  padding: 0.5rem !important;
+}
+.react-calendar__viewContainer {
+  padding: 0.5rem !important;
+}
+
+.react-calendar__tile--now {
+  background: rgb(196, 196, 196) !important;
+  border-radius: 0.5rem !important;
+}
+.react-calendar__tile--active {
+  background: #273444 !important;
+  border-radius: 0.5rem !important;
+}

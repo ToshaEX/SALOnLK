@@ -37,7 +37,10 @@ function ServicePicker(props) {
 
   return (
     <div className="text-center bg-white pb-10">
-      <div className="flex justify-center items-center px-[3rem] text-start pb-1">
+      <div className="text-[14px] font-semibold text-start pb-1 px-[2rem]">
+        Pick a Services
+      </div>
+      <div className="flex justify-center items-center px-[2rem] text-start pb-1">
         <div className="shadow rounded bg-white w-full">
           <div>
             <div
@@ -61,12 +64,22 @@ function ServicePicker(props) {
                     className="text-[15px] py-1 px-3 rounded-md"
                     onClick={() => {
                       if (pickServices.includes(itemOne._id)) {
-                        props.handleService(itemOne._id, "remove");
+                        props.handleService(
+                          itemOne._id,
+                          "remove",
+                          itemOne.time,
+                          itemOne.price
+                        );
                         setPickServices((arr) =>
                           arr.filter((item) => item !== itemOne._id)
                         );
                       } else {
-                        props.handleService(itemOne._id, "add");
+                        props.handleService(
+                          itemOne._id,
+                          "add",
+                          itemOne.time,
+                          itemOne.price
+                        );
                         setPickServices((arr) => arr.concat(itemOne._id));
                       }
                     }}
@@ -101,13 +114,33 @@ function ServicePicker(props) {
                   {itemTwo.name}
                   <button
                     className="text-[15px] py-1 px-3 rounded-md"
-                    disabled={pickServices.includes(itemTwo._id) ? true : false}
                     onClick={() => {
-                      props.handleService(itemTwo._id);
-                      setPickServices((arr) => arr.concat(itemTwo._id));
+                      if (pickServices.includes(itemTwo._id)) {
+                        props.handleService(
+                          itemTwo._id,
+                          "remove",
+                          itemTwo.time,
+                          itemTwo.price
+                        );
+                        setPickServices((arr) =>
+                          arr.filter((item) => item !== itemTwo._id)
+                        );
+                      } else {
+                        props.handleService(
+                          itemTwo._id,
+                          "add",
+                          itemTwo.time,
+                          itemTwo.price
+                        );
+                        setPickServices((arr) => arr.concat(itemTwo._id));
+                      }
                     }}
                   >
-                    {pickServices.includes(itemTwo._id) ? "" : <BiPlus />}
+                    {pickServices.includes(itemTwo._id) ? (
+                      <BiMinus />
+                    ) : (
+                      <BiPlus />
+                    )}
                   </button>
                 </div>
               ))}
@@ -137,15 +170,33 @@ function ServicePicker(props) {
                   {itemThree.name}
                   <button
                     className="text-[15px] py-1 px-3 rounded-md"
-                    disabled={
-                      pickServices.includes(itemThree._id) ? true : false
-                    }
                     onClick={() => {
-                      props.handleService(itemThree._id);
-                      setPickServices((arr) => arr.concat(itemThree._id));
+                      if (pickServices.includes(itemThree._id)) {
+                        props.handleService(
+                          itemThree._id,
+                          "remove",
+                          itemThree.time,
+                          itemThree.price
+                        );
+                        setPickServices((arr) =>
+                          arr.filter((item) => item !== itemThree._id)
+                        );
+                      } else {
+                        props.handleService(
+                          itemThree._id,
+                          "add",
+                          itemThree.time,
+                          itemThree.price
+                        );
+                        setPickServices((arr) => arr.concat(itemThree._id));
+                      }
                     }}
                   >
-                    {pickServices.includes(itemThree._id) ? "" : <BiPlus />}
+                    {pickServices.includes(itemThree._id) ? (
+                      <BiMinus />
+                    ) : (
+                      <BiPlus />
+                    )}
                   </button>
                 </div>
               ))}
@@ -175,15 +226,33 @@ function ServicePicker(props) {
                   {itemFour.name}
                   <button
                     className="text-[15px] py-1 px-3 rounded-md"
-                    disabled={
-                      pickServices.includes(itemFour._id) ? true : false
-                    }
                     onClick={() => {
-                      props.handleService(itemFour._id);
-                      setPickServices((arr) => arr.concat(itemFour._id));
+                      if (pickServices.includes(itemFour._id)) {
+                        props.handleService(
+                          itemFour._id,
+                          "remove",
+                          itemFour.time,
+                          itemFour.price
+                        );
+                        setPickServices((arr) =>
+                          arr.filter((item) => item !== itemFour._id)
+                        );
+                      } else {
+                        props.handleService(
+                          itemFour._id,
+                          "add",
+                          itemFour.time,
+                          itemFour.price
+                        );
+                        setPickServices((arr) => arr.concat(itemFour._id));
+                      }
                     }}
                   >
-                    {pickServices.includes(itemFour._id) ? "" : <BiPlus />}
+                    {pickServices.includes(itemFour._id) ? (
+                      <BiMinus />
+                    ) : (
+                      <BiPlus />
+                    )}
                   </button>
                 </div>
               ))}
@@ -213,15 +282,33 @@ function ServicePicker(props) {
                   {itemFive.name}
                   <button
                     className="text-[15px] py-1 px-3 rounded-md"
-                    disabled={
-                      pickServices.includes(itemFive._id) ? true : false
-                    }
                     onClick={() => {
-                      props.handleService(itemFive._id);
-                      setPickServices((arr) => arr.concat(itemFive._id));
+                      if (pickServices.includes(itemFive._id)) {
+                        props.handleService(
+                          itemFive._id,
+                          "remove",
+                          itemFive.time,
+                          itemFive.price
+                        );
+                        setPickServices((arr) =>
+                          arr.filter((item) => item !== itemFive._id)
+                        );
+                      } else {
+                        props.handleService(
+                          itemFive._id,
+                          "add",
+                          itemFive.time,
+                          itemFive.price
+                        );
+                        setPickServices((arr) => arr.concat(itemFive._id));
+                      }
                     }}
                   >
-                    {pickServices.includes(itemFive._id) ? "" : <BiPlus />}
+                    {pickServices.includes(itemFive._id) ? (
+                      <BiMinus />
+                    ) : (
+                      <BiPlus />
+                    )}
                   </button>
                 </div>
               ))}
@@ -247,10 +334,26 @@ function ServicePicker(props) {
                   {itemSix.name}
                   <button
                     className="text-[15px] py-1 px-3 rounded-md"
-                    disabled={pickServices.includes(itemSix._id) ? true : false}
                     onClick={() => {
-                      props.handleService(itemSix._id);
-                      setPickServices((arr) => arr.concat(itemSix._id));
+                      if (pickServices.includes(itemSix._id)) {
+                        props.handleService(
+                          itemSix._id,
+                          "remove",
+                          itemSix.time,
+                          itemSix.price
+                        );
+                        setPickServices((arr) =>
+                          arr.filter((item) => item !== itemSix._id)
+                        );
+                      } else {
+                        props.handleService(
+                          itemSix._id,
+                          "add",
+                          itemSix.time,
+                          itemSix.price
+                        );
+                        setPickServices((arr) => arr.concat(itemSix._id));
+                      }
                     }}
                   >
                     {pickServices.includes(itemSix._id) ? (
