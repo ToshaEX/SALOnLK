@@ -22,6 +22,7 @@ import EmployeeHandler from "./views/Auth/Employee/EmployeeHandler";
 import Dashboard from "./views/Manage/Dashboard";
 import Booking from "./views/Booking/Booking";
 import ManageCharts from "./views/Manage/Charts/ManageCharts";
+import AppointmentHistory from "./views/Appoinment/AppointmentHistory";
 
 const history = createBrowserHistory();
 
@@ -52,6 +53,15 @@ function App() {
               <>
                 <Navbar />
                 <LandingPage />
+              </>
+            )}
+          />
+          <Route
+            path="/appointment"
+            component={() => (
+              <>
+                <Navbar />
+                <AppointmentHistory />
               </>
             )}
           />

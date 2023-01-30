@@ -12,6 +12,7 @@ import Logo from "../assets/logo-sm.png";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
 const logOut = (dispatch) => {
   localStorage.removeItem("accessToken");
   dispatch(resetUser());
@@ -40,6 +41,7 @@ const Navbar = () => {
       to: "booking",
       current: false,
     },
+    { name: "Appointments", to: "appointment", current: false },
   ];
 
   return (
@@ -105,7 +107,7 @@ const Navbar = () => {
                 </button>
 
                 {/* Bucket */}
-                <Bucket />
+                {/* <Bucket /> */}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
