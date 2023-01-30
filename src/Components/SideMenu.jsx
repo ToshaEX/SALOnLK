@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BiGridAlt, BiUser } from "react-icons/bi";
+import { BiGridAlt, BiUser, BiBookContent } from "react-icons/bi";
 import { RiScissorsFill, RiPieChartFill } from "react-icons/ri";
-import { IoMdCalendar } from "react-icons/io";
 import { SlSettings } from "react-icons/sl";
 import { HiOutlineMenuAlt3, HiOutlineMenuAlt2 } from "react-icons/hi";
 
@@ -24,9 +23,9 @@ export default function SideMenu() {
       path: "/employee-handler",
     },
     {
-      name: "Calendar",
-      icon: <IoMdCalendar />,
-      path: "/",
+      name: "Appointment",
+      icon: <BiBookContent />,
+      path: "/appointment-handler",
     },
     {
       name: "Charts",
