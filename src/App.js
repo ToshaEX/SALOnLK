@@ -62,7 +62,7 @@ function App() {
             component={() => (
               <>
                 <Navbar />
-                <AppointmentHistory />
+                <AppointmentHandler />
               </>
             )}
           />

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { Table } from "./index";
 
 export default function AppointmentTable() {
   const [appointment, setAppointment] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const userId = useSelector((state) => state.user.userId);
 
   const columns = [
     {
@@ -17,11 +20,11 @@ export default function AppointmentTable() {
       width: "150px",
     },
 
-    {
-      name: "Services",
-      selector: (row) => row.services,
-      width: "200px",
-    },
+    // {
+    //   name: "Services",
+    //   selector: (row) => row.services,
+    //   width: "200px",
+    // },
     {
       name: "Date",
       selector: (row) => row.date,
@@ -58,18 +61,24 @@ export default function AppointmentTable() {
   ];
 
   useEffect(() => {
+    console.log("runnn");
     axios({
       method: "GET",
-      url: "appointment",
+      url: `appointment/user/all/${userId}`,
       responseType: "json",
     })
       .then((res) => {
         setAppointment(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log("Failed to load Users", err);
       });
   }, []);
+
+  if (isLoading) {
+    return <div>hitan upto</div>;
+  }
 
   return (
     <div className="w-full h-full">
@@ -79,7 +88,7 @@ export default function AppointmentTable() {
           id: item._id,
           customerID: item.user,
           beauticianID: item.beautician,
-          services: item.services,
+          // services: item.services,
           date: item.appointment_date,
         }))}
       />
