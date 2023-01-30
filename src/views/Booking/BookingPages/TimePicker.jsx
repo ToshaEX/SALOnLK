@@ -12,7 +12,7 @@ function TimePicker(props) {
   const [slots, setSlots] = useState([]);
 
   const [slotList, setSlotList] = useState([]);
-  const [tempSlotList, setTempSlotList] = useState([]);
+  const [slotNumber, setSlotNumber] = useState([]);
 
   useEffect(() => {
     axios({
@@ -29,6 +29,9 @@ function TimePicker(props) {
   }, []);
 
   async function getSlots(beauticianID) {
+    setSlotList([]);
+    setSlotNumber([]);
+
     await axios({
       method: "GET",
       url: `appointment/user/${beauticianID}/slots`,
@@ -85,6 +88,7 @@ function TimePicker(props) {
   ];
 
   const amount = Math.round(props.timeTaken / 15);
+  const year = date.getFullYear();
   const day = date.getDate();
   const month = date.getMonth() + 1;
 
@@ -100,22 +104,23 @@ function TimePicker(props) {
     if (slots.length === 0) {
       for (let i = 0; i < amount; i++) {
         setSlotList((arr) => arr.concat(slotsList[i]));
+        setSlotNumber((arr) => arr.concat(i + 1));
       }
       setSelectedBeautician(b_id);
-      props.handleTime(true);
+      props.handleTime(true, year + "-" + month + "-" + day, b_id, slotNumber);
     } else {
       console.log("hiii");
     }
 
-    console.log(slotList.length);
-    console.log(props.timeTaken);
-    console.log(amount);
-    console.log(date);
+    // console.log(slotList.length);
+    // console.log(props.timeTaken);
+    // console.log(amount);
+    // console.log(date);
   }
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         <div>
           {/* beautician pick */}
           <div className="px-3">
@@ -166,12 +171,11 @@ function TimePicker(props) {
           </div>
         </div>
         {/* calendar */}
-        <div className="px-1">
+        <div className="px-3 mt-5 mb-5 lg:mt-0">
           <div className="text-[14px] font-semibold pb-1">Pick a Date</div>
           <Calendar value={date} onChange={setDate} />
         </div>
       </div>
-      <button onClick={console.log(date.toISOString())}>hi</button>
     </div>
   );
 }

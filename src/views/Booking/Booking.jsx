@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FAQ, Footer, StepProgressBar } from "../../Components/index";
 import ServicePicker from "./BookingPages/ServicePicker";
 import TimePicker from "./BookingPages/TimePicker";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const Booking = () => {
   const [index, setIndex] = useState(1);
@@ -14,7 +15,6 @@ const Booking = () => {
 
   const [amount, setAmount] = useState(0);
   const [time, setTime] = useState(0);
-  const [isSelected, setIsSelected] = useState(false);
 
   const PageDisplay = () => {
     if (index === 1) {
@@ -55,11 +55,47 @@ const Booking = () => {
     }
   };
 
-  const handleTime = (isSelect) => {
+  const [isSelected, setIsSelected] = useState(false);
+  const [date, setDate] = useState(null);
+  const [beauticianID, setBeauticianID] = useState(null);
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  const handleTime = (isSelect, selectedDate, b_id, timeSlots) => {
     setIsSelected(isSelect);
+    setDate(selectedDate);
+    setBeauticianID(b_id);
+    setTimeSlots(timeSlots);
+    console.log("aaaaaaaaaaaaaaaaaaaaaaa");
     console.log(isSelect);
-    console.log(index);
+    console.log(selectedDate);
+    console.log(b_id);
+    console.log(timeSlots);
+    console.log(pickServices);
   };
+
+  const { userId } = useSelector((state) => ({ userId: state.user.userId }));
+
+  const formSubmit = async () => {
+    const data = {
+      appointment_date: date,
+      slots: timeSlots,
+      beautician: beauticianID,
+      user: userId,
+      services: pickServices,
+    };
+
+    newAppointment(data);
+  };
+
+  async function newAppointment(payload) {
+    await axios({
+      method: "POST",
+      url: "appointment",
+      responseType: "json",
+      data: payload,
+    }).then(() => console.log("finished"));
+  }
+
   return (
     <section id="booking" className="h-[110vh]">
       <div className="bg-[url('./assets/booking.png')] relative">
@@ -101,6 +137,9 @@ const Booking = () => {
                   if (isSelected) {
                     if (index === 2) {
                       nextButton();
+                    }
+                    if (index === 3) {
+                      formSubmit();
                     }
                   } else {
                     toast.error("Please select a Beautician!");
