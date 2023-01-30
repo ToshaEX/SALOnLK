@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { resetUser } from "../features/user/user-slice";
 import { Roles } from "../roles/roles";
+import Bucket from "./Bucket";
 import Logo from "../assets/logo-sm.png";
 
 function classNames(...classes) {
@@ -103,6 +104,9 @@ const Navbar = () => {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
+                {/* Bucket */}
+                <Bucket />
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -153,19 +157,7 @@ const Navbar = () => {
                           )}
                         </Menu.Item>
                       )}
-                      {/* <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item> */}
+
                       {!userName ? (
                         <>
                           <Menu.Item>
