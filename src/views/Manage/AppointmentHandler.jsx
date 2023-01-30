@@ -21,7 +21,7 @@ const AppointmentHandler = () => {
       </div>
 
       {/* table view section */}
-      {/* <AppointmentTable /> */}
+      <AppointmentTable />
 
       <GoToTop />
     </div>
