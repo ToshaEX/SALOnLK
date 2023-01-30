@@ -22,6 +22,7 @@ import EmployeeHandler from "./views/Auth/Employee/EmployeeHandler";
 import Dashboard from "./views/Manage/Dashboard";
 import Booking from "./views/Booking/Booking";
 import ManageCharts from "./views/Manage/Charts/ManageCharts";
+import AppointmentHandler from "./views/Manage/AppointmentHandler";
 import AppointmentHistory from "./views/Appoinment/AppointmentHistory";
 
 const history = createBrowserHistory();
@@ -159,6 +160,21 @@ function App() {
                 <div className="flex">
                   <SideMenu />
                   <ManageCharts />
+                </div>
+              </>
+            )}
+          />
+
+          <Route
+            exact
+            strict
+            path="/appointment-handler"
+            component={() => (
+              <>
+                <Navbar />
+                <div className="flex">
+                  <SideMenu />
+                  <AppointmentHandler />
                 </div>
               </>
             )}
