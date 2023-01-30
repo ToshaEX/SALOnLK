@@ -1,58 +1,160 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FAQ, Footer, StepProgressBar } from "../../Components/index";
+import ServicePicker from "./BookingPages/ServicePicker";
+import TimePicker from "./BookingPages/TimePicker";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const Booking = () => {
   const [index, setIndex] = useState(1);
-  const [page, setPage] = useState(<div>hi</div>);
-
-  const prevButton = () => {
-    if (index > 1) {
-      setIndex(index - 1);
-      PageDisplay();
-    }
-  };
 
   const nextButton = () => {
-    if (index < 4) {
-      setIndex(index + 1);
-      PageDisplay();
-    }
+    setIndex((currentPage) => currentPage + 1);
   };
+
+  const [amount, setAmount] = useState(0);
+  const [time, setTime] = useState(0);
 
   const PageDisplay = () => {
     if (index === 1) {
-      setPage(<div>hi</div>);
+      return (
+        <ServicePicker nextStep={nextButton} handleService={handleService} />
+      );
     } else if (index === 2) {
-      setPage(<FAQ />);
+      return (
+        <TimePicker
+          nextStep={nextButton}
+          handleTime={handleTime}
+          timeTaken={time}
+        />
+      );
     }
   };
 
-  return (
-    <section id="booking" className="flex justify-center item-center p-10">
-      <div className="bg-white w-2/3 shadow-md rounded-md ">
-        <div className="px-20 py-10">
-          <StepProgressBar step={index} />
-        </div>
+  const [pickServices, setPickServices] = useState([]);
 
-        <div className="p-10 ">{page}</div>
-        <div className="px-10 py-3 flex justify-between items-center">
-          <button
-            type="submit"
-            className="bg-[#273444] rounded-md h-[2.3rem] w-[9rem] border border-transparent px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
-            onClick={() => prevButton()}
-          >
-            Previous
-          </button>
-          <button
-            type="submit"
-            className="bg-[#273444] rounded-md h-[2.3rem] w-[9rem] border border-transparent px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
-            onClick={() => nextButton()}
-          >
-            Next
-          </button>
+  const handleService = (serviceData, option, timeTaken, salary) => {
+    if (option === "add") {
+      setPickServices((arr) => arr.concat(serviceData));
+      setTime((previousTime) => previousTime + timeTaken);
+      setAmount((previousAmount) => previousAmount + salary);
+      console.log(pickServices);
+      console.log(time);
+      console.log(amount);
+      console.log(index);
+    } else if (option === "remove") {
+      setPickServices((arr) => arr.filter((item) => item !== serviceData));
+      setTime((previousTime) =>
+        previousTime === 0 ? 0 : previousTime - timeTaken
+      );
+      setAmount((previousAmount) =>
+        previousAmount === 0 ? 0 : previousAmount - salary
+      );
+      console.log(pickServices);
+    }
+  };
+
+  const [isSelected, setIsSelected] = useState(false);
+  const [date, setDate] = useState(null);
+  const [beauticianID, setBeauticianID] = useState(null);
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  const handleTime = (isSelect, selectedDate, b_id, timeSlots) => {
+    setIsSelected(isSelect);
+    setDate(selectedDate);
+    setBeauticianID(b_id);
+    setTimeSlots(timeSlots);
+    console.log("aaaaaaaaaaaaaaaaaaaaaaa");
+    console.log(isSelect);
+    console.log(selectedDate);
+    console.log(b_id);
+    console.log(timeSlots);
+    console.log(pickServices);
+  };
+
+  const { userId } = useSelector((state) => ({ userId: state.user.userId }));
+
+  const formSubmit = async () => {
+    const data = {
+      appointment_date: date,
+      slots: timeSlots,
+      beautician: beauticianID,
+      user: userId,
+      services: pickServices,
+    };
+
+    newAppointment(data);
+  };
+
+  async function newAppointment(payload) {
+    await axios({
+      method: "POST",
+      url: "appointment",
+      responseType: "json",
+      data: payload,
+    }).then(() => console.log("finished"));
+  }
+
+  return (
+    <section id="booking" className="h-[110vh]">
+      <div className="bg-[url('./assets/booking.png')] relative">
+        <div className="p-[3rem] text-white">
+          <div className="text-center">
+            <h2 className="font-bold text-[42px] leading-none tracking-tight md:text-[50px]">
+              Book Now
+            </h2>
+          </div>
+
+          <div className="text-center pt-[2rem]">
+            <span className="text-[17px] tracking-tight md:text-[18px]">
+              Personalize your service and schedule your appointment today!
+            </span>
+          </div>
+
+          <div className="flex py-[3rem] justify-center">
+            <button className=""></button>
+          </div>
         </div>
       </div>
+
+      <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 top-[23rem]">
+        <div className="bg-white w-[60%] pt-5 rounded-md shadow-md">
+          <div className="px-20 py-10">
+            <StepProgressBar step={index} />
+          </div>
+
+          <div className="px-10 pt-10">{PageDisplay()}</div>
+          <div className="px-20 pb-5 flex justify-end items-center">
+            <button
+              type="submit"
+              className="bg-[#273444] rounded-md h-[2.3rem] w-[8rem] border border-transparent text-[12px] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
+              onClick={() => {
+                if (pickServices.length > 0) {
+                  if (index === 1) {
+                    nextButton();
+                  }
+                  if (isSelected) {
+                    if (index === 2) {
+                      nextButton();
+                    }
+                    if (index === 3) {
+                      formSubmit();
+                    }
+                  } else {
+                    toast.error("Please select a Beautician!");
+                  }
+                } else {
+                  toast.error("Please add a Service!");
+                }
+              }}
+            >
+              {index === 3 ? "Finished" : "Next"}
+            </button>
+          </div>
+        </div>
+      </div>
+      <Toaster position="bottom-right" />
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdAdd } from "react-icons/io";
 
 const MakeUp = ({ service = [] }) => {
   const Makeup = service.filter((val) => val.category === "Makeup");
@@ -24,7 +25,7 @@ const MakeUp = ({ service = [] }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {Makeup.map((item, i) => (
                 <div
-                  className="md:max-w-[300px] px-4 pb-3"
+                  className="md:w-[312px] px-4 pb-3 bg-white rounded-md"
                   key={"makeup-list" + i}
                 >
                   <div className="flex">
@@ -39,7 +40,7 @@ const MakeUp = ({ service = [] }) => {
                       </span>
                     </div>
                   </div>
-                  <div className="text-start pt-[10px]">
+                  <div className="text-start pt-[10px] pb-1">
                     <span className="text-[16px] tracking-tight text-gray">
                       {item.description}&nbsp;({item.time}&nbsp;min)
                     </span>

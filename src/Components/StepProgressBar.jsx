@@ -9,7 +9,7 @@ function StepProgressBar(props) {
         percent={((props.step - 1) * 100) / 2}
         filledBackground="linear-gradient(to right, #f7f9fc, #273444)"
       >
-        <Step transition="scale">
+        <Step transition="">
           {({ accomplished }) => (
             <div className="flex flex-col justify-center items-center pt-6">
               <div className={`step  ${accomplished ? "completed" : null}`}>
@@ -21,7 +21,7 @@ function StepProgressBar(props) {
             </div>
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="">
           {({ accomplished }) => (
             <div className="flex flex-col justify-center items-center pt-6">
               <div className={`step  ${accomplished ? "completed" : null}`}>
@@ -33,7 +33,7 @@ function StepProgressBar(props) {
             </div>
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="">
           {({ accomplished }) => (
             <div className="flex flex-col justify-center items-center pt-6">
               <div className={`step  ${accomplished ? "completed" : null}`}>
