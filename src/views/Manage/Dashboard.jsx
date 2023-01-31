@@ -126,7 +126,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:row-span-6 md:h-[20rem]">
           {/* customer vs services chart */}
           <div className="shadow-md rounded-md md:col-span-2">
-            {/* <AppointmentTable /> */}
+            <AppointmentTable />
           </div>
           {/* bookings */}
           <div className="shadow-md rounded-md md:col-span-1 overflow-hidden text-[13px] bg-white p-3">
