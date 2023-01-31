@@ -106,6 +106,23 @@ function TimePicker(props) {
     <div>
       <div className="flex flex-col lg:flex-row">
         <div>
+          {/* calendar */}
+          <div className="px-3 mt-5 mb-5 lg:mt-0">
+            <div className="text-[14px] font-semibold pb-1">Pick a Date</div>
+            <Calendar
+              value={date === null ? new Date() : date}
+              onChange={(e) => {
+                setDate(e);
+                setDateSelection({
+                  startDate: dateFormatter(e, -1),
+                  endDate: dateFormatter(e, 1),
+                });
+                console.log(date);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col">
           {/* beautician pick */}
           <div className="px-3">
             <div className="text-[14px] font-semibold pb-1">
@@ -133,6 +150,7 @@ function TimePicker(props) {
                 })}
             </select>
           </div>
+
           {/* time slot pick */}
           <div className="px-3 mt-5">
             <div className="text-[14px] font-semibold pb-1">
@@ -164,21 +182,6 @@ function TimePicker(props) {
               )}
             </div>
           </div>
-        </div>
-        {/* calendar */}
-        <div className="px-3 mt-5 mb-5 lg:mt-0">
-          <div className="text-[14px] font-semibold pb-1">Pick a Date</div>
-          <Calendar
-            value={date === null ? new Date() : date}
-            onChange={(e) => {
-              setDate(e);
-              setDateSelection({
-                startDate: dateFormatter(e, -1),
-                endDate: dateFormatter(e, 1),
-              });
-              console.log(date);
-            }}
-          />
         </div>
       </div>
     </div>
