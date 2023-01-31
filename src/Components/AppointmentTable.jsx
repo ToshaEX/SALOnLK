@@ -77,7 +77,10 @@ export default function AppointmentTable() {
   }, []);
 
   if (isLoading) {
-    return <div>hitan upto</div>;
+    return <div>Loading upto</div>;
+  }
+  if (appointment.length === 0) {
+    <div> no data to show</div>;
   }
 
   return (
@@ -86,8 +89,8 @@ export default function AppointmentTable() {
         columns={columns}
         rows={appointment.map((item, index) => ({
           id: item._id,
-          customerID: item.user,
-          beauticianID: item.beautician,
+          customerID: item.user._id,
+          beauticianID: item.beautician.first_name,
           // services: item.services,
           date: item.appointment_date,
         }))}

@@ -134,16 +134,16 @@ const Booking = () => {
                   if (index === 1) {
                     nextButton();
                   }
-                  if (isSelected) {
-                    if (index === 2) {
-                      nextButton();
-                    }
-                    if (index === 3) {
-                      formSubmit();
-                    }
-                  } else {
-                    toast.error("Please select a Beautician!");
+                  // if (isSelected) {
+                  if (index === 2) {
+                    nextButton();
                   }
+                  if (index === 3) {
+                    formSubmit();
+                  }
+                  // } else {
+                  //   toast.error("Please select a Beautician!");
+                  // }
                 } else {
                   toast.error("Please add a Service!");
                 }
