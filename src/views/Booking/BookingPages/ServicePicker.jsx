@@ -12,6 +12,8 @@ function ServicePicker(props) {
   const [toggleFive, setToggleFive] = useState(false);
   const [toggleSix, setToggleSix] = useState(false);
 
+  const [pickServices, setPickServices] = useState([]);
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -32,8 +34,6 @@ function ServicePicker(props) {
   const nails = service.filter((val) => val.category === "Nails");
   const cosmetology = service.filter((val) => val.category === "Cosmetology");
   const massage = service.filter((val) => val.category === "Massage");
-
-  const [pickServices, setPickServices] = useState([]);
 
   return (
     <div className="text-center bg-white pb-10">
