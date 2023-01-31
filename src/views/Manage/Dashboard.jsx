@@ -5,12 +5,12 @@ import { RiScissorsFill } from "react-icons/ri";
 import { IoMdCalendar } from "react-icons/io";
 import axios from "axios";
 import ProfitChart from "./Charts/ProfitChart";
-import ServiceChart from "./Charts/ServiceChart";
 import AppointmentTable from "../../Components/AppointmentTable";
 
 export default function Dashboard() {
   const [services, setServices] = useState([]);
   const [users, setUsers] = useState(0);
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     axios({
@@ -36,7 +36,21 @@ export default function Dashboard() {
       .catch((err) => {
         console.log("Failed to load Services", err);
       });
+
+    axios({
+      method: "GET",
+      url: "appointment",
+      responseType: "json",
+    })
+      .then((res) => {
+        setAppointments(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to load Services", err);
+      });
   }, []);
+
+  const getProfit = () => {};
 
   const numberDetails = [
     {
@@ -49,7 +63,7 @@ export default function Dashboard() {
     },
     {
       name: "Total Appointments",
-      numbers: "1024",
+      numbers: appointments.length,
       percentage: "12.24",
       percentageValue: "decrease",
       date: "Since last month",
@@ -65,7 +79,7 @@ export default function Dashboard() {
     },
     {
       name: "Profit",
-      numbers: `Rs: ${52510}`,
+      numbers: `Rs: ${0}`,
       percentage: "18.46",
       percentageValue: "increase",
       date: "Since last month",
@@ -123,14 +137,10 @@ export default function Dashboard() {
         </div>
 
         {/* second section */}
-        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:row-span-6 md:h-[20rem]">
-          {/* customer vs services chart */}
-          <div className="shadow-md rounded-md md:col-span-2">
+        <div className="grid grid-cols-1 grid-rows-1 h-[10rem] md:h-[15.3rem]">
+          {/* appointment table */}
+          <div className="shadow-md rounded-md">
             <AppointmentTable />
-          </div>
-          {/* bookings */}
-          <div className="shadow-md rounded-md md:col-span-1 overflow-hidden text-[13px] bg-white p-3">
-            <ServiceChart />
           </div>
         </div>
       </div>

@@ -39,9 +39,9 @@ function Finished(props) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row">
+    <div className="flex flex-col-reverse lg:flex-row">
       {/* Display user selected all services and total price*/}
-      <div className="px-3 mt-5 mb-5 lg:mt-0 md:w-1/2 bg-white ">
+      <div className="px-3 mt-0 md:mt-5 mb-5 lg:mt-0 md:w-1/2 bg-white ">
         {/* selected services */}
         <div className="text-[14px] font-semibold pb-1">Selected Services</div>
         <div className=" shadow-md bg-[#f7f9fc] rounded-md">
@@ -87,22 +87,25 @@ function Finished(props) {
       </div>
       {/* Display beautician, date and time */}
       <div className="px-3 mt-5 mb-5 lg:mt-0 md:w-1/2 bg-white ">
-        {/* date */}
-        <div>
-          <div className="text-[14px] font-semibold pb-1">Selected Date</div>
-          <div className="w-full text-[15px] text-gray-dark p-2 ">
-            <span>{date}</span>
+        <div className="flex justify-between md:flex-col">
+          {/* date */}
+          <div>
+            <div className="text-[14px] font-semibold pb-1">Selected Date</div>
+            <div className="w-full text-[15px] text-gray-dark p-2 ">
+              <span>{date}</span>
+            </div>
+          </div>
+          {/* time */}
+          <div>
+            <div className="text-[14px] font-semibold pb-1">Selected Time</div>
+            <div className="w-full text-[15px] text-gray-dark p-2 ">
+              <span>{timeTaken}&nbsp;min</span>
+            </div>
           </div>
         </div>
-        {/* time */}
-        <div>
-          <div className="text-[14px] font-semibold pb-1">Selected Time</div>
-          <div className="w-full text-[15px] text-gray-dark p-2 ">
-            <span>{timeTaken}&nbsp;min</span>
-          </div>
-        </div>
+
         {/* beautician */}
-        <div>
+        <div className="mt-2 md:mt-0">
           <div className="text-[14px] font-semibold pb-1">
             Selected Beautician
           </div>

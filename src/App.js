@@ -166,21 +166,6 @@ function App() {
           />
 
           <Route
-            exact
-            strict
-            path="/appointment-handler"
-            component={() => (
-              <>
-                <Navbar />
-                <div className="flex">
-                  <SideMenu />
-                  <AppointmentHandler />
-                </div>
-              </>
-            )}
-          />
-
-          <Route
             path="/booking"
             component={() => (
               <>
