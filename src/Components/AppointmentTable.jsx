@@ -15,7 +15,7 @@ export default function AppointmentTable() {
     role: state.user.role,
   }));
 
-  console.log(role);
+  // console.log(role);
   const columns = [
     {
       name: "Customer",
@@ -82,7 +82,6 @@ export default function AppointmentTable() {
     },
     {
       name: "Services",
-
       omit: role === Roles.BEAUTICIAN || role === Roles.ADMIN,
       selector: (row) => row.services.map((service, i) => service.name + ",\n"),
       width: "auto",

@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
-import GoToTop from "../../GoToTop";
+import { useSelector } from "react-redux";
 import { BiUser, BiDollar } from "react-icons/bi";
 import { RiScissorsFill } from "react-icons/ri";
 import { IoMdCalendar } from "react-icons/io";
 import axios from "axios";
 import ProfitChart from "./Charts/ProfitChart";
 import AppointmentTable from "../../Components/AppointmentTable";
+import GoToTop from "../../GoToTop";
 
 export default function Dashboard() {
   const [services, setServices] = useState([]);
   const [users, setUsers] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
+
+  const { userId, role } = useSelector((state) => ({
+    userId: state.user.userId,
+    role: state.user.role,
+  }));
 
   useEffect(() => {
     axios({
@@ -37,21 +44,28 @@ export default function Dashboard() {
         console.log("Failed to load Services", err);
       });
 
-    axios({
-      method: "GET",
-      url: "appointment",
-      responseType: "json",
-    })
-      .then((res) => {
-        setAppointments(res.data);
-      })
-      .catch((err) => {
-        console.log("Failed to load Services", err);
-      });
+    // axios({
+    //   method: "GET",
+    //   url: `appointment`,
+    //   responseType: "json",
+    // })
+    //   .then((res) => {
+    //     setAppointments(res.data);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Failed to load Services", err);
+    //   });
   }, []);
 
-  const getProfit = () => {};
+  const getProfit = () => {
+    // const setServicesList = appointments.map((item, i) => item.services);
 
+    // console.log(setServicesList);
+    return 0;
+  };
+
+  // use demo percentages
   const numberDetails = [
     {
       name: "Total Customers",
@@ -79,7 +93,7 @@ export default function Dashboard() {
     },
     {
       name: "Profit",
-      numbers: `Rs: ${0}`,
+      numbers: `Rs: ${getProfit()}`,
       percentage: "18.46",
       percentageValue: "increase",
       date: "Since last month",
@@ -100,7 +114,7 @@ export default function Dashboard() {
             {numberDetails.map((item, index) => {
               return (
                 <div
-                  className="bg-white rounded-md shadow-md"
+                  className="bg-white rounded-md shadow-md overflow-hidden"
                   key={"dashboard-list-1" + index}
                 >
                   <div className="flex justify-between items-center p-3 mt-1">

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BiGridAlt, BiUser } from "react-icons/bi";
 import { RiScissorsFill, RiPieChartFill } from "react-icons/ri";
-import { SlSettings } from "react-icons/sl";
 import { HiOutlineMenuAlt3, HiOutlineMenuAlt2 } from "react-icons/hi";
 
 export default function SideMenu() {
@@ -26,11 +25,6 @@ export default function SideMenu() {
       name: "Charts",
       icon: <RiPieChartFill />,
       path: "/chart-handler",
-    },
-    {
-      name: "Settings",
-      icon: <SlSettings />,
-      path: "/manage",
     },
   ];
 
