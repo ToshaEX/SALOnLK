@@ -71,9 +71,6 @@ function TimePicker(props) {
       })
         .then((res) => {
           setBeauticianSlots(res.data);
-          setSelectedSlots(
-            slotFactory(beauticianSlots?.at(-1), Math.ceil(timeTaken / 15))
-          );
         })
 
         .catch((err) => {
@@ -81,6 +78,17 @@ function TimePicker(props) {
         });
     }
   }, [date, selectedBeautician]);
+
+  useEffect(() => {
+    if (beauticianSlots!==null) {
+      setSelectedSlots(
+        slotFactory(
+          beauticianSlots.length === 0 ? 0 : beauticianSlots.at(-1),
+          Math.ceil(timeTaken / 15)
+        )
+      );
+    }
+  }, [beauticianSlots]);
 
   useEffect(() => {
     if (
@@ -145,8 +153,12 @@ function TimePicker(props) {
               </div> */}
               {beauticianSlots && (
                 <div>
-                  {slotsList[beauticianSlots.at(-1)]?.timeSlot.split("-")[0]} -
-                  {slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0]}
+                  {
+                    slotsList[
+                      beauticianSlots.length === 0 ? 0 : beauticianSlots.at(-1)
+                    ]?.timeSlot.split("-")[0]
+                  }{" "}
+                  -{slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0]}
                   {timeTaken}
                 </div>
               )}

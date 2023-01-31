@@ -19,7 +19,6 @@ export default function AppointmentTable() {
       selector: (row) => row.beauticianID,
       width: "150px",
     },
-
     // {
     //   name: "Services",
     //   selector: (row) => row.services,
