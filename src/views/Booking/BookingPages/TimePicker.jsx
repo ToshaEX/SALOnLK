@@ -80,7 +80,7 @@ function TimePicker(props) {
   }, [date, selectedBeautician]);
 
   useEffect(() => {
-    if (beauticianSlots!==null) {
+    if (beauticianSlots !== null) {
       setSelectedSlots(
         slotFactory(
           beauticianSlots.length === 0 ? 0 : beauticianSlots.at(-1),
@@ -97,7 +97,14 @@ function TimePicker(props) {
       selectedSlots.length !== 0
     ) {
       console.log("runnnnn");
-      handleTime(true, dateFormatter(date), selectedBeautician, selectedSlots);
+      handleTime(
+        true,
+        dateSelection.endDate !== null && dateSelection.startDate !== null,
+        dateFormatter(date),
+        selectedBeautician,
+        selectedSlots,
+        date.toString().substring(0, 16)
+      );
     }
     console.log(selectedSlots);
   }, [date, selectedBeautician, selectedSlots]);
@@ -105,7 +112,7 @@ function TimePicker(props) {
   return (
     <div>
       <div className="flex flex-col lg:flex-row">
-        <div>
+        <div className="md:w-1/2">
           {/* calendar */}
           <div className="px-3 mt-5 mb-5 lg:mt-0">
             <div className="text-[14px] font-semibold pb-1">Pick a Date</div>
@@ -122,7 +129,7 @@ function TimePicker(props) {
             />
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col md:w-1/2">
           {/* beautician pick */}
           <div className="px-3">
             <div className="text-[14px] font-semibold pb-1">
@@ -152,32 +159,21 @@ function TimePicker(props) {
           </div>
 
           {/* time slot pick */}
-          <div className="px-3 mt-5">
+          <div className="px-3 mt-5 pb-5">
             <div className="text-[14px] font-semibold pb-1">
               Your Time Slots
             </div>
             <div className={selectedBeautician === null ? "hidden" : "block"}>
-              {/* <div className="grid grid-cols-2 grid-rows-8 gap-2">
-                {slotList.map((item, index) => {
-                  return (
-                    <div
-                      className="bg-[#F7F9FC] text-[14px] text-center p-2 rounded-md"
-                      key={"slot-list" + index}
-                    >
-                      {item.timeSlot}
-                    </div>
-                  );
-                })}
-              </div> */}
               {beauticianSlots && (
                 <div>
                   {
                     slotsList[
                       beauticianSlots.length === 0 ? 0 : beauticianSlots.at(-1)
                     ]?.timeSlot.split("-")[0]
-                  }{" "}
-                  -{slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0]}
-                  {timeTaken}
+                  }
+                  -&nbsp;
+                  {slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0]}
+                  &nbsp;({timeTaken}min)
                 </div>
               )}
             </div>

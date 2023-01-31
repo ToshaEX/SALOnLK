@@ -5,16 +5,27 @@ import ServicePicker from "./BookingPages/ServicePicker";
 import TimePicker from "./BookingPages/TimePicker";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import Finished from "./BookingPages/Finished";
+import { useHistory } from "react-router-dom";
 
 const Booking = () => {
   const [index, setIndex] = useState(1);
+  const [amount, setAmount] = useState(0);
+  const [time, setTime] = useState(0);
+  const [pickServices, setPickServices] = useState([]);
+  const [isSelectBeautician, setIsSelectBeautician] = useState(false);
+  const [isSelectDate, setIsSelectDate] = useState(false);
+  const [date, setDate] = useState(null);
+  const [rowDate, setRowDate] = useState(null);
+  const [beauticianID, setBeauticianID] = useState(null);
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [getConfirm, setConfirm] = useState(false);
+  const { userId } = useSelector((state) => ({ userId: state.user.userId }));
+  const history = useHistory();
 
   const nextButton = () => {
     setIndex((currentPage) => currentPage + 1);
   };
-
-  const [amount, setAmount] = useState(0);
-  const [time, setTime] = useState(0);
 
   const PageDisplay = () => {
     if (index === 1) {
@@ -29,20 +40,31 @@ const Booking = () => {
           timeTaken={time}
         />
       );
+    } else if (index === 3) {
+      return (
+        <Finished
+          nextStep={nextButton}
+          handleFinished={handleFinished}
+          selectedServices={pickServices}
+          salary={amount}
+          b_id={beauticianID}
+          date={rowDate}
+          timeTaken={time}
+        />
+      );
     }
   };
-
-  const [pickServices, setPickServices] = useState([]);
 
   const handleService = (serviceData, option, timeTaken, salary) => {
     if (option === "add") {
       setPickServices((arr) => arr.concat(serviceData));
       setTime((previousTime) => previousTime + timeTaken);
       setAmount((previousAmount) => previousAmount + salary);
-      console.log(pickServices);
-      console.log(time);
-      console.log(amount);
-      console.log(index);
+      // console.log("bbbbbbbbbbbbbbbbbbbb");
+      // console.log(pickServices);
+      // console.log(time);
+      // console.log(amount);
+      // console.log(index);
     } else if (option === "remove") {
       setPickServices((arr) => arr.filter((item) => item !== serviceData));
       setTime((previousTime) =>
@@ -51,29 +73,37 @@ const Booking = () => {
       setAmount((previousAmount) =>
         previousAmount === 0 ? 0 : previousAmount - salary
       );
-      console.log(pickServices);
+      // console.log(pickServices);
     }
   };
 
-  const [isSelected, setIsSelected] = useState(false);
-  const [date, setDate] = useState(null);
-  const [beauticianID, setBeauticianID] = useState(null);
-  const [timeSlots, setTimeSlots] = useState([]);
-
-  const handleTime = (isSelect, selectedDate, b_id, timeSlots) => {
-    setIsSelected(isSelect);
+  const handleTime = (
+    isSelectBeautician,
+    isSelectDate,
+    selectedDate,
+    b_id,
+    timeSlots,
+    rowDates
+  ) => {
+    setIsSelectBeautician(isSelectBeautician);
     setDate(selectedDate);
     setBeauticianID(b_id);
     setTimeSlots(timeSlots);
-    console.log("aaaaaaaaaaaaaaaaaaaaaaa");
-    console.log(isSelect);
-    console.log(selectedDate);
-    console.log(b_id);
-    console.log(timeSlots);
-    console.log(pickServices);
+    setIsSelectDate(isSelectDate);
+    setRowDate(rowDates);
+    // console.log("aaaaaaaaaaaaaaaaaaaaaaa");
+    // console.log(isSelectBeautician);
+    // console.log(selectedDate);
+    // console.log(b_id);
+    // console.log(timeSlots);
+    // console.log(pickServices);
+    // console.log(rowDates);
   };
 
-  const { userId } = useSelector((state) => ({ userId: state.user.userId }));
+  const handleFinished = (confirmed) => {
+    setConfirm(confirmed);
+    console.log(confirmed);
+  };
 
   const formSubmit = async () => {
     const data = {
@@ -93,7 +123,15 @@ const Booking = () => {
       url: "appointment",
       responseType: "json",
       data: payload,
-    }).then(() => console.log("finished"));
+    })
+      .then(() => {
+        console.log("confirm");
+        toast.success("Appointment successfully Submitted!");
+        history.push("/appointment");
+      })
+      .catch((err) => {
+        console.log("Failed to send appointments", err);
+      });
   }
 
   return (
@@ -130,22 +168,24 @@ const Booking = () => {
               type="submit"
               className="bg-[#273444] rounded-md h-[2.3rem] w-[8rem] border border-transparent text-[12px] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
               onClick={() => {
-                if (pickServices.length > 0) {
-                  if (index === 1) {
+                if (index === 1) {
+                  if (pickServices.length > 0) {
                     nextButton();
-                  }
-                  if (isSelected) {
-                    if (index === 2) {
-                      nextButton();
-                    }
-                    if (index === 3) {
-                      formSubmit();
-                    }
                   } else {
-                    toast.error("Please select a Beautician!");
+                    toast.error("Please add a service!");
                   }
-                } else {
-                  toast.error("Please add a Service!");
+                } else if (index === 2) {
+                  if (isSelectBeautician && isSelectDate) {
+                    nextButton();
+                  } else {
+                    toast.error("Please select a beautician and date!");
+                  }
+                } else if (index === 3) {
+                  if (getConfirm) {
+                    formSubmit();
+                  } else {
+                    toast.error("Please confirm an appointment!");
+                  }
                 }
               }}
             >
