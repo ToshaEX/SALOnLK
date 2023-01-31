@@ -88,7 +88,7 @@ export default function AppointmentTable() {
           id: item._id,
           customerID: item.user,
           beauticianID: item.beautician,
-          // services: item.services,
+          services: item.services.map((items, i) => ({ items })),
           date: item.appointment_date,
         }))}
       />
