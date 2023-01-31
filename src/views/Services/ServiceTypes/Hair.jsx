@@ -1,5 +1,4 @@
 import React from "react";
-import { IoMdAdd } from "react-icons/io";
 
 const Hair = ({ service = [] }) => {
   const hairCut = service.filter((val) => val.sub_category === "Hair Cut");
@@ -35,7 +34,7 @@ const Hair = ({ service = [] }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {hairCut.map((item, i) => (
                 <div
-                  className="md:w-[312px] px-4 pb-3 bg-[#f7f9fc] rounded-md"
+                  className="md:w-[312px] px-4 pb-3 mb-3 md:mb-3 bg-[#f7f9fc] rounded-md"
                   key={"haircut-list" + i}
                 >
                   <div className="flex">
@@ -70,7 +69,7 @@ const Hair = ({ service = [] }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {hairColor.map((item, i) => (
                 <div
-                  className="md:max-w-[300px] px-4 pb-3 bg-[#f7f9fc] rounded-md"
+                  className="md:max-w-[300px] px-4 pb-3 mb-3 md:mb-3 bg-[#f7f9fc] rounded-md"
                   key={"hairColor-list" + i}
                 >
                   <div className="flex">

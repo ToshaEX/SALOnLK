@@ -60,7 +60,7 @@ const Booking = () => {
       setPickServices((arr) => arr.concat(serviceData));
       setTime((previousTime) => previousTime + timeTaken);
       setAmount((previousAmount) => previousAmount + salary);
-      // console.log("bbbbbbbbbbbbbbbbbbbb");
+
       // console.log(pickServices);
       // console.log(time);
       // console.log(amount);
@@ -91,7 +91,7 @@ const Booking = () => {
     setTimeSlots(timeSlots);
     setIsSelectDate(isSelectDate);
     setRowDate(rowDates);
-    // console.log("aaaaaaaaaaaaaaaaaaaaaaa");
+
     // console.log(isSelectBeautician);
     // console.log(selectedDate);
     // console.log(b_id);
@@ -102,7 +102,7 @@ const Booking = () => {
 
   const handleFinished = (confirmed) => {
     setConfirm(confirmed);
-    console.log(confirmed);
+    // console.log(confirmed);
   };
 
   const formSubmit = async () => {
@@ -125,7 +125,7 @@ const Booking = () => {
       data: payload,
     })
       .then(() => {
-        console.log("confirm");
+        // console.log("confirm");
         toast.success("Appointment successfully Submitted!");
         history.push("/appointment");
       })
@@ -158,11 +158,14 @@ const Booking = () => {
 
       <div className="flex justify-center items-center py-5">
         <div className="bg-white w-full md:w-[65%] pt-5 rounded-md shadow-md">
+          {/* step progress bar */}
           <div className="px-20 py-10">
             <StepProgressBar step={index} />
           </div>
 
+          {/* pages display area */}
           <div className="px-10 pt-10">{PageDisplay()}</div>
+          {/* next button */}
           <div className="px-20 pb-5 flex justify-center items-center md:justify-end">
             <button
               type="submit"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { BiUser, BiDollar } from "react-icons/bi";
 import { RiScissorsFill } from "react-icons/ri";
 import { IoMdCalendar } from "react-icons/io";
@@ -13,11 +12,6 @@ export default function Dashboard() {
   const [users, setUsers] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
-
-  const { userId, role } = useSelector((state) => ({
-    userId: state.user.userId,
-    role: state.user.role,
-  }));
 
   useEffect(() => {
     axios({
@@ -44,26 +38,19 @@ export default function Dashboard() {
         console.log("Failed to load Services", err);
       });
 
-    // axios({
-    //   method: "GET",
-    //   url: `appointment`,
-    //   responseType: "json",
-    // })
-    //   .then((res) => {
-    //     setAppointments(res.data);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log("Failed to load Services", err);
-    //   });
+    axios({
+      method: "GET",
+      url: `appointment`,
+      responseType: "json",
+    })
+      .then((res) => {
+        setAppointments(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Failed to load Services", err);
+      });
   }, []);
-
-  const getProfit = () => {
-    // const setServicesList = appointments.map((item, i) => item.services);
-
-    // console.log(setServicesList);
-    return 0;
-  };
 
   // use demo percentages
   const numberDetails = [
@@ -93,7 +80,7 @@ export default function Dashboard() {
     },
     {
       name: "Profit",
-      numbers: `Rs: ${getProfit()}`,
+      numbers: `Rs: ${0}`,
       percentage: "18.46",
       percentageValue: "increase",
       date: "Since last month",
@@ -102,10 +89,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div
-      id="MainDashboard"
-      className="h-screen border-r border-gray-200 w-60 p-10 bg-white"
-    >
+    <div id="MainDashboard" className="min-h-screen p-10 bg-white">
       <div className="grid grid-cols-1 grid-rows-2 gap-3">
         {/* first section */}
         <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3 md:h-[15.3rem]">

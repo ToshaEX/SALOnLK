@@ -42,6 +42,7 @@ function ServicePicker(props) {
       </div>
       <div className="flex justify-center items-center px-[2rem] text-start pb-1">
         <div className="shadow rounded bg-white w-full">
+          {/* main services list */}
           <div>
             <div
               className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"

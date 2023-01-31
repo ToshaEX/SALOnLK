@@ -105,6 +105,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
           {service === null ? "Create" : "Edit"} Services
         </h2>
 
+        {/* form section */}
         <div>
           <form onSubmit={handleSubmit(formSubmit)}>
             <div className="flex justify-between align-center gap-5">

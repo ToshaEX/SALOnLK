@@ -35,11 +35,12 @@ export default function SideMenu() {
       id="sidebar-mainSection"
       className={
         navSize === "small"
-          ? "w-[75px] bg-primary px-4"
-          : "w-[200px] bg-primary px-5"
+          ? "w-[75px] bg-primary px-[1.34rem] md:px-4 min-h-screen"
+          : "w-[200px] bg-primary px-5 min-h-screen"
       }
     >
       <div className="routes pt-10 md:pt-0 ">
+        {/* side bar toggle button */}
         <div className="mb-[2rem] flex justify-end cursor-pointer">
           <div className={navSize === "small" ? "hidden" : "block"}>
             <HiOutlineMenuAlt3
@@ -66,6 +67,7 @@ export default function SideMenu() {
             />
           </div>
         </div>
+        {/* side bar item list */}
         <div>
           {sideMenuList.map((item, index) => {
             return (

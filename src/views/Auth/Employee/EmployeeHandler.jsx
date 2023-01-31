@@ -95,8 +95,8 @@ export default function EmployeeHandler() {
 
   return (
     <div id="MainEmployeeHandler" className="bg-white p-10 min-h-screen">
-      {/* heder section */}
-      <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:pr-[5rem] md:flex-row">
+      {/* header section */}
+      <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:flex-row">
         <div>
           <button
             type="submit"
@@ -107,7 +107,7 @@ export default function EmployeeHandler() {
           </button>
         </div>
 
-        <div className="w-[18rem]">
+        <div className="md:w-[18rem]">
           <select
             id="role"
             value={select}
@@ -123,20 +123,23 @@ export default function EmployeeHandler() {
       </div>
 
       {/* list view section */}
-      <Table
-        columns={columns}
-        rows={users
-          .filter((val) => val.role === select)
-          .map((item, i) => ({
-            id: item._id,
-            first_name: item.first_name,
-            last_name: item.last_name,
-            role: select,
-            email: item.email,
-            phone: item.phone,
-            gender: item.gender,
-          }))}
-      />
+      <div className="w-[68vw] md:w-full">
+        <Table
+          columns={columns}
+          rows={users
+            .filter((val) => val.role === select)
+            .map((item, i) => ({
+              id: item._id,
+              first_name: item.first_name,
+              last_name: item.last_name,
+              role: select,
+              email: item.email,
+              phone: item.phone,
+              gender: item.gender,
+            }))}
+          isExtended={false}
+        />
+      </div>
 
       {/* add create new employee modal and update modal */}
       {isModalOpen && (

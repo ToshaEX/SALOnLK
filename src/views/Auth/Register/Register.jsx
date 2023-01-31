@@ -93,7 +93,7 @@ const Register = () => {
   }
 
   return (
-    <div className=" bg-[#f7f9fc] pt-[4.5rem] pb-[3rem] md:pb-[4.5rem]">
+    <div className="min-h-screen bg-[#f7f9fc] pt-[4.5rem] pb-[3rem] md:pb-[4.5rem]">
       <div className="container mx-auto">
         <div className="bg-white w-10/12 rounded-xl mx-auto shadow-lg overflow-hidden flex flex-col md:flex-row">
           <div className="w-full bg-[url('./assets/register-img.png')] bg-cover text-white px-10 py-[3.3rem] md:py-[5.5rem] md:w-1/2">
@@ -111,6 +111,7 @@ const Register = () => {
             </div>
           </div>
 
+          {/* form section */}
           <div className="w-full py-10 px-9 md:px-12 md:w-1/2">
             <h2 className="text-3xl mb-4">Register</h2>
 

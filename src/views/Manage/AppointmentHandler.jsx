@@ -6,7 +6,7 @@ import GoToTop from "../../GoToTop";
 const AppointmentHandler = () => {
   return (
     <div id="MainAppointmentHandler" className="bg-white p-10 min-h-screen">
-      {/* heder section */}
+      {/* header section */}
       <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:pr-[5rem] md:flex-row">
         <div>
           <Link to="/booking">

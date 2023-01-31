@@ -1,5 +1,4 @@
 import React from "react";
-import { IoMdAdd } from "react-icons/io";
 
 const Massage = ({ service = [] }) => {
   const massage = service.filter((val) => val.category === "Massage");
@@ -24,7 +23,7 @@ const Massage = ({ service = [] }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 justify-center md:px-[5rem] md:gap-x-20 md:gap-y-10">
               {massage.map((item, i) => (
                 <div
-                  className="md:w-[312px] px-4 pb-3 bg-white rounded-md"
+                  className="md:w-[312px] px-4 pb-3 mb-3 md:mb-3 bg-white rounded-md"
                   key={"massage-list" + i}
                 >
                   <div className="flex">

@@ -62,7 +62,7 @@ const Footer = () => {
     },
     {
       name: "FAQ",
-      path: "/home",
+      path: "/services",
     },
   ];
 

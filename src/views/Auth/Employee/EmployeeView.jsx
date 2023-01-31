@@ -116,7 +116,7 @@ const EmployeeView = ({ onClose, user = null, setUser }) => {
         <h2 className="text-3xl mb-4">
           {user === null ? "Add" : "Edit"} Employee
         </h2>
-
+        {/* form section */}
         <div>
           <form onSubmit={handleSubmit(formSubmit)}>
             <div className="flex justify-between align-center gap-5">

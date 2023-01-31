@@ -8,7 +8,7 @@ import GoToTop from "../../GoToTop";
 export default function ServiceHandler() {
   const [select, setSelect] = useState("Hair");
   const [selectSub, setSelectSub] = useState("Hair Cut");
-  const [show, setShow] = useState("display w-[18rem] pl-[1.5rem]");
+  const [show, setShow] = useState("display");
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenTwo, setIsModalOpenTwo] = useState(false);
@@ -95,8 +95,8 @@ export default function ServiceHandler() {
 
   return (
     <div id="MainServiceHandler" className="bg-white p-10 min-h-screen">
-      {/* heder section */}
-      <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:pr-[5rem] md:flex-row">
+      {/* header section */}
+      <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:flex-row">
         <div>
           <button
             type="submit"
@@ -107,7 +107,7 @@ export default function ServiceHandler() {
           </button>
         </div>
 
-        <div className="w-[18rem]">
+        <div>
           <select
             id="category"
             value={select}
@@ -146,24 +146,27 @@ export default function ServiceHandler() {
       </div>
 
       {/* list view section */}
-      <Table
-        columns={columns}
-        rows={services
-          .filter((val) =>
-            select === "Hair"
-              ? val.sub_category === selectSub
-              : val.category === select
-          )
-          .map((item, i) => ({
-            id: item._id,
-            category: select,
-            sub_category: selectSub,
-            name: item.name,
-            description: item.description,
-            price: `Rs: ${item.price}`,
-            time: `${item.time} min`,
-          }))}
-      />
+      <div className="w-[68vw] md:w-full">
+        <Table
+          columns={columns}
+          rows={services
+            .filter((val) =>
+              select === "Hair"
+                ? val.sub_category === selectSub
+                : val.category === select
+            )
+            .map((item, i) => ({
+              id: item._id,
+              category: select,
+              sub_category: selectSub,
+              name: item.name,
+              description: item.description,
+              price: `Rs: ${item.price}`,
+              time: `${item.time} min`,
+            }))}
+          isExtended={false}
+        />
+      </div>
 
       {/* add create new service modal and update modal */}
       {isModalOpen && (

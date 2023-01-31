@@ -23,13 +23,12 @@ import Dashboard from "./views/Manage/Dashboard";
 import Booking from "./views/Booking/Booking";
 import ManageCharts from "./views/Manage/Charts/ManageCharts";
 import AppointmentHandler from "./views/Manage/AppointmentHandler";
-import AppointmentHistory from "./views/Appoinment/AppointmentHistory";
 
 const history = createBrowserHistory();
 
 const token = localStorage.getItem("accessToken");
 const clearToken = token === null ? "" : token.slice(1, token.length - 1);
-console.log(clearToken);
+// console.log(clearToken);
 axios.defaults.headers.common["Authorization"] = "Bearer " + clearToken;
 axios.defaults.baseURL = process.env.REACT_APP__API_BASE_URL;
 

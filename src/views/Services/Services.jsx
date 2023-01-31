@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { CTA, Footer, FAQ } from "../../Components/index";
 import axios from "axios";
 import { Link } from "react-scroll";
@@ -19,7 +19,6 @@ import HairImg from "../../assets/woman-hair.png";
 import MakeupImg from "../../assets/makeup.png";
 import MassageImg from "../../assets/massage.png";
 import GoToTop from "../../GoToTop";
-import { useSelector } from "react-redux";
 
 const Services = () => {
   const [service, setServices] = useState([]);
@@ -199,7 +198,7 @@ const Services = () => {
       </div>
 
       {/* import CTA Section */}
-      <CTA color={"#ffffff"} />
+      <CTA />
 
       {/* Frequently asked Section */}
       <FAQ />

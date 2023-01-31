@@ -1,7 +1,7 @@
 import React from "react";
 import DataTable from "react-data-table-component";
 
-export default function Table({ columns, rows }) {
+export default function Table({ columns, rows, isExtended = true }) {
   const customStyles = {
     rows: {
       style: {
@@ -31,7 +31,7 @@ export default function Table({ columns, rows }) {
         pagination
         customStyles={customStyles}
         expandOnRowClicked
-        expandableRows
+        expandableRows={isExtended}
         expandableRowsHideExpander
         expandableRowsComponent={(props) => (
           <div>

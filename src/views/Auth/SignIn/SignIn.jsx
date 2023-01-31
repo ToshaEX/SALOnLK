@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser, setAccessToken } from "../../../features/user/user-slice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -102,6 +102,7 @@ const SignIn = () => {
               </div>
             </div>
 
+            {/* form section */}
             <div className="w-full py-20 px-9 md:px-12 md:w-1/2">
               <h2 className="text-3xl mb-4">Sign In</h2>
 

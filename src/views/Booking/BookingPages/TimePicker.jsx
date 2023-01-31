@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Calendar from "react-calendar";
 import { slotsList } from "./slots";
-import { useSelector } from "react-redux";
 import "react-calendar/dist/Calendar.css";
 
 const dateFormatter = (date, isAdd = 0) => {
@@ -23,7 +22,6 @@ const slotFactory = (startSlot, slotAmount) => {
 function TimePicker(props) {
   const { timeTaken, handleTime } = props;
   //option
-  const userId = useSelector((state) => state.user.userId);
   const [beauticianOption, setBeauticianOption] = useState([]);
   const [date, setDate] = useState(null);
   const [selectedBeautician, setSelectedBeautician] = useState(null);
@@ -48,22 +46,21 @@ function TimePicker(props) {
         console.log("Failed to load Services", err);
       });
   }, []);
-  console.log(userId);
 
   useEffect(() => {
-    console.log("effect run");
-    console.log(
-      dateSelection.endDate,
-      dateSelection.startDate,
-      selectedBeautician
-    );
+    // console.log("effect run");
+    // console.log(
+    //   dateSelection.endDate,
+    //   dateSelection.startDate,
+    //   selectedBeautician
+    // );
 
     if (
       dateSelection.endDate !== null &&
       dateSelection.startDate !== null &&
       selectedBeautician !== null
     ) {
-      console.log("effect body run");
+      // console.log("effect body run");
       axios({
         method: "GET",
         url: `appointment/user/${selectedBeautician}/slots/?startDate=${dateSelection.startDate}&endDate=${dateSelection.endDate}`,
@@ -96,7 +93,6 @@ function TimePicker(props) {
       selectedBeautician !== null &&
       selectedSlots.length !== 0
     ) {
-      console.log("runnnnn");
       handleTime(
         true,
         dateSelection.endDate !== null && dateSelection.startDate !== null,
@@ -106,7 +102,7 @@ function TimePicker(props) {
         date.toString().substring(0, 16)
       );
     }
-    console.log(selectedSlots);
+    // console.log(selectedSlots);
   }, [date, selectedBeautician, selectedSlots]);
 
   return (
@@ -124,7 +120,6 @@ function TimePicker(props) {
                   startDate: dateFormatter(e, -1),
                   endDate: dateFormatter(e, 1),
                 });
-                console.log(date);
               }}
             />
           </div>
