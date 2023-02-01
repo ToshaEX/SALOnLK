@@ -40,11 +40,11 @@ function NumberCounter() {
       name: "Years of Experience",
     },
     {
-      endValue: beauticians,
+      endValue: users,
       name: "Happy Customers",
     },
     {
-      endValue: users,
+      endValue: beauticians,
       name: "Number of Staff",
     },
     {

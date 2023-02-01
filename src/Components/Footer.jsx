@@ -4,28 +4,34 @@ import Logo from "../assets/logo-lg.png";
 import Fb from "../assets/facebook.png";
 import Twitter from "../assets/twitter.png";
 import Instagram from "../assets/instagram.png";
-
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const { userId, role } = useSelector((state) => ({
+    userId: state.user.userId,
+    role: state.user.role,
+  }));
+
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAIL_SERVICE_ID,
-        process.env.REACT_APP_EMAIL_TEMPLATE_ID,
-        e.target,
-        process.env.REACT_APP_EMAIL_PUBLIC_ID
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (err) => {
-          console.log(err.text);
-        }
-      );
-
+    if (userId !== null && role === "user") {
+      emailjs
+        .sendForm(
+          process.env.REACT_APP_EMAIL_SERVICE_ID,
+          process.env.REACT_APP_EMAIL_TEMPLATE_ID,
+          e.target,
+          process.env.REACT_APP_EMAIL_PUBLIC_ID
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (err) => {
+            console.log(err.text);
+          }
+        );
+    }
     e.target.reset();
   };
 

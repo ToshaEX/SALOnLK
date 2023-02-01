@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { resetUser } from "../features/user/user-slice";
 import { Roles } from "../roles/roles";
-import Bucket from "./Bucket";
 import Logo from "../assets/logo-sm.png";
 
 function classNames(...classes) {
@@ -81,7 +80,7 @@ const Navbar = () => {
                     {navigation.map((item) => (
                       <Link
                         to={(location) => ({ ...location, pathname: item.to })}
-                        key={`${item.name}-item-1`}
+                        key={`${item.name}-nav-item-1`}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-blue"

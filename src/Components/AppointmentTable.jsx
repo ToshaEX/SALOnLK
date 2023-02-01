@@ -8,7 +8,9 @@ import { appointmentArray, appointmentStatus } from "./appointmentStatus";
 
 export default function AppointmentTable() {
   const [appointment, setAppointment] = useState(null);
+  const [allUsersAppointment, setAllUsersAppointment] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingTwo, setIsLoadingTwo] = useState(true);
   const [refresh, setRefresh] = useState(true);
   const { userId, role } = useSelector((state) => ({
     userId: state.user.userId,
@@ -127,29 +129,50 @@ export default function AppointmentTable() {
       .catch((err) => {
         console.log("Failed to load Users", err);
       });
+
+    axios({
+      method: "GET",
+      url: "appointment",
+      responseType: "json",
+    })
+      .then((res) => {
+        setAllUsersAppointment(res.data);
+        setIsLoadingTwo(false);
+      })
+      .catch((err) => {
+        console.log("Failed to load Users", err);
+      });
   }, [refresh]);
 
   if (isLoading) {
-    return <div>Loading upto</div>;
+    return <div className="text-center">Loading upto</div>;
+  }
+  if (isLoadingTwo) {
+    return <div className="text-center">Loading upto</div>;
   }
   if (appointment.length === 0) {
-    <div> no data to show</div>;
+    <div className="text-center">There are no records to display</div>;
+  }
+  if (allUsersAppointment.length === 0) {
+    <div className="text-center">There are no records to display</div>;
   }
 
   return (
     <div className="w-full h-full">
       <Table
         columns={columns}
-        rows={appointment.map((item, index) => ({
-          id: item._id,
-          customerID: item.user.first_name,
-          customerTel: item.user.phone,
-          beauticianID: item.beautician.first_name,
-          slots: item.slots,
-          status: item.is_approved,
-          services: item.services,
-          date: item.appointment_date,
-        }))}
+        rows={(role === "admin" ? allUsersAppointment : appointment).map(
+          (item, index) => ({
+            id: item._id,
+            customerID: item.user.first_name,
+            customerTel: item.user.phone,
+            beauticianID: item.beautician.first_name,
+            slots: item.slots,
+            status: item.is_approved,
+            services: item.services,
+            date: item.appointment_date,
+          })
+        )}
       />
     </div>
   );

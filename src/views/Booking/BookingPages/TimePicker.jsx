@@ -25,8 +25,9 @@ function TimePicker(props) {
   const [beauticianOption, setBeauticianOption] = useState([]);
   const [date, setDate] = useState(null);
   const [selectedBeautician, setSelectedBeautician] = useState(null);
-  const [beauticianSlots, setBeauticianSlots] = useState(null);
+  const [beauticianSlots, setBeauticianSlots] = useState([]);
   const [selectedSlots, setSelectedSlots] = useState([]);
+  const [noSlots, setNoSlots] = useState(false);
 
   const [dateSelection, setDateSelection] = useState({
     startDate: date,
@@ -93,13 +94,22 @@ function TimePicker(props) {
       selectedBeautician !== null &&
       selectedSlots.length !== 0
     ) {
+      setNoSlots(
+        slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0] === undefined
+          ? true
+          : false
+      );
+
       handleTime(
         true,
         dateSelection.endDate !== null && dateSelection.startDate !== null,
         dateFormatter(date),
         selectedBeautician,
         selectedSlots,
-        date.toString().substring(0, 16)
+        date.toString().substring(0, 16),
+        slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0] === undefined
+          ? true
+          : false
       );
     }
     // console.log(selectedSlots);
@@ -122,6 +132,13 @@ function TimePicker(props) {
                 });
               }}
             />
+            <div
+              className={`items-center text-[13px] text-red text-center mt-2 mr-6 ${
+                noSlots ? "display" : "hidden"
+              }`}
+            >
+              There are no any time slots available in this day.
+            </div>
           </div>
         </div>
         <div className="flex flex-col md:w-1/2">
@@ -161,14 +178,16 @@ function TimePicker(props) {
             <div className={selectedBeautician === null ? "hidden" : "block"}>
               {beauticianSlots && (
                 <div>
-                  {
-                    slotsList[
-                      beauticianSlots.length === 0 ? 0 : beauticianSlots.at(-1)
-                    ]?.timeSlot.split("-")[0]
-                  }
+                  {noSlots
+                    ? " "
+                    : slotsList[
+                        beauticianSlots.length === 0
+                          ? 0
+                          : beauticianSlots.at(-1)
+                      ]?.timeSlot.split("-")[0]}
                   -&nbsp;
                   {slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0]}
-                  &nbsp;({timeTaken}min)
+                  &nbsp;{noSlots ? " " : `(${timeTaken}min)`}
                 </div>
               )}
             </div>

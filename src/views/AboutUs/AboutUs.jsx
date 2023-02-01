@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import T1 from "../../assets/Team-1.webp";
 import T2 from "../../assets/Team-2.webp";
 import T3 from "../../assets/Team-3.webp";
@@ -45,9 +46,11 @@ const AboutUs = () => {
           </div>
 
           <div className="flex pt-[3rem] justify-center">
-            <button className="btn-primary hover:bg-gray-dark">
-              Book an Appointment
-            </button>
+            <Link to="/booking">
+              <button className="btn-primary hover:bg-gray-dark">
+                Book an Appointment
+              </button>
+            </Link>
           </div>
         </div>
       </div>

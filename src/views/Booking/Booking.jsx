@@ -20,6 +20,7 @@ const Booking = () => {
   const [beauticianID, setBeauticianID] = useState(null);
   const [timeSlots, setTimeSlots] = useState([]);
   const [getConfirm, setConfirm] = useState(false);
+  const [isFull, setIsFull] = useState(false);
   const { userId } = useSelector((state) => ({ userId: state.user.userId }));
   const history = useHistory();
 
@@ -83,7 +84,8 @@ const Booking = () => {
     selectedDate,
     b_id,
     timeSlots,
-    rowDates
+    rowDates,
+    isSlotFull
   ) => {
     setIsSelectBeautician(isSelectBeautician);
     setDate(selectedDate);
@@ -91,6 +93,7 @@ const Booking = () => {
     setTimeSlots(timeSlots);
     setIsSelectDate(isSelectDate);
     setRowDate(rowDates);
+    setIsFull(!isSlotFull);
 
     // console.log(isSelectBeautician);
     // console.log(selectedDate);
@@ -98,6 +101,7 @@ const Booking = () => {
     // console.log(timeSlots);
     // console.log(pickServices);
     // console.log(rowDates);
+    // console.log(!isSlotFull);
   };
 
   const handleFinished = (confirmed) => {
@@ -164,7 +168,7 @@ const Booking = () => {
           </div>
 
           {/* pages display area */}
-          <div className="px-10 pt-10">{PageDisplay()}</div>
+          <div className="px-6 md:px-10 pt-10">{PageDisplay()}</div>
           {/* next button */}
           <div className="px-20 pb-5 flex justify-center items-center md:justify-end">
             <button
@@ -179,7 +183,11 @@ const Booking = () => {
                   }
                 } else if (index === 2) {
                   if (isSelectBeautician && isSelectDate) {
-                    nextButton();
+                    if (isFull) {
+                      nextButton();
+                    } else {
+                      toast.error("Please select an another date!");
+                    }
                   } else {
                     toast.error("Please select a beautician and date!");
                   }

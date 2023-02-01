@@ -41,10 +41,14 @@ export default function SideMenu() {
     >
       <div className="routes pt-10 md:pt-0 ">
         {/* side bar toggle button */}
-        <div className="mb-[2rem] flex justify-end cursor-pointer">
+        <div
+          className={`mb-[2rem] flex ${
+            navSize === "small" ? "justify-center" : "justify-end"
+          }`}
+        >
           <div className={navSize === "small" ? "hidden" : "block"}>
             <HiOutlineMenuAlt3
-              className="mt-[13px] text-white text-xl"
+              className="mt-[13px] text-white text-xl cursor-pointer"
               onClick={() => {
                 if (navSize === "small") {
                   changeNavSize("large");
@@ -54,9 +58,9 @@ export default function SideMenu() {
               }}
             />
           </div>
-          <div className={navSize === "small" ? "block px-3" : "hidden"}>
+          <div className={navSize === "small" ? "block" : "hidden"}>
             <HiOutlineMenuAlt2
-              className="mt-[13px] text-white text-xl"
+              className="mt-[13px] text-white text-xl cursor-pointer"
               onClick={() => {
                 if (navSize === "small") {
                   changeNavSize("large");
@@ -73,7 +77,11 @@ export default function SideMenu() {
             return (
               <Link to={item.path} key={"side-menu-list" + index}>
                 <div className="py-[4.8px]">
-                  <div className="mb-2 flex justify-start rounded-md gap-4 items-center py-[0.7rem] text-primary/80 hover:bg-gray/90 hover:text-white hover:shadow-md md:px-3">
+                  <div
+                    className={`${
+                      navSize === "small" ? "justify-center" : "justify-start"
+                    } mb-2 flex  rounded-md gap-4 items-center py-[0.7rem] text-primary/80 hover:bg-gray/90 hover:text-white hover:shadow-md md:px-3`}
+                  >
                     <span className="text-xl text-white">{item.icon}</span>
                     <div className={navSize === "small" ? "hidden" : "block"}>
                       <span className="text-md font-extralight text-white ">

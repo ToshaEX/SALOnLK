@@ -107,7 +107,7 @@ export default function EmployeeHandler() {
           </button>
         </div>
 
-        <div className="md:w-[18rem]">
+        <div>
           <select
             id="role"
             value={select}

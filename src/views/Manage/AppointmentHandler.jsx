@@ -14,7 +14,7 @@ const AppointmentHandler = () => {
               type="submit"
               className="rounded-md h-[2.5rem] w-[12rem] border border-transparent bg-primary px-4 text-[12px] pt-[0.1rem] uppercase bg-gray-50 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:text-xs md:pt-0"
             >
-              Book an appointment
+              Make an appointment
             </button>
           </Link>
         </div>

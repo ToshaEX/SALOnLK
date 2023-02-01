@@ -35,7 +35,7 @@ const Products = () => {
     <div className="bg-[#f7f9fc] py-[5rem]">
       <div className="text-center mb-[18px]">
         <h2 className="font-bold text-[40px] leading-none tracking-tight">
-          Featured Products
+          Our Products
         </h2>
       </div>
 
