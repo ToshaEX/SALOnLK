@@ -145,16 +145,14 @@ export default function AppointmentTable() {
   }, [refresh]);
 
   if (isLoading) {
-    return <div className="text-center">Loading upto</div>;
+    return (
+      <div className="text-center py-5">There are no records to display</div>
+    );
   }
   if (isLoadingTwo) {
-    return <div className="text-center">Loading upto</div>;
-  }
-  if (appointment.length === 0) {
-    <div className="text-center">There are no records to display</div>;
-  }
-  if (allUsersAppointment.length === 0) {
-    <div className="text-center">There are no records to display</div>;
+    return (
+      <div className="text-center py-5">There are no records to display</div>
+    );
   }
 
   return (

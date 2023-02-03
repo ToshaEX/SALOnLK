@@ -35,12 +35,16 @@ const Navbar = () => {
       to: "manage",
       current: false,
     },
-    role === Roles.ADMIN && {
-      name: "booking",
+    role === Roles.USER && {
+      name: "Booking",
       to: "booking",
       current: false,
     },
-    { name: "Appointments", to: "appointment", current: false },
+    role !== Roles.ADMIN && {
+      name: "Appointments",
+      to: "appointment",
+      current: false,
+    },
   ];
 
   return (
@@ -77,21 +81,21 @@ const Navbar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block md:pl-3 md:ml-12">
                   <div className="flex space-x-4 p-5">
-                    {navigation.map((item) => (
-                      <Link
-                        to={(location) => ({ ...location, pathname: item.to })}
-                        key={`${item.name}-nav-item-1`}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-blue"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-black hover:bg-blue hover:bg-opacity-10",
-                          "px-3 py-2 rounded-md text-sm font-medium text-gray-light"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    {navigation
+                      .filter((val) => val.current === false)
+                      .map((item) => (
+                        <Link
+                          to={(location) => ({
+                            ...location,
+                            pathname: item.to,
+                          })}
+                          key={`${item.name}-nav-item-1`}
+                          className="text-gray-300 hover:bg-gray-700 hover:text-black hover:bg-blue hover:bg-opacity-10 px-3 py-2 rounded-md text-sm font-medium text-gray-light"
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -216,22 +220,19 @@ const Navbar = () => {
 
           <Disclosure.Panel className="absolute w-[100vw] bg-gray-dark/70 text-gray-light sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 ">
-              {navigation.map((item) => (
-                <Link
-                  to={(location) => ({ ...location, pathname: item.to })}
-                  key={`${item.name}-item-2`}
-                  as="a"
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block px-3 py-2 rounded-md text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation
+                .filter((val) => val.current === false)
+                .map((item) => (
+                  <Link
+                    to={(location) => ({ ...location, pathname: item.to })}
+                    key={`${item.name}-nav-item-2`}
+                    as="a"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    aria-current={item.current ? "page" : undefined}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
             </div>
           </Disclosure.Panel>
         </>
