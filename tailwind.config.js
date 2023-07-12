@@ -57,6 +57,16 @@ module.exports = {
           },
         },
       },
+      screens: {
+        mini: { max: "280px" },
+        xsm: "540px",
+        md: "768px",
+        xmd: "820px",
+        slg: "912px",
+        lg: "1024px",
+        xl: "1280px",
+        xxl: "1536px",
+      },
     },
   },
   plugins: [

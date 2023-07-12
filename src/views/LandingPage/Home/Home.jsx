@@ -11,7 +11,7 @@ const Home = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewPort={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.5 }}
         variants={{
           hidden: { opacity: 0, x: -50 },
@@ -19,7 +19,7 @@ const Home = () => {
         }}
       >
         <div className="text-center -translate-y-12 px-8 ml-0 md:text-start md:p-8 md:-translate-y-16 md:ml-10">
-          <span className="text-white max-w-md font-bold text-[52px] pl-[0.7rem] leading-none tracking-tight justify-center md:text-[58px] md:justify-start md:pl-0">
+          <span className="text-white max-w-md font-bold text-[45px] pl-[0.7rem] leading-none tracking-tight mini:text-[40px] md:text-[52px] md:pl-0 lg:text-[50px] xl:text-[58px]">
             A Smooth Saloon <br />
             Experience in <br />
             your Town
@@ -33,7 +33,7 @@ const Home = () => {
           </div>
           <div className="flex pt-4 justify-center md:justify-start">
             <Link to="/booking">
-              <button className="btn-primary hover:bg-gray-dark">
+              <button className="btn-primary hover:bg-gray-dark mini:text-[14px]">
                 Book an Appointment
               </button>
             </Link>

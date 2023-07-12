@@ -106,6 +106,7 @@ function TimePicker(props) {
         dateFormatter(date),
         selectedBeautician,
         selectedSlots,
+        beauticianSlots,
         date.toString().substring(0, 16),
         slotsList[selectedSlots.at(-1)]?.timeSlot.split("-")[0] === undefined
           ? true
@@ -117,7 +118,7 @@ function TimePicker(props) {
 
   return (
     <div>
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2">
           {/* calendar */}
           <div className="px-3 mt-5 mb-5 lg:mt-0">
@@ -141,7 +142,7 @@ function TimePicker(props) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:w-1/2">
+        <div className="flex flex-col md:pt-[1.3rem] lg:pt-0 md:w-1/2">
           {/* beautician pick */}
           <div className="px-3">
             <div className="text-[14px] font-semibold pb-1">

@@ -44,9 +44,9 @@ const Services = () => {
     <section id="service">
       {/* Service Menu Section */}
       <div className="bg-[url('./assets/services-bg.png')]">
-        <div className="p-[3rem] text-white">
+        <div className="py-[3rem] px-[1rem] text-white">
           <div className="text-center">
-            <h2 className="font-bold text-[42px] leading-none tracking-tight md:text-[50px]">
+            <h2 className="font-bold text-[42px] leading-none tracking-tight mini:text-[34px] md:text-[50px]">
               Service Menu
             </h2>
           </div>
@@ -61,7 +61,7 @@ const Services = () => {
 
           <div className="flex pt-[3rem] justify-center">
             <NavLink to="/booking">
-              <button className="btn-primary hover:bg-gray-dark">
+              <button className="btn-primary hover:bg-gray-dark mini:text-[14px]">
                 Book an Appointment
               </button>
             </NavLink>
@@ -70,113 +70,96 @@ const Services = () => {
       </div>
 
       {/* Service Selection Section */}
-      <div className="">
-        <div className="relative">
-          <div className="hidden text-center w-[50px] sticky top-0 px-[20px] md:p-[4rem] md:block">
-            <div className="h-[20px]"></div>
-            <Link
-              to="Hair"
-              spy={true}
-              smooth={true}
-              offset={-100}
-              duration={500}
-            >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-5 pb-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={HairImg} alt="hair" />
-                </div>
-                <div className="serviceName">
-                  <span>Hair</span>
-                </div>
+      <div className="relative flex flex-row">
+        {/* clickable icons */}
+        <div className="hidden text-center w-[50px] sticky top-0 px-[20px] justify-center items-center h-screen md:px-[3rem] lg:px-[4rem] md:pt-[3rem] md:flex md:flex-col bg-opacity-30">
+          <div className="h-[20px]"></div>
+          <Link to="Hair" spy={true} smooth={true} offset={-100} duration={500}>
+            <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] pt-5 pb-3 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px] md:pb-[1.5rem] lg:pb-3 xl:pt-[2rem] xl:pb-[1rem] xxl:pb-[2rem]">
+              <div className="h-[34px] w-[34px] m-auto mb-[1px] md:h-[36px] md:w-[36px] xxl:h-[48px] xxl:w-[48px]">
+                <img src={HairImg} alt="hair" />
               </div>
-            </Link>
-
-            <Link
-              to="Makeup"
-              spy={true}
-              smooth={true}
-              offset={-20}
-              duration={500}
-            >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={MakeupImg} alt="makeup" />
-                </div>
-                <div className="serviceName">
-                  <span>MakeUp</span>
-                </div>
+              <div className="serviceName">
+                <span>Hair</span>
               </div>
-            </Link>
+            </div>
+          </Link>
 
-            <Link
-              to="Brows"
-              spy={true}
-              smooth={true}
-              offset={-20}
-              duration={500}
-            >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={BrowImg} alt="mascara" />
-                </div>
-                <div className="serviceName">
-                  <span>Brow</span>
-                </div>
+          <Link
+            to="Makeup"
+            spy={true}
+            smooth={true}
+            offset={-20}
+            duration={500}
+          >
+            <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-3 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px] md:pb-[1.5rem] lg:pb-3 xl:pb-[1rem] xxl:pb-[2rem]">
+              <div className="h-[34px] w-[34px] m-auto mb-[1px] md:h-[36px] md:w-[36px] xxl:h-[48px] xxl:w-[48px]">
+                <img src={MakeupImg} alt="makeup" />
               </div>
-            </Link>
-
-            <Link
-              to="Nails"
-              spy={true}
-              smooth={true}
-              offset={-20}
-              duration={500}
-            >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={NailImg} alt="nail" />
-                </div>
-                <div className="serviceName">
-                  <span className="">Nails</span>
-                </div>
+              <div className="serviceName">
+                <span>MakeUp</span>
               </div>
-            </Link>
+            </div>
+          </Link>
 
-            <Link
-              to="Cosmetology"
-              spy={true}
-              smooth={true}
-              offset={-20}
-              duration={500}
-            >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={CosmetologyImg} alt="comb" />
-                </div>
-                <div className="serviceName">
-                  <span>Cosmetology</span>
-                </div>
+          <Link to="Brows" spy={true} smooth={true} offset={-20} duration={500}>
+            <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-3 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px] md:pb-[1.5rem] lg:pb-3 xl:pb-[1rem] xxl:pb-[2rem]">
+              <div className="h-[34px] w-[34px] m-auto mb-[1px] md:h-[36px] md:w-[36px] xxl:h-[48px] xxl:w-[48px]">
+                <img src={BrowImg} alt="mascara" />
               </div>
-            </Link>
-
-            <Link
-              to="Massage"
-              spy={true}
-              smooth={true}
-              offset={-20}
-              duration={500}
-            >
-              <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-2 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px]">
-                <div className="h-[34px] w-[34px] m-auto mb-[7px] md:h-[48px] md:w-[48px]">
-                  <img src={MassageImg} alt="massage" />
-                </div>
-                <div className="serviceName">
-                  <span>Massage</span>
-                </div>
+              <div className="serviceName">
+                <span>Brow</span>
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
 
+          <Link to="Nails" spy={true} smooth={true} offset={-20} duration={500}>
+            <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-3 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px] md:pb-[1.5rem] lg:pb-3 xl:pb-[1rem] xxl:pb-[2rem]">
+              <div className="h-[34px] w-[34px] m-auto mb-[1px] md:h-[36px] md:w-[36px] xxl:h-[48px] xxl:w-[48px]">
+                <img src={NailImg} alt="nail" />
+              </div>
+              <div className="serviceName">
+                <span className="">Nails</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            to="Cosmetology"
+            spy={true}
+            smooth={true}
+            offset={-20}
+            duration={500}
+          >
+            <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-3 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px] md:pb-[1.5rem] lg:pb-3 xl:pb-[1rem] xxl:pb-[2rem]">
+              <div className="h-[34px] w-[34px] m-auto mb-[1px] md:h-[36px] md:w-[36px] xxl:h-[48px] xxl:w-[48px]">
+                <img src={CosmetologyImg} alt="comb" />
+              </div>
+              <div className="serviceName">
+                <span>Cosmetic</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            to="Massage"
+            spy={true}
+            smooth={true}
+            offset={-20}
+            duration={500}
+          >
+            <div className="flex flex-col items-center justify-center cursor-pointer w-[35px] py-3 drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 md:w-[50px] md:pb-[1.5rem] lg:pb-3 xl:pb-[1.3rem] xxl:pb-[2rem]">
+              <div className="h-[34px] w-[34px] m-auto mb-[1px] md:h-[36px] md:w-[36px] xxl:h-[48px] xxl:w-[48px]">
+                <img src={MassageImg} alt="massage" />
+              </div>
+              <div className="serviceName">
+                <span>Massage</span>
+              </div>
+            </div>
+          </Link>
+        </div>
+        {/* display screen section */}
+        <div className="flex flex-col justify-center items-center w-full px-0">
           {/* Hair Details Section */}
           <Hair service={service} />
 

@@ -21,7 +21,12 @@ const Booking = () => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [getConfirm, setConfirm] = useState(false);
   const [isFull, setIsFull] = useState(false);
-  const { userId } = useSelector((state) => ({ userId: state.user.userId }));
+  const [beauticianSlots, setBeauticianSlots] = useState([]);
+
+  const { userId, role } = useSelector((state) => ({
+    userId: state.user.userId,
+    role: state.user.role,
+  }));
   const history = useHistory();
 
   const nextButton = () => {
@@ -47,6 +52,8 @@ const Booking = () => {
           nextStep={nextButton}
           handleFinished={handleFinished}
           selectedServices={pickServices}
+          beauticianTimeSlot={beauticianSlots}
+          pickedTimeSlots={timeSlots}
           salary={amount}
           b_id={beauticianID}
           date={rowDate}
@@ -84,6 +91,7 @@ const Booking = () => {
     selectedDate,
     b_id,
     timeSlots,
+    beauticianSlots,
     rowDates,
     isSlotFull
   ) => {
@@ -92,6 +100,7 @@ const Booking = () => {
     setBeauticianID(b_id);
     setTimeSlots(timeSlots);
     setIsSelectDate(isSelectDate);
+    setBeauticianSlots(beauticianSlots);
     setRowDate(rowDates);
     setIsFull(!isSlotFull);
 
@@ -118,7 +127,11 @@ const Booking = () => {
       services: pickServices,
     };
 
-    newAppointment(data);
+    if (role) {
+      newAppointment(data);
+    } else {
+      toast.error("You should register first!");
+    }
   };
 
   async function newAppointment(payload) {
@@ -141,9 +154,9 @@ const Booking = () => {
   return (
     <section id="booking" className="h-screen bg-white">
       <div className="bg-[url('./assets/booking.png')]">
-        <div className="p-[3rem] text-white">
+        <div className="py-[3rem] text-white mini:px-[1rem] md:px-[3rem]">
           <div className="text-center">
-            <h2 className="font-bold text-[42px] leading-none tracking-tight md:text-[50px]">
+            <h2 className="font-bold text-[42px] leading-none tracking-tight mini:text-[34px] md:text-[50px]">
               Book Now
             </h2>
           </div>
@@ -153,22 +166,18 @@ const Booking = () => {
               Personalize your service and schedule your appointment today!
             </span>
           </div>
-
-          <div className="flex py-[0.3rem] justify-center">
-            <button className=""></button>
-          </div>
         </div>
       </div>
 
       <div className="flex justify-center items-center py-5">
-        <div className="bg-white w-full md:w-[65%] pt-5 rounded-md shadow-md">
+        <div className="bg-white w-full lg:w-[65%] pt-5 rounded-md shadow-md">
           {/* step progress bar */}
-          <div className="px-20 py-10">
+          <div className="px-[4rem] py-10 mini:px-12 md:px-20">
             <StepProgressBar step={index} />
           </div>
 
           {/* pages display area */}
-          <div className="px-6 md:px-10 pt-10">{PageDisplay()}</div>
+          <div className="px-2 md:px-10 pt-10">{PageDisplay()}</div>
           {/* next button */}
           <div className="px-20 pb-5 flex justify-center items-center md:justify-end">
             <button

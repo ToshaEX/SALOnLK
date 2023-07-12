@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Table } from "./index";
-import { Roles } from "../roles/roles";
+import { Roles } from "../roles";
 import { slotsList } from "../views/Booking/BookingPages/slots";
 import { appointmentArray, appointmentStatus } from "./appointmentStatus";
 

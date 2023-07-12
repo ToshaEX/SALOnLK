@@ -34,7 +34,7 @@ const ServicesMenu = () => {
       setHairLine(false);
       setMakeupLine(false);
       setMassageLine(false);
-    } else if (lineName === "Cosmetology") {
+    } else if (lineName === "Cosmetic") {
       setCosLine(true);
       setBrowsLine(false);
       setHairLine(false);
@@ -81,7 +81,7 @@ const ServicesMenu = () => {
       line: browsLine,
     },
     {
-      name: "Cosmetology",
+      name: "Cosmetic",
       description:
         "Indulge a little longer with a customized facial to help achieve your skin goals in 60-90 minutes.",
       img: Cosmetology,
@@ -113,12 +113,12 @@ const ServicesMenu = () => {
   return (
     <div className="p-0 md:p-[3rem]">
       <div className="text-center mb-[18px]">
-        <h2 className="font-bold text-[40px] leading-none tracking-tight px-[3rem] pt-[3rem] md:px-0 md:pt-0">
+        <h2 className="font-bold text-[36px] leading-none tracking-tight px-[3rem] pt-[3rem] mini:text-[32px] mini:px-[1rem] md:px-0 md:pt-0 md:text-[40px]">
           Service Menu
         </h2>
       </div>
 
-      <div className="p-[1.5rem] flex items-center justify-between pt-10 pb-[18px] text-center mx-auto md:justify-center md:gap-20 md:mb-[20px]">
+      <div className="p-[1.5rem] flex items-center justify-between pt-10 pb-[18px] text-center mx-auto md:justify-center md:gap-[4rem] md:mb-[20px]">
         {servicesList.map((item, i) => {
           return (
             <div key={"services-list-1" + i}>
@@ -129,7 +129,7 @@ const ServicesMenu = () => {
                   CheckLine(item.name);
                 }}
               >
-                <div className="h-[45px] w-[45px] m-auto mb-[22px] md:h-[50px] md:w-[50px]">
+                <div className="h-[45px] w-[45px] m-auto mb-[22px] mini:[32px] mini:w-[32px] mini:mb-[5px] md:h-[50px] md:w-[50px]">
                   <img
                     className="drop-shadow-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110"
                     src={item.img}
@@ -146,11 +146,11 @@ const ServicesMenu = () => {
         })}
       </div>
 
-      <div className="flex items-center justify-center px-[3rem] md:px-0">
+      <div className="flex items-center justify-center px-[3rem] mini:px-[1rem] md:px-0">
         <div className="text-center max-w-md">
           <span
             id="textParagraph"
-            className="font-regular text-[18px] leading-none tracking-tight text-gray"
+            className="font-regular text-[18px] leading-none tracking-tight text-gray mini:text-[14px]"
           >
             {text}
           </span>
@@ -159,7 +159,7 @@ const ServicesMenu = () => {
 
       <div className="flex pt-8 justify-center pb-[3rem] md:pb-0">
         <Link to="/services">
-          <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white">
+          <button className="btn-primary text-[#273444] border-[#273444] hover:bg-gray-dark hover:text-white mini:text-[14px]">
             View Service Menu
           </button>
         </Link>

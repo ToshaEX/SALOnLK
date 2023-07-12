@@ -5,7 +5,10 @@ import GoToTop from "../../GoToTop";
 
 const AppointmentHandler = () => {
   return (
-    <div id="MainAppointmentHandler" className="bg-white p-10 min-h-screen">
+    <div
+      id="MainAppointmentHandler"
+      className="min-h-screen py-10 bg-white px-4 mini:px-2 md:px-5 xl:px-10"
+    >
       {/* header section */}
       <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:pr-[5rem] md:flex-row">
         <div>
@@ -21,8 +24,9 @@ const AppointmentHandler = () => {
       </div>
 
       {/* table view section */}
-      <AppointmentTable />
-
+      <div className="grid grid-cols-1">
+        <AppointmentTable />
+      </div>
       <GoToTop />
     </div>
   );

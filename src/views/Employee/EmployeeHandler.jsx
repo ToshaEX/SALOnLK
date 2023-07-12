@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EmployeeView from "./EmployeeView";
 import EmployeeDelete from "./EmployeeDelete";
-import { Table } from "../../../Components/index";
-import GoToTop from "../../../GoToTop";
+import { Table } from "../../Components/index";
+import GoToTop from "../../GoToTop";
 
 export default function EmployeeHandler() {
   const [select, setSelect] = useState("beautician");
@@ -94,7 +94,10 @@ export default function EmployeeHandler() {
   }
 
   return (
-    <div id="MainEmployeeHandler" className="bg-white p-10 min-h-screen">
+    <div
+      id="MainEmployeeHandler"
+      className="bg-white min-h-screen py-10 px-4 md:px-5 xl:px-10"
+    >
       {/* header section */}
       <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:flex-row">
         <div>
@@ -123,24 +126,25 @@ export default function EmployeeHandler() {
       </div>
 
       {/* list view section */}
-      <div className="w-[68vw] md:w-full">
-        <Table
-          columns={columns}
-          rows={users
-            .filter((val) => val.role === select)
-            .map((item, i) => ({
-              id: item._id,
-              first_name: item.first_name,
-              last_name: item.last_name,
-              role: select,
-              email: item.email,
-              phone: item.phone,
-              gender: item.gender,
-            }))}
-          isExtended={false}
-        />
+      <div className="grid grid-cols-1">
+        <div className="h-full w-full">
+          <Table
+            columns={columns}
+            rows={users
+              .filter((val) => val.role === select)
+              .map((item, i) => ({
+                id: item._id,
+                first_name: item.first_name,
+                last_name: item.last_name,
+                role: select,
+                email: item.email,
+                phone: item.phone,
+                gender: item.gender,
+              }))}
+            isExtended={false}
+          />
+        </div>
       </div>
-
       {/* add create new employee modal and update modal */}
       {isModalOpen && (
         <EmployeeView

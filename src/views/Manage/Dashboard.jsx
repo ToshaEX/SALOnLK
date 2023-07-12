@@ -55,7 +55,7 @@ export default function Dashboard() {
     {
       name: "Total Customers",
       numbers: users,
-      percentage: "14.32",
+      percentage: "0.0",
       percentageValue: "increase",
       date: "Since last month",
       icon: <BiUser />,
@@ -63,7 +63,7 @@ export default function Dashboard() {
     {
       name: "Total Appointments",
       numbers: appointments.length,
-      percentage: "12.24",
+      percentage: "0.0",
       percentageValue: "decrease",
       date: "Since last month",
       icon: <IoMdCalendar />,
@@ -71,7 +71,7 @@ export default function Dashboard() {
     {
       name: "Total Services",
       numbers: services.length,
-      percentage: "5.67",
+      percentage: "0.0",
       percentageValue: "increase",
       date: "Since last month",
       icon: <RiScissorsFill />,
@@ -87,12 +87,15 @@ export default function Dashboard() {
   ];
 
   return (
-    <div id="MainDashboard" className="min-h-screen p-10 bg-white">
+    <div
+      id="MainDashboard"
+      className="min-h-screen py-10 bg-white px-4 mini:px-2 md:px-5 xl:px-10"
+    >
       <div className="grid grid-cols-1">
         {/* first section */}
-        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-3">
+        <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 gap-3">
           {/* number cards */}
-          <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-2 md:col-span-1">
+          <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-3 lg:grid-rows-2 gap-2 lg:col-span-1">
             {numberDetails.map((item, index) => {
               return (
                 <div
@@ -134,12 +137,12 @@ export default function Dashboard() {
           </div>
           {/* liner chart */}
           {/* use dummy data to display chart */}
-          <div className="bg-white shadow-md rounded-md md:col-span-2 px-3 pt-3 pb-0 overflow-hidden text-[13px]">
+          <div className="bg-white shadow-md rounded-md lg:col-span-2 px-3 pt-3 pb-0 overflow-hidden text-[13px] md:pt-0 lg:pt-3">
             <ProfitChart />
           </div>
         </div>
         {/* second section */}
-        <div className="mt-1">
+        <div className="mt-1 md:mt-[3rem] lg:mt-1">
           {/* appointment table */}
           <div className="shadow-md rounded-md">
             <AppointmentTable />

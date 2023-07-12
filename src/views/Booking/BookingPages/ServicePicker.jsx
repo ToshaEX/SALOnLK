@@ -40,12 +40,12 @@ function ServicePicker(props) {
       <div className="text-[14px] font-semibold text-start pb-1 px-[2rem]">
         Pick a Services
       </div>
-      <div className="flex justify-center items-center px-[2rem] text-start pb-1">
+      <div className="flex justify-center items-center px-[1rem] text-start pb-1">
         <div className="shadow rounded bg-white w-full">
           {/* main services list */}
           <div>
             <div
-              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"
+              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm cursor-pointer"
               onClick={() => setToggleOne(!toggleOne)}
             >
               <span>Hair</span>
@@ -98,7 +98,7 @@ function ServicePicker(props) {
 
           <div>
             <div
-              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"
+              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm cursor-pointer"
               onClick={() => setToggleTwo(!toggleTwo)}
             >
               <span>MakeUp</span>
@@ -150,7 +150,7 @@ function ServicePicker(props) {
 
           <div>
             <div
-              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"
+              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm cursor-pointer"
               onClick={() => setToggleThree(!toggleThree)}
             >
               <span>Brows</span>
@@ -206,7 +206,7 @@ function ServicePicker(props) {
 
           <div>
             <div
-              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"
+              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm cursor-pointer"
               onClick={() => setToggleFour(!toggleFour)}
             >
               <span>Nails</span>
@@ -262,7 +262,7 @@ function ServicePicker(props) {
 
           <div>
             <div
-              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"
+              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm cursor-pointer"
               onClick={() => setToggleFive(!toggleFive)}
             >
               <span>Cosmetology</span>
@@ -318,7 +318,7 @@ function ServicePicker(props) {
 
           <div>
             <div
-              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm"
+              className="flex text-md font-medium justify-between px-5 py-3 shadow-sm cursor-pointer"
               onClick={() => setToggleSix(!toggleSix)}
             >
               <span>Massage</span>

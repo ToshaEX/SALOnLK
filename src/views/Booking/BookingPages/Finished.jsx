@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { slotsList } from "./slots";
 
 function Finished(props) {
-  const { selectedServices, salary, b_id, date, timeTaken, handleFinished } =
-    props;
+  const {
+    selectedServices,
+    pickedTimeSlots,
+    salary,
+    b_id,
+    date,
+    timeTaken,
+    handleFinished,
+    beauticianTimeSlot,
+  } = props;
   const [services, setServices] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -39,7 +48,7 @@ function Finished(props) {
   }
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row">
+    <div className="flex flex-col-reverse md:flex-row">
       {/* Display user selected all services and total price*/}
       <div className="px-3 mt-0 md:mt-5 mb-5 lg:mt-0 md:w-1/2 bg-white ">
         {/* selected services */}
@@ -72,7 +81,7 @@ function Finished(props) {
             <input
               id="agree"
               type="checkbox"
-              className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300"
+              className="w-4 h-4 bg-gray-50 rounded-full border border-gray-300 focus:ring-3 focus:ring-blue-300"
               onClick={() => {
                 setChecked(!checked);
                 iSChecked();
@@ -87,20 +96,43 @@ function Finished(props) {
       </div>
       {/* Display beautician, date and time */}
       <div className="px-3 mt-5 mb-5 lg:mt-0 md:w-1/2 bg-white ">
-        <div className="flex justify-between md:flex-col">
-          {/* date */}
-          <div>
-            <div className="text-[14px] font-semibold pb-1">Selected Date</div>
-            <div className="w-full text-[15px] text-gray-dark p-2 ">
-              <span>{date}</span>
-            </div>
+        {/* date */}
+        <div>
+          <div className="text-[14px] font-semibold pb-1">Selected Date</div>
+          <div className="w-full text-[15px] text-gray-dark p-2 ">
+            <span>{date}</span>
           </div>
-          {/* time */}
-          <div>
-            <div className="text-[14px] font-semibold pb-1">Selected Time</div>
-            <div className="w-full text-[15px] text-gray-dark p-2 ">
-              <span>{timeTaken}&nbsp;min</span>
-            </div>
+        </div>
+        {/* time */}
+        <div>
+          <div className="text-[14px] font-semibold pb-1">Selected Time</div>
+          <div className="w-full text-[15px] text-gray-dark p-2 ">
+            <span>
+              {
+                slotsList[
+                  beauticianTimeSlot.length === 0
+                    ? 0
+                    : beauticianTimeSlot.at(-1)
+                ]?.timeSlot.split("-")[0]
+              }
+              -&nbsp;
+              {slotsList[pickedTimeSlots.at(-1)]?.timeSlot.split("-")[0]}
+            </span>
+            <span>
+              (
+              {timeTaken < 60
+                ? timeTaken + " " + "minutes"
+                : timeTaken % 60 > 0
+                ? Math.floor(timeTaken / 60) +
+                  " " +
+                  "hours and" +
+                  " " +
+                  (timeTaken % 60) +
+                  " " +
+                  "minutes"
+                : Math.floor(timeTaken / 60) + " " + "hours"}
+              )
+            </span>
           </div>
         </div>
 

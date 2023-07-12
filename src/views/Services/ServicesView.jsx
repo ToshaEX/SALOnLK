@@ -92,7 +92,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
 
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center">
-      <div className="w-full pb-8 pt-6 px-9 md:px-10 md:w-1/2 bg-white rounded-lg">
+      <div className="w-full pb-8 pt-6 px-9 mini:px-4 md:px-10 md:w-1/2 bg-white rounded-lg">
         <div className="flex justify-end items-center">
           <button
             className="text-xl focus:outline-none pl-5"
@@ -101,7 +101,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
             <RiCloseCircleLine />
           </button>
         </div>
-        <h2 className="text-3xl mb-4">
+        <h2 className="text-3xl mb-4 mini:text-xl">
           {service === null ? "Create" : "Edit"} Services
         </h2>
 
@@ -220,7 +220,7 @@ const ServicesView = ({ onClose, service = null, setService }) => {
               >
                 <div className={vOne}>
                   <div>
-                    <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white flex justify-center py-2">
+                    <div className="bg-primary px-4 text-xs uppercase bg-gray-50 text-white flex justify-center py-2 mini:py-1 mini:px-0">
                       {service === null ? "Create" : "Update"} Service
                     </div>
                   </div>

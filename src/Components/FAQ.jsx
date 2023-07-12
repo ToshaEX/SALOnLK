@@ -55,18 +55,18 @@ const FAQ = () => {
     <div className="text-center bg-[#f7f9fc] pb-10">
       <div className="pt-[3rem]">
         <div className="mb-[18px]">
-          <h2 className="font-bold text-[40px] leading-none tracking-tight">
+          <h2 className="font-bold text-[40px] leading-none tracking-tight mini:text-[32px]">
             Frequently Asked Questions
           </h2>
         </div>
 
         <div className="pt-[1rem] px-[3rem] pb-[2rem]">
-          <span className="text-[18px] tracking-tight">
+          <span className="text-[18px] tracking-tight mini:text-base">
             You have questions?&nbsp;We have answers.
           </span>
         </div>
 
-        <div className="flex justify-center items-center px-[3rem] text-start pb-1">
+        <div className="flex justify-center items-center px-[1rem] text-start pb-1 md:px-[3rem]">
           <div className="shadow rounded bg-white w-[500px] md:w-[800px]">
             <div className="flex text-md font-medium justify-between px-5 py-3">
               <Faq data={data} styles={styles} config={config} />

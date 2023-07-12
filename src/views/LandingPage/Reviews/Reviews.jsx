@@ -27,16 +27,16 @@ const Reviews = () => {
     },
   ];
   return (
-    <div className="py-[2rem] px-[1rem] md:px-[10rem]">
+    <div className="py-[2rem] px-[1rem] md:px-[5rem] lg:px-[10rem]">
       <div className="text-center mb-[18px] pt-2">
-        <h2 className="font-bold text-[40px] leading-none tracking-tight">
+        <h2 className="font-bold text-[36px] leading-none tracking-tight mini:text-[32px] md:text-[40px]">
           What Our Customers Say
         </h2>
 
         <div className="mt-6">
           <svg
             aria-hidden="true"
-            className="mx-auto mb-3 w-12 h-12 text-gray-400"
+            className="mx-auto mb-3 w-10 h-10 text-gray-400 md:w-12 md:h-12 mini:w-8 mini:h-8"
             viewBox="0 0 24 27"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ const Reviews = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewPort={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.5 }}
         variants={{
           hidden: { opacity: 0, y: -50 },
@@ -71,7 +71,7 @@ const Reviews = () => {
                 <div className="pb-[25px] cursor-pointer">
                   <figure className="mx-auto max-w-screen-md text-center">
                     <blockquote>
-                      <p className="text-[20px] italic font-medium text-gray tracking-tight">
+                      <p className="text-[18px] italic font-medium text-gray tracking-tight mini:text-[16px] md:text-[20px]">
                         “&nbsp;{item.review}&nbsp;„
                       </p>
                     </blockquote>

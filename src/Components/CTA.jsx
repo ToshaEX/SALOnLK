@@ -5,7 +5,7 @@ import Location from "../assets/pin.png";
 
 const CTA = () => {
   return (
-    <div className="py-[3rem] md:px-[10rem] md:flex md:justify-between md:items-baseline">
+    <div className="py-[3rem] md:px-[5rem] lg:px-[10rem] md:flex md:justify-between md:items-baseline">
       <div id="1" className="md:pt-0">
         <div className="w-[50px] h-[50px] m-auto mb-[22px]">
           <img className="drop-shadow-xl" src={Smartphone} alt="phone" />

@@ -94,9 +94,12 @@ export default function ServiceHandler() {
   }
 
   return (
-    <div id="MainServiceHandler" className="bg-white p-10 min-h-screen">
+    <div
+      id="MainServiceHandler"
+      className="bg-white min-h-screen py-10 px-4 md:px-5 xl:px-10"
+    >
       {/* header section */}
-      <div className="pt-2 pb-2 flex flex-col gap-2 justify-start md:gap-5 md:flex-row">
+      <div className="pt-2 pb-2 flex flex-col gap-2 justify-start lg:gap-5 lg:flex-row">
         <div>
           <button
             type="submit"
@@ -107,67 +110,70 @@ export default function ServiceHandler() {
           </button>
         </div>
 
-        <div>
-          <select
-            id="category"
-            value={select}
-            className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
-            onChange={(e) => {
-              setSelect(e.target.value);
-              if (e.target.value === "Hair") {
-                setShow("display");
-              } else {
-                setShow("hidden");
-              }
-            }}
-          >
-            <option value="Hair">Hair</option>
-            <option value="Makeup">Makeup</option>
-            <option value="Brows">Brows</option>
-            <option value="Nails">Nails</option>
-            <option value="Cosmetology">Cosmetology</option>
-            <option value="Massage">Massage</option>
-          </select>
-        </div>
+        <div className="md:flex gap-5">
+          <div>
+            <select
+              id="category"
+              value={select}
+              className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
+              onChange={(e) => {
+                setSelect(e.target.value);
+                if (e.target.value === "Hair") {
+                  setShow("display");
+                } else {
+                  setShow("hidden");
+                }
+              }}
+            >
+              <option value="Hair">Hair</option>
+              <option value="Makeup">Makeup</option>
+              <option value="Brows">Brows</option>
+              <option value="Nails">Nails</option>
+              <option value="Cosmetology">Cosmetology</option>
+              <option value="Massage">Massage</option>
+            </select>
+          </div>
 
-        <div className={show}>
-          <select
-            id="sub_category"
-            value={selectSub}
-            className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
-            onChange={(e) => {
-              setSelectSub(e.target.value);
-            }}
-          >
-            <option value="Hair Cut">Hair Cut</option>
-            <option value="Color">Color</option>
-          </select>
+          <div className={show}>
+            <select
+              id="sub_category"
+              value={selectSub}
+              className="md:w-[20rem] w-[10rem] rounded-lg text-sm"
+              onChange={(e) => {
+                setSelectSub(e.target.value);
+              }}
+            >
+              <option value="Hair Cut">Hair Cut</option>
+              <option value="Color">Color</option>
+            </select>
+          </div>
         </div>
       </div>
 
       {/* list view section */}
-      <div className="w-[68vw] md:w-full">
-        <Table
-          columns={columns}
-          rows={services
-            .filter((val) =>
-              select === "Hair"
-                ? val.sub_category === selectSub
-                : val.category === select
-            )
-            .map((item, i) => ({
-              id: item._id,
-              category: select,
-              sub_category: selectSub,
-              name: item.name,
-              description: item.description,
-              price: `Rs: ${item.price}`,
-              time: `${item.time} min`,
-            }))}
-          isExtended={false}
-        />
+      <div className="grid grid-cols-1">
+        <div className="h-full w-full">
+          <Table
+            columns={columns}
+            rows={services
+              .filter((val) =>
+                select === "Hair"
+                  ? val.sub_category === selectSub
+                  : val.category === select
+              )
+              .map((item, i) => ({
+                id: item._id,
+                category: select,
+                sub_category: selectSub,
+                name: item.name,
+                description: item.description,
+                price: `Rs: ${item.price}`,
+                time: `${item.time} min`,
+              }))}
+            isExtended={false}
+          />
+        </div>
       </div>
-
       {/* add create new service modal and update modal */}
       {isModalOpen && (
         <ServicesView

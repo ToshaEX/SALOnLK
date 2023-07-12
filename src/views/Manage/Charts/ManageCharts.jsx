@@ -9,8 +9,8 @@ const ManageCharts = () => {
   };
 
   return (
-    <div id="DashboardCharts" className="min-h-screen w-60 p-10 bg-white">
-      <div className="w-[68rem]">
+    <div id="DashboardCharts" className="h-full w-full p-2 md:p-10 bg-white">
+      <div className="grid grid-cols-1">
         <Tableau
           url="https://public.tableau.com/views/SalonManagementSystemDashboard/Dashboard2?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link"
           options={options}
